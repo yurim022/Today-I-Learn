@@ -27,4 +27,5 @@
 - TIME-WAIT : 연결은 종료되었지만 분실되었을지 모를 느린 세그먼트를 위해 당분간 소켓을 열어두고 있는 상태
 - CLOSED : 완전히 종료
 
-
+#### netstat -an 결과
+![image](https://user-images.githubusercontent.com/45115557/134930417-4deae78f-389c-4e56-a4a5-477f51266cdd.png)
