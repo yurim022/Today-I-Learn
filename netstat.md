@@ -28,4 +28,7 @@
 - CLOSED : 완전히 종료
 
 #### netstat -an 결과
-![image](https://user-images.githubusercontent.com/45115557/134930417-4deae78f-389c-4e56-a4a5-477f51266cdd.png)
+
+![image](https://user-images.githubusercontent.com/45115557/134955481-86594632-d922-41f7-bc64-d5765fce90de.png)
+- 맨 위에거는 임의의 요청을 LISTEN 하고 있는 상태,
+- 새로운 연결이 있으면 새로운 소켓이 만들어짐 (각 IP:PORT ~ IP: PORT) 가 소켓 단위
