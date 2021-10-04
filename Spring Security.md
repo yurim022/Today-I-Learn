@@ -48,6 +48,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	* http.logout().invalidateHttpSession(true)
 
 
+
+
+
+
 ### 3. 로그인 인증
 SpringConifig 클래스에 AuthenticationManagerBuilder를 주입해서 인증에 대한 처리를 진행한다.
 이때 메모리정보, JDBC, LDAP 등의 정보를 이용하여 인증처리가 가능하다.
@@ -66,6 +70,11 @@ SpringConifig 클래스에 AuthenticationManagerBuilder를 주입해서 인증�
                 .roles("MANAGER");
     }
 ```
+
+
+
+
+
 
 ### 4. Spring Security Architecture
 
