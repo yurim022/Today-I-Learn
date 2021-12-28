@@ -16,9 +16,11 @@
 ```
 
 이 때, 
+```
 Error: Package: docker-ce-rootless-extras-20.10.12-3.el7.x86_64 (docker-ce-stable)
            Requires: slirp4netns >= 0.4
+           
 Error: Package: docker-ce-rootless-extras-20.10.12-3.el7.x86_64 (docker-ce-stable)
            Requires: fuse-overlayfs >= 0.7
-           
+```        
 다음과 같은 에러를 만날 수 있다. 
