@@ -45,5 +45,80 @@ yum -y install slirp4netns fuse-overlayfs container-selinux
 # yum install docker-ce docker-ce-cli containerd.io
 ```
 를 해주면 최신 버전의 도커가 설치된다!
-![image](https://user-images.githubusercontent.com/45115557/147519591-5e77a305-ae12-4336-921a-efd1e6292a09.png)
 
+아래는 설치 
+```
+[root@watcher yum.repos.d]#  sudo yum install docker-ce docker-ce-cli containerd.io
+Loaded plugins: fastestmirror, langpacks
+Loading mirror speeds from cached hostfile
+Resolving Dependencies
+--> Running transaction check
+---> Package containerd.io.x86_64 0:1.4.12-3.1.el7 will be installed
+---> Package docker-ce.x86_64 3:20.10.12-3.el7 will be installed
+--> Processing Dependency: docker-ce-rootless-extras for package: 3:docker-ce-20.10.12-3.el7.x86_64
+---> Package docker-ce-cli.x86_64 1:20.10.12-3.el7 will be installed
+--> Processing Dependency: docker-scan-plugin(x86-64) for package: 1:docker-ce-cli-20.10.12-3.el7.x86_64
+--> Running transaction check
+---> Package docker-ce-rootless-extras.x86_64 0:20.10.12-3.el7 will be installed
+---> Package docker-scan-plugin.x86_64 0:0.12.0-3.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==============================================================================================================================================================================================================================================================
+ Package                                                                Arch                                                Version                                                       Repository                                                     Size
+==============================================================================================================================================================================================================================================================
+Installing:
+ containerd.io                                                          x86_64                                              1.4.12-3.1.el7                                                docker-ce-stable                                               28 M
+ docker-ce                                                              x86_64                                              3:20.10.12-3.el7                                              docker-ce-stable                                               23 M
+ docker-ce-cli                                                          x86_64                                              1:20.10.12-3.el7                                              docker-ce-stable                                               30 M
+Installing for dependencies:
+ docker-ce-rootless-extras                                              x86_64                                              20.10.12-3.el7                                                docker-ce-stable                                              8.0 M
+ docker-scan-plugin                                                     x86_64                                              0.12.0-3.el7                                                  docker-ce-stable                                              3.7 M
+
+Transaction Summary
+==============================================================================================================================================================================================================================================================
+Install  3 Packages (+2 Dependent packages)
+
+Total download size: 93 M
+Installed size: 381 M
+Is this ok [y/d/N]: y
+Downloading packages:
+경고: /var/cache/yum/x86_64/7/docker-ce-stable/packages/docker-ce-20.10.12-3.el7.x86_64.rpm: Header V4 RSA/SHA512 Signature, key ID 621e9f35: NOKEY
+Public key for docker-ce-20.10.12-3.el7.x86_64.rpm is not installed
+(1/5): docker-ce-20.10.12-3.el7.x86_64.rpm                                                                                                                                                                                             |  23 MB  00:00:00     
+(2/5): docker-ce-cli-20.10.12-3.el7.x86_64.rpm                                                                                                                                                                                         |  30 MB  00:00:00     
+(3/5): containerd.io-1.4.12-3.1.el7.x86_64.rpm                                                                                                                                                                                         |  28 MB  00:00:00     
+(4/5): docker-ce-rootless-extras-20.10.12-3.el7.x86_64.rpm                                                                                                                                                                             | 8.0 MB  00:00:00     
+(5/5): docker-scan-plugin-0.12.0-3.el7.x86_64.rpm                                                                                                                                                                                      | 3.7 MB  00:00:00     
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                                                                                                         137 MB/s |  93 MB  00:00:00     
+Retrieving key from https://download.docker.com/linux/centos/gpg
+Importing GPG key 0x621E9F35:
+ Userid     : "Docker Release (CE rpm) <docker@docker.com>"
+ Fingerprint: 060a 61c5 1b55 8a7f 742b 77aa c52f eb6b 621e 9f35
+ From       : https://download.docker.com/linux/centos/gpg
+Is this ok [y/N]: y
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : 1:docker-ce-cli-20.10.12-3.el7.x86_64                                                                                                                                                                                                      1/5 
+  Installing : docker-scan-plugin-0.12.0-3.el7.x86_64                                                                                                                                                                                                     2/5 
+  Installing : containerd.io-1.4.12-3.1.el7.x86_64                                                                                                                                                                                                        3/5 
+  Installing : docker-ce-rootless-extras-20.10.12-3.el7.x86_64                                                                                                                                                                                            4/5 
+  Installing : 3:docker-ce-20.10.12-3.el7.x86_64                                                                                                                                                                                                          5/5 
+  Verifying  : docker-scan-plugin-0.12.0-3.el7.x86_64                                                                                                                                                                                                     1/5 
+  Verifying  : docker-ce-rootless-extras-20.10.12-3.el7.x86_64                                                                                                                                                                                            2/5 
+  Verifying  : containerd.io-1.4.12-3.1.el7.x86_64                                                                                                                                                                                                        3/5 
+  Verifying  : 1:docker-ce-cli-20.10.12-3.el7.x86_64                                                                                                                                                                                                      4/5 
+  Verifying  : 3:docker-ce-20.10.12-3.el7.x86_64                                                                                                                                                                                                          5/5 
+
+Installed:
+  containerd.io.x86_64 0:1.4.12-3.1.el7                                                docker-ce.x86_64 3:20.10.12-3.el7                                                docker-ce-cli.x86_64 1:20.10.12-3.el7                                               
+
+Dependency Installed:
+  docker-ce-rootless-extras.x86_64 0:20.10.12-3.el7                                                                                  docker-scan-plugin.x86_64 0:0.12.0-3.el7                                                                                 
+
+Complete!
+```
