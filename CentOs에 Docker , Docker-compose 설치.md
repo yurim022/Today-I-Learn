@@ -126,12 +126,12 @@ Complete!
 ```
 
 
-*** 3. 도커 시작
+### 3. 도커 시작
 ```
 # systemctl start docker
 ```
 
-*** 4. 도커 삭제
+### 4. 도커 삭제
 도커를 삭제해야 한다면
 ```
 # yum remove docker-ce docker-ce-cli containerd.io
