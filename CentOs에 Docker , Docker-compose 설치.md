@@ -124,3 +124,26 @@ Dependency Installed:
 
 Complete!
 ```
+
+
+*** 3. 도커 시작
+```
+# systemctl start docker
+```
+
+*** 4. 도커 삭제
+도커를 삭제해야 한다면
+```
+# yum remove docker-ce docker-ce-cli containerd.io
+```
+를 실행하고, 호스트 이미지/컨테이너 볼륨/사용자 정의된 구성파일은 자동 삭제되지 않는다.
+따라서 모든 이미지, 컨테이너 볼륨을 삭제하고 싶다면
+```
+# rm -rf /var/lib/docker
+```
+를 통해 수동 삭제해준다.
+
+
+
+
+
