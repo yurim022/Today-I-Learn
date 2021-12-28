@@ -46,7 +46,9 @@ yum -y install slirp4netns fuse-overlayfs container-selinux
 ```
 를 해주면 최신 버전의 도커가 설치된다!
 
-아래는 설치 
+
+
+아래는 설치  
 ```
 [root@watcher yum.repos.d]#  sudo yum install docker-ce docker-ce-cli containerd.io
 Loaded plugins: fastestmirror, langpacks
