@@ -148,3 +148,19 @@ Complete!
 
 
 
+# Docker-compose 설치
+
+```
+# sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+# sudo chmod +x /usr/local/bin/docker-compose
+```
+를 하면 설치가 끝난다. 
+
+```
+# docker-compose --version
+```
+입력 후 버전이 잘 나온다면 설치 완료!!
+
+
+
+
