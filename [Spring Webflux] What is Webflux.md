@@ -44,6 +44,15 @@ java.nio.channels.Selector에서 입출력을 하고 있는 Socket의 집합 상
 **즉, 적은 수의 스레드로 더 많은 Connection을 취할 수 있어서 메모리 관리에 이점이 생기고 컨텍스트 스위치에 대한 오버헤드가 줄어들게 된다. **
 
 
+#### WebFlux가 좋을때
++ non-blocking 웹 스텍을 생성할 경우
++ Java8 lambda 또는 Kotlin과 함께 가볍고 기능적인 웹 프레임워크를 사용할 때
++ 마이크로 서비스 애플리케이션에서 Spring MVC와 Spring WebFlux 컨트롤러의 혼합 애플리케이션을 가질 수 있다. Spring WebFlux 엔드 포인트도 가질 수 있음
+
+
+#### Spring MVC가 좋을때
++ 애플리케이션이 JPA, JDBC 또는 네트워킹 API 에 의존하는 경우
++ 디버그가 쉬운 명령형 프로그래밍을 사용할 때
 
 
 
