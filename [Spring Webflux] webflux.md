@@ -4,7 +4,8 @@
 + SpringBoot2 부터 도입
 + java8부터 지원
 + 클라이언트, 서버에서 reactive 스타일의 어플리케이션 개발을 도와주는 모듈 
-+ non-blocking 에 reactive stream을 지원
++ non-blocking
++ reactive stream을 지원
 
 ### 장점
 ![image](https://user-images.githubusercontent.com/45115557/148479505-e5eb87ae-5922-40ca-9f98-aabe153197c0.png)
@@ -17,7 +18,7 @@
 + 오류처리가 복잡
 + Back Pressure 기능 없음
 
-#### Spring Boot2 Stack
+## Spring Boot2 Stack
 ![image](https://user-images.githubusercontent.com/45115557/148479076-209b7460-087d-4c01-a527-e18cd0b4a465.png)
 
 크게 Reactive Stack 과 Servlet Stack이 있다. Servlet Stack에서는 동기처리가 필요한 JDBC, JPA와 더불어 NoSQL 을 지원하며 Reactive Stack에서는 대부분 NoSQL 형태를 지원한다. 관계형은 비동기 처리 모델과 잘 맞지 않는다고 한다.
