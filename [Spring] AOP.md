@@ -23,16 +23,16 @@ Aspect oriented Programming의 약자로 관점 지향 프로그래밍 이라 �
 
 ### @AOP
 
-'''
+```
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-aop</artifactId>
 </dependency>
-'''
+```
 의존성을 먼저 추가해준다. 
 
 
-'''
+```
 @Component
 @Aspect
 public class PerfAspect {
@@ -46,23 +46,23 @@ public Object logPerf(ProceedingJoinPoint pjp) throws Throwable{
   }
 }
 
-'''
+```
 
 @Aspect 어노테이션을 붙여 이 클래스가 Aspect를 나타내는 클래스라는 것을 명시하고 @Component를 붙여 스프링 빈으로 등록한다. 
 @Around 어노테이션은 타켓 메서드를 감싸서 특정 Advice를 실행한다는 의미이다. 
 execution(* com.saelobi..*.EventService.*(..))가 의미하는 바는 com.saelobi 아래의 패키지 경로의 EventService 객체의 모든 메서드에 이 Aspect을 적용하겠다는 의미이다. 
 
 
-'''
+```
 @Around("@annotation(PerLogging)")
-'''
+```
 
 경로지정 외에 특정 어노테이션이 붙은 포인트에 해당 Aspect을 실행할 수 있는 기능도 제공한다. 
 
 
-'''
+```
 @Around("bean(simpleEventService)")
-'''
+```
 
 스프링 빈의 모든 메서드에 적용할 수도 있다. 
 
