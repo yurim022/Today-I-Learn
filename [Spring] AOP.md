@@ -21,7 +21,7 @@ Aspect oriented Programming의 약자로 관점 지향 프로그래밍 이라 �
 - 스프링 빈에만 AOP 적용 가능
 - 모든 AOP기능을 제공하는 것이 아닌 스프링 IoC와 연동하여 중복코드, 프록시 클래스 작성의 번거로움, 객체들 간 관계 복잡도 증가 등에 대한 해결책을 지원하는 것이다.
 
-### @AOP
+### @Aspect, @Around
 
 ```
 <dependency>
