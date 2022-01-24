@@ -1,6 +1,6 @@
 ## @Configuration vs @Bean
 
-**한줄로 요약하자면, @Configuration은 싱글톤으로 클래스를 유지해주고 @Configuration이 붙은 클래스의 하위에 정의된 @Bean을 해당 클래스를 상속받아 등록하도록 만들어준다. **
+**한줄로 요약하자면, @Configuration은 싱글톤으로 클래스를 유지해주고 @Configuration이 붙은 클래스의 하위에 정의된 @Bean을 해당 클래스를 상속받아 등록하도록 만들어준다.**
 
 
 ```
