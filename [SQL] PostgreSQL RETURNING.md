@@ -1,4 +1,4 @@
-Returning cluse
+Returning cluase
 =================
 
 PGSQL 에는 Insert, Udpate, Delete 쿼리 실행 후 실행한 쿼리의 결과를 알려는 **RETRUNING** cluase가 있다. 
