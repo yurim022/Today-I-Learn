@@ -143,4 +143,6 @@ public SqlSessionFactory sqlSessionFactoryBean(DataSource dataSource) throws Exc
 }
 ```
 
-
+참고:
+https://www.holaxprogramming.com/2015/11/12/spring-boot-mybatis-typehandler/
+https://amagrammer91.tistory.com/115?category=1009448
