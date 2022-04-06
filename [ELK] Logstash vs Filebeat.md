@@ -41,7 +41,15 @@
 * [Input](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-input-log.html) : file의 변경 읽기
 * [Output](https://www.elastic.co/guide/en/beats/filebeat/current/configuring-output.html): logstash, elasticsearch, redis, kafka 등
 
-
+```
+filebeat.inputs:
+- type: log
+  paths:
+    - /var/log/messages
+    - /var/log/*.log
+     include_lines: ['^ERR', '^WARN']
+     exclude_lines: ['^DBG']
+```
 
 
 참고링크:
