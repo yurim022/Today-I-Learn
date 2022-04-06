@@ -18,7 +18,7 @@
 
 ### 장점
 * Filebeat에 비해 다양한 [input](https://www.elastic.co/guide/en/logstash/current/input-plugins.html), [output](https://www.elastic.co/guide/en/logstash/current/output-plugins.html)을 제공한다. 
-* grok 등 여러가지 Filter 기능을 통해 Input된 데이터를 필요한 형태로 가공이 가능하다. [grok](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html)
+* [grok](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html) 등 여러가지 Filter 기능을 통해 Input된 데이터를 필요한 형태로 가공이 가능하다. 
 
 
 
