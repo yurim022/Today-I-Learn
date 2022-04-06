@@ -20,11 +20,26 @@
 * Filebeat에 비해 다양한 [input](https://www.elastic.co/guide/en/logstash/current/input-plugins.html), [output](https://www.elastic.co/guide/en/logstash/current/output-plugins.html)을 제공한다. 
 * [grok](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html) 등 여러가지 Filter 기능을 통해 Input된 데이터를 필요한 형태로 가공이 가능하다. 
 
-
+### 단점
+* Filebeat에 비해 많은 리소스가 소모된다.
 
 
 ## Filebeat
+* 여러 종류의 데이터(주로 로그)들을 서버에서 다른 곳으로 전송하는 서비스
+* 로그 데이터를 전달하고 중앙하기 위한 경량 Producer
+* 지정한 로그파일 또는 위치를 모니터링하고 수집해 Elasticsearch 또는 Logstash로 전달
+* 별도의 분석 없이 로그를 직접 전달이나 로그가 json 으로 남는 경우에 적절
 
+
+### 장점
+* 리소스를 상대적으로 적게 사용한다.
+* 득정 로그타입에 대해 모듈을 제공한다.
+* 간단한 filter를 제공한다. 
+
+### 단점
+* Input, Output이 제한적이다. 
+* [Input](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-input-log.html) : file의 변경 읽기
+* [Output](https://www.elastic.co/guide/en/beats/filebeat/current/configuring-output.html): logstash, elasticsearch, redis, kafka 등
 
 
 
