@@ -9,9 +9,8 @@
 > Filebeat가 logstash보다 가벼워 서버에 부하가 덜 가며 확장이 용이한 반면, logstash는 데이터 변환, 집계, 저장에 이점이 있다. 
 
 
-![image](https://user-images.githubusercontent.com/45115557/161879902-9c3a9d52-3c9f-48c1-942d-ccfb3caf9601.png)
-
 ## Logstash
+![image](https://user-images.githubusercontent.com/45115557/161879902-9c3a9d52-3c9f-48c1-942d-ccfb3caf9601.png)
 
 * 데이터 집계, 변환, 저장
 * 실시간 파이프라인 지원 (Elasticsearch 데이터 파이프라인 주)
@@ -19,6 +18,7 @@
 
 ### 장점
 * Filebeat에 비해 다양한 [input](https://www.elastic.co/guide/en/logstash/current/input-plugins.html), [output](https://www.elastic.co/guide/en/logstash/current/output-plugins.html)을 제공한다. 
+* grok 등 여러가지 Filter 기능을 통해 Input된 데이터를 필요한 형태로 가공이 가능하다. [grok](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html)
 
 
 
