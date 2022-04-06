@@ -5,6 +5,10 @@
 무엇인고 보니, 분산되어 있는 서버의 각 로그들을 전송해주는 서비스였다. 
 공부하는 김에 많이 비교되는 LogStash와 함께 정리해보자!
 
+### 한줄요약: Filebeat가 logstash보다 가볍다. filebeat가 서버에 부하가 덜 가며 확장이 용이하다. 반면 logstash는 데이터 변환, 집계, 저장에 이점이 있다. 
+
+![image](https://user-images.githubusercontent.com/45115557/161879902-9c3a9d52-3c9f-48c1-942d-ccfb3caf9601.png)
+
 ## Logstash
 
 * 데이터 집계, 변환, 저장
@@ -25,4 +29,4 @@
 
 참고링크:
 https://kanoos-stu.tistory.com/20
-
+https://velog.io/@deet1107/logstash-filebeat
