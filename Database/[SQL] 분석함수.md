@@ -11,7 +11,7 @@ FROM 테이블;
 ```
 분석함수는 OVER 절을 통해 집계하는 것인데, select 문에 있기 때문에 where, group by, having, select 후에 실행된다. 간단한 요구사항이라면 group by가 나을 수 있다. 
 
-### 집계할 수 있는 것
+### 분석할 수 있는 것
 + 순위함수 : RANK(), ROW_NUMBER(), DENSE_RANK() 
 + 집계함수 : COUNT(), AVG(), SUM()
 + 행순서 관련 함수 : LEAD(), LAG(), FIRST_VALUE(), LAST_VALUE
