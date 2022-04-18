@@ -20,6 +20,10 @@ pgadmin의 데이터를 insert 문의 형태로 추출해 보자.
 options 탭에서 어떤 형태로 추출할 것인지 선택할 수 있는데, insert문을 옵션으로 선택해준다. 
 
 
+
+
+
+
 ## 2. 도커 내부의 파일을 옮겨준다.
 
 로컬에 설치했다면 상관없지만, 내 경우 도커에서 pgadmin을 띄웠기 때문에 docker에서 파일을 밖으로 빼주어야 했다. 
@@ -33,7 +37,12 @@ docker cp [container name]:[container 내부경로] [host 파일경로]
 
 
 해당 구문에 맞게 실행해주면 다음과 같이 호스트에 파일이 잘 복사된것을 볼 수 있다. 
-![image](https://user-images.githubusercontent.com/45115557/163848702-d25f978e-3917-42b0-9a99-d93733591a59.png)
+![image](https://user-images.githubusercontent.com/45115557/163848940-08b8ff6d-037f-44c9-a8f8-58952e56964f.png)
+
+
+
+
+
 
 
 ## 3. db 환경에서 구문 실행
