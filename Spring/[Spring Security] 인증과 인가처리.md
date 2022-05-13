@@ -121,7 +121,34 @@ AuthenticationException은 인증실패시 예외를 발생시키고 Authenticat
 AccessDeniedException는 인가실패시 예외를 발생시키고 AccessDeniedHandler를 통해 예외처리를 한다.
  
 
+# Custom 인증 Exception 발생
 
+스프링 시큐리티에서 제공하는 필터를 사용해서 인증오류 발생시 에러를 발생시킨다. 
 
+```java
+public class JwtFilter extends OncePerRequestFilter {
 
+	@Autowired
+	private AuthenticationEntryPoint entryPoint;
+
+	@Override
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filter) throws ServletException, IOException {
+
+		try{
+				//인증로직
+		}catch(JWTException e){
+		
+			entryPoint.commence(request,response, new authException());
+
+		}
+	}
+
+}
+```
+
+# 인증실패 처리
+
+인증실패 처리는 **AuthenticationEntryPoint**를 통해 할 수 있다.
+
+참고링크
 : https://fenderist.tistory.com/344 [Devman]
