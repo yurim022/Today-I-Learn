@@ -15,7 +15,7 @@ docker search mysql
  
  ### 명령어를 통해 실행
  ```
- docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=password --name my_mysql
+ docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=password --name yurim_mysql
  ```
  - -p 3306:3306 호스트의 포트와 컨테이너의 포드를 연결
  - -e MYSQL_ROOT_PASSWORD=password 컨테이너를 생성하면서 환경변수 지정
@@ -38,7 +38,7 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: "yurim022"
+      MYSQL_ROOT_PASSWORD: "password"
     command:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_unicode_ci
