@@ -61,7 +61,7 @@ docker ps
 ```
 ![image](https://user-images.githubusercontent.com/45115557/168543152-0b17f062-e17f-4134-b2e2-0e315e835a7a.png)
 
-컨테이너가 잘 돌아가고 잇는 것을 볼 수 있다. 
+컨테이너가 잘 돌아가고 있는 것을 볼 수 있다. 
 
 
 ## 4.MySQL 접속
@@ -74,7 +74,7 @@ docker exec -it yurim_mysql bash
 ```
 mysql -u root -p
 ```
-이후에 앞서 컴포즈 파일에서 설정한 비밀번호를 치고 들어가면 된다.
+앞서 컴포즈 파일에서 설정한 비밀번호를 치고 들어가면 된다.  
 데이터베이스가 생성된 뒤에는 -p 뒤에 데이터베이스 이름을 적으면 된다.
 
 
