@@ -54,7 +54,7 @@ services:
 docker-compose -f docker-compose-mysql.yml up -d
 ```
 
-### 컨테이너 생성 확인
+## 3.컨테이너 생성 확인
 
 ```
 docker ps 
@@ -64,7 +64,7 @@ docker ps
 컨테이너가 잘 돌아가고 잇는 것을 볼 수 있다. 
 
 
-### MySQL 접속
+## 4.MySQL 접속
 
 ```
 docker exec -it yurim_mysql bash
