@@ -18,9 +18,9 @@ Vue는 v-model아ㅣ라는 양방향 Data Binding Directive를 제공하고 있�
 
 자식 컴포넌트를 components에 기재한 뒤 해당 데이터를 사용하고 있다. 
 
-아래는 emit을 사용하는 방법이다.
-@emit으로받아올event명="현재 컴포넌트에서 사용할 Event 명" 형태로 자식 컴포턴트의 데이트를 받을 수 있다. 
-@close:popup, @chilData는 emit을  자식 컴토넌트로부터 받아온 값이다. 
+아래는 emit을 사용하는 방법이다.  
+@emit으로받아올event명="현재 컴포넌트에서 사용할 Event 명" 형태로 자식 컴포턴트의 데이트를 받을 수 있다.   
+@close:popup, @chilData는 emit을  자식 컴토넌트로부터 받아온 값이다.   
 
 ```
 <template>
@@ -72,9 +72,9 @@ export default {
 
 
 ### 자식 컴포넌트
-
-props에 부모컴포넌트로부터 받아올 데이터를 정의한다. 
-emit은 다른 컴포넌트로 데이터를 보낼수 있는데 내부적으로 
+  
+props에 부모컴포넌트로부터 받아올 데이터를 정의한다.   
+emit은 다른 컴포넌트로 데이터를 보낼수 있는데 내부적으로   
 this.$emit('@에서 작성한 emit 명칭', 현재 컴포넌트에서 전송할 Event나 Data 명) 로 정의한다. 
 
 ```
