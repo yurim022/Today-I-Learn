@@ -19,7 +19,7 @@ springbootstarter가 라이브러리 버전관리까지 해줌!
 - 내장 서버 (tomcat) 설정 간소화   - embeded server
 - 독립적으로 실행 가능한 JAR
 
----
+
 
 ### WebApplicationType 설정
 
@@ -47,13 +47,13 @@ spring.main.web-application-type=servlet
 server.port=8080 #포트번호
 ```
 
-### RestController의 장점
+#### cf. RestController의 장점
 
 Controller는 MVC 패턴에 의해 View를 만드려고 데이터를 보내는데, RestController를 쓰면 View 없이 API 로 쓸 수 있다. 
 
----
 
-## 자동 설정 단계
+
+## 자동 설정 
 
 커스텀 객체 → 스프링 제공 객체 순 동작
 
