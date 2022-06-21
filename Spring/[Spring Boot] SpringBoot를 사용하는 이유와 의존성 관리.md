@@ -58,11 +58,11 @@ Controller는 MVC 패턴에 의해 View를 만드려고 데이터를 보내는�
 
 커스텀 객체 → 스프링 제공 객체 순 동작
 
- **`@ ComponentScan`**
+ **`@ComponentScan`**
 
 - 사용자가 정의한 객체를 초기화
 
-`@ **EnableAutoConfiguration**`
+**`@EnableAutoConfiguration`**
 
 - 스프링에서 제공하는 객체
 
