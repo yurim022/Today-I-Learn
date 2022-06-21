@@ -48,4 +48,5 @@ public class PropertiesTest {
 
 **결과**
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f8ed9d66-f273-4c2d-80b2-95bc4a3177bc/Untitled.png)
+<img width="591" alt="스크린샷 2022-06-21 오후 5 18 18" src="https://user-images.githubusercontent.com/45115557/174759577-d221b4df-e31c-42f5-b4ce-82a65312d082.png">
+
