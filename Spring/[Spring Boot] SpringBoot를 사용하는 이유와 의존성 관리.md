@@ -1,14 +1,4 @@
-### container의 역할
-
-- 객체생성
-- 의존성 관리
-    
-    DI (Dependency Injection) 
-    
-    @ Autowired. 주로씀 (@ Qulifier, @ Resource )
-    
-
-### 스프링 부트 장점
+# 스프링 부트 장점
 
 - 라이브러리 관리 자동화
 
@@ -21,7 +11,18 @@ springbootstarter가 라이브러리 버전관리까지 해줌!
 
 
 
-### WebApplicationType 설정
+# Springboot 에서 container의 역할
+
+- 객체생성
+- 의존성 관리
+    
+    DI (Dependency Injection) 
+    
+    @ Autowired. 주로씀 (@ Qulifier, @ Resource )
+    
+
+
+# WebApplicationType 설정
 
 **MainApplication.class**
 
@@ -53,7 +54,7 @@ Controller는 MVC 패턴에 의해 View를 만드려고 데이터를 보내는�
 
 
 
-## 자동 설정 
+# 자동 설정 
 
 커스텀 객체 → 스프링 제공 객체 순 동작
 
