@@ -29,6 +29,38 @@ mockMvc.perform(MockMvcRequestBuilders.get("/hello").param("name","둘리"))
 }
 ```
 
+
+
 **@ AutoConfiguerMockMvc**   
 
 - 컨트롤러 뿐 아니라 서비스, 리포지토리 객체도 초기화한다.
+
+```
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.web.servlet.MockMvc;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@AutoConfigureMockMvc
+public class BoardControllerTest {
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Test
+    public void testHello() throws Exception{
+        mockMvc.perform(get("/hello").param("name", "둘리"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Hello : 둘리"))
+                .andDo(print());
+    }
+}
+```
+
+**@ AutoConfiguerMockMvc**   
