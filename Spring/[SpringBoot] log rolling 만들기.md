@@ -2,7 +2,8 @@
 
 ## AS -IS
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/508b9cb6-d170-4a89-9846-08e259a6ca36/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/508b9cb6-d170-4a89-9846-08e259a6ca36/Untitled.png)
+![image](https://user-images.githubusercontent.com/45115557/177543587-7937a8f8-d6d6-4d89-adaf-e9b62c7a4f41.png)
+
 
 ls -lh명령어로 log 파일 용량을 확인해보니 2G가 넘는다. 
 
@@ -34,7 +35,8 @@ Rotate 적용은 크게 두가지가 있다.
 
 # 1. spring config를 통해 설정
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e75f57f7-0c81-4378-a269-a90a9df458ab/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e75f57f7-0c81-4378-a269-a90a9df458ab/Untitled.png)
+![image](https://user-images.githubusercontent.com/45115557/177543710-d9d7f1d8-98f0-4b51-a451-24091b9eefb1.png)
+
 
 스프링 부트는 SLF4J 인터페이스를 사용하며, 기본적으로 Logback을 구현체로 선택하고 있다. 
 
@@ -76,7 +78,7 @@ logging:
 - logging.pattern.rolling-file-name : 롤링할 파일 패턴을 지정해준다. path와 함께 지정해주면 된다.
 - logging.pattern.file: 파일의 출력 포멧
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d2176b99-6a63-42d8-b6da-de29e12bcad5/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d2176b99-6a63-42d8-b6da-de29e12bcad5/Untitled.png)
+![image](https://user-images.githubusercontent.com/45115557/177543781-b324cae4-4a62-4953-9a87-aeb9d6b759b1.png)
 
 logging.patter.file 에서 사용하는 log format syntax 이다. 원하는 대로 customize 해서 사용하면 된다. 
 
