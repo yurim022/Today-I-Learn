@@ -49,6 +49,7 @@ Loop Count : 1
 ## 동기
 
 **평균 응답속도** : **42.338 초**
+    
 ![image](https://user-images.githubusercontent.com/45115557/177742204-74911558-9058-4c69-9945-1fed6763638d.png)
 
 ![image](https://user-images.githubusercontent.com/45115557/177742115-cd9f82d7-67c1-4299-9ad6-32222de8ef56.png)
