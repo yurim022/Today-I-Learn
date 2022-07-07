@@ -57,4 +57,5 @@ Loop Count : 1
 ## 비동기
 
 **평균 응답속도** : **41.747 초**
-  ![image](https://user-images.githubusercontent.com/45115557/177742339-017a4d61-cb00-43fd-b225-65517d4a4887.png)
+
+![image](https://user-images.githubusercontent.com/45115557/177742339-017a4d61-cb00-43fd-b225-65517d4a4887.png)
