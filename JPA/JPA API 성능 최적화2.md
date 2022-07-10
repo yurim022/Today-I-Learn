@@ -78,7 +78,8 @@ public class Order {
         }
 ```
 
-```java
+```
+java
      @Data
         static class OrderItemDto {
 
@@ -234,6 +235,7 @@ public class Order {
 ![image](https://user-images.githubusercontent.com/45115557/178133086-296e3843-b3ac-4e19-9ce8-3584b7ed55c6.png)
 
 
+
 ### V3 : 엔티티를 DTO로 변환 - 페치 조인 최적화
 
 **OrderApiController.class**
@@ -277,6 +279,8 @@ public List<Order> findAllWithItem() {
 - 컬렉션 fetch join 사용시 페이징이 불가해진다.
 - 컬렉션 fetch join 은 컬렉션 둘 이상에 사용 시, 데이터가 부정합하게 조회 될 수 있다.
 
+
+
 ### V3.1 : 엔티티를 DTO로 변환 - 페이징과 한계 돌파
 
 컬렉션을 페치 조인하면 일대다 조인이 발생하므로 데이터가 예측할 수 없이 증가한다.
@@ -290,13 +294,13 @@ public List<Order> findAllWithItem() {
 1. ToOne(One To One, Many To One) 관계를 모두 페치조인한다. 이들은 row 수를 증가시키지 않으므로 페이징 쿼리에 영향을 주지 않는다. 
 2. 컬렉션은 지연 로딩으로 조회한다. 
 3. 지연 로딩 성능 최적화를 위해 hibernate.default_batch_fetch_size , @BatchSize 를 적용한다. 
-    - hibernate.default_batch_fetch_size: 글로벌 설정
-    - @BatchSize: 개별 최적화
-    - 이 옵션을 사용하면 컬렉션이나 프록시 객체를 한꺼번에 설정한 size만큼 IN 쿼리로 조회한다.
+- hibernate.default_batch_fetch_size: 글로벌 설정
+- @BatchSize: 개별 최적화
+- 이 옵션을 사용하면 컬렉션이나 프록시 객체를 한꺼번에 설정한 size만큼 IN 쿼리로 조회한다.
     
-    **OrderApiController.class**
+**OrderApiController.class**
     
-    ```java
+```java
     @GetMapping("/api/v3.1/orders")
         public List<OrderDto> ordersV3_page(@RequestParam(value = "offset", defaultValue = "0") int offset,
                                             @RequestParam(value = "limit",defaultValue = "100") int limit){
@@ -305,11 +309,11 @@ public List<Order> findAllWithItem() {
                     .map(o-> new OrderDto(o))
                     .collect(toList());
         }
-    ```
+```
     
-    **OrderRepository.class**
+**OrderRepository.class**
     
-    ```java
+```java
     public List<Order> findAllWithMemberDelivery(int offset, int limit){
             return em.createQuery(
                     "select o from Order o"+
@@ -319,67 +323,69 @@ public List<Order> findAllWithItem() {
                     .setMaxResults(limit)//몇 개 데이터까지 가져올 것인
                     .getResultList();
         }
-    ```
+```
     
 - offset & limit을 통한 쿼리 가능
     
 ![image](https://user-images.githubusercontent.com/45115557/178133124-5f08cfe0-ffa7-4cbe-bd99-e79c1171e217.png)
 
 
-    **최적화 옵션 application.yml**
+**최적화 옵션 application.yml**
     
-    ```java
+```java
     spring:
       jpa:properties:
         hibernate:
           default_batch_fetch_size: 1000
-    ```
+```
     
-    - 쿼리 호출수가 1+N → 1+1 로 최적화 된다 (각각 1번씩 호출)
+- 쿼리 호출수가 1+N → 1+1 로 최적화 된다 (각각 1번씩 호출)
     
-   ![image](https://user-images.githubusercontent.com/45115557/178133131-0acfd952-47b1-42cd-a9a9-c60f368ef9b6.png)
+ ![image](https://user-images.githubusercontent.com/45115557/178133131-0acfd952-47b1-42cd-a9a9-c60f368ef9b6.png)
 
    
-    ToOne 관계 먼저 join 및 쿼리 
+ToOne 관계 먼저 join 및 쿼리 
     
-    limit, offset이 쿼리에 추가된 것을 볼 수 있다. 
+limit, offset이 쿼리에 추가된 것을 볼 수 있다. 
    
 ![image](https://user-images.githubusercontent.com/45115557/178133145-84244375-369c-45b7-8cea-b0925c292464.png)
 
 ![image](https://user-images.githubusercontent.com/45115557/178133156-38dc4776-d1c9-4f6d-8f5f-9b8d1cd9970f.png)
 
    
-    in 으로 한꺼번에 batch_fetch_size 까지 가져온다. 
+in 으로 한꺼번에 batch_fetch_size 까지 가져온다. 
     
-    - 페치 조인 방식과 비교해서 쿼리 호출 수가 약간 증가하지만, DB 데이터 전송량이 감소한다
-    - 컬렉션 페치 조인은 페이징이 불가능 하지만 이 방법은 페이징이 가능하다.
-    - 조인보다 DB 데이터 전송량이 최적화 된다.
+- 페치 조인 방식과 비교해서 쿼리 호출 수가 약간 증가하지만, DB 데이터 전송량이 감소한다
+- 컬렉션 페치 조인은 페이징이 불가능 하지만 이 방법은 페이징이 가능하다.
+- 조인보다 DB 데이터 전송량이 최적화 된다.
     
-    (Order와 OrderItem을 조인하면 Order가
-    OrderItem 만큼 중복해서 조회된다. 이 방법은 각각 조회하므로 전송해야할 중복 데이터가 없다.)
+(Order와 OrderItem을 조인하면 Order가
+OrderItem 만큼 중복해서 조회된다. 이 방법은 각각 조회하므로 전송해야할 중복 데이터가 없다.)
     
-    - default_batch_fetch_size 는 100~1000 사이를 권장
+- default_batch_fetch_size 는 100~1000 사이를 권장
     
-    이 전략은 위에서 봤듯이 SQL IN 절을 사용하는데, 데이터베이스에 따라 IN 절 파라미터를 1000으로 제한하기도 한다. 1000으로 잡으면 한번에 1000개를 DB에서 애플리케이션에 불러오므로 DB에 순간 부하가 증가할 수 있다. 하지만 애플리케이션은 100이든 1000이든 결국 전체 데이터를 로딩해야 하므로 메모리 사용량이 같다. 1000으로 설정하는 것이 성능상 가장 좋지만, 결국 DB든 애플리케이션이든 순간 부하를 어디까지 견딜 수 있는지로 결정하면 된다.
+  이 전략은 위에서 봤듯이 SQL IN 절을 사용하는데, 데이터베이스에 따라 IN 절 파라미터를 1000으로 제한하기도 한다. 1000으로 잡으면 한번에 1000개를 DB에서 애플리케이션에 불러오므로 DB에 순간 부하가 증가할 수 있다. 하지만 애플리케이션은 100이든 1000이든 결국 전체 데이터를 로딩해야 하므로 메모리 사용량이 같다. 1000으로 설정하는 것이 성능상 가장 좋지만, 결국 DB든 애플리케이션이든 순간 부하를 어디까지 견딜 수 있는지로 결정하면 된다.
+  
+  
+  
+### V4 : JPA에서 DTO 직접 조회
     
-    ### V4 : JPA에서 DTO 직접 조회
+ 리포지토리에서 쿼리시 반환 타입을 생성한 DTO 객체로 받는다. 
     
-    리포지토리에서 쿼리시 반환 타입을 생성한 DTO 객체로 받는다. 
+- 단건 조회에서 많이 사용하는 방식
     
-    - 단건 조회에서 많이 사용하는 방식
+**OrderApiController.class**
     
-    **OrderApiController.class**
-    
-    ```java
+```java
     @GetMapping("/api/v4/orders")
         public List<OrderQueryDto> ordersV4(){
             return orderQueryRepository.findOrderQueryDtos();
         }
-    ```
+```
     
-    **OrderQueryRepository.class**
+**OrderQueryRepository.class**
     
-    ```java
+```java
     @Repository
     @RequiredArgsConstructor
     public class OrderQueryRepository {
@@ -395,11 +401,11 @@ public List<Order> findAllWithItem() {
             });
             return result;
         }
-    ```
+```
     
-    - 1:N 관계(컬렉션)를 제외한 나머지를 한번에 조회
+- 1:N 관계(컬렉션)를 제외한 나머지를 한번에 조회
     
-    ```java
+```java
      private List<OrderQueryDto> findOrders() {
             return em.createQuery(
                     "select new  jpabook.jpashop.repository.order.query.OrderQueryDto(o.id, m.name, o.orderDate,\n" +
@@ -409,9 +415,9 @@ public List<Order> findAllWithItem() {
                             " join o.delivery d", OrderQueryDto.class)
                     .getResultList();
         }
-    ```
+```
     
-    ```java
+```java
         private List<OrderItemQueryDto> findOrderItems(Long orderId){
             return em.createQuery(
                     "select new jpabook.jpashop.repository.order.query.OrderItemQueryDto(oi.order.id, i.name," +
@@ -423,11 +429,11 @@ public List<Order> findAllWithItem() {
                     .setParameter("orderId",orderId)
                     .getResultList();
         }
-    ```
+```
     
-    **OrderQueryDto.class**
+**OrderQueryDto.class**
     
-    ```java
+ ```java
     @Data
     @EqualsAndHashCode(of = "orderId")
     public class OrderQueryDto {
@@ -450,9 +456,9 @@ public List<Order> findAllWithItem() {
     }
     ```
     
-    **OrderItemQueryDto.class**
+**OrderItemQueryDto.class**
     
-    ```java
+ ```java
     @Data
     public class OrderItemQueryDto {
     
@@ -469,11 +475,11 @@ public List<Order> findAllWithItem() {
             this.orderPrice = orderPrice;
         }
     }
-    ```
+```
     
-    **조회 결과**
+**조회 결과**
     
-    ```json
+ ```json
     {
         "orderId": 4,
         "name": "userA",
@@ -497,18 +503,18 @@ public List<Order> findAllWithItem() {
           }
         ]
       },
-    ```
+```
     
-    (원래 4개인데 길어서 생략)
+(원래 4개인데 길어서 생략)
     
-    **쿼리결과**
+**쿼리결과**
     
-    Order 쿼리 1번
+Order 쿼리 1번
     
  ![image](https://user-images.githubusercontent.com/45115557/178133180-3f9bb89a-bdac-4af2-a792-fe0869588ac6.png)
 
   
-    orderItem - Item join하여 Order 개수만큼 쿼리 (여기선 4번)
+orderItem - Item join하여 Order 개수만큼 쿼리 (여기선 4번)
     
  ![image](https://user-images.githubusercontent.com/45115557/178133185-a7ad2720-72d0-451a-8698-2a28a197e180.png)
    
@@ -518,20 +524,22 @@ public List<Order> findAllWithItem() {
 - ToOne 관계는 조인해도 데이터 row 수 동일
 - ToMany(1:N) 관계는 조인하면 row 수가 증가
     
-    ### V5: JPA에서 DTO 직접 조회 - 컬렉션 조회 최적화
+   
+   
+### V5: JPA에서 DTO 직접 조회 - 컬렉션 조회 최적화
+
+**OrderApiController.class**
     
-    **OrderApiController.class**
-    
-    ```java
+```java
     @GetMapping("/api/v5/orders")
         public List<OrderQueryDto> ordersV5(){
             return orderQueryRepository.findAllByDto_optimization();
         }
-    ```
+```
     
-    **OrderQueryRepository.class**
+**OrderQueryRepository.class**
     
-    ```java
+```java
     public List<OrderQueryDto> findAllByDto_optimization(){
     //루트 조회(toOne 코드 한번에 조회)
             List<OrderQueryDto> result = findOrders();
@@ -563,38 +571,37 @@ public List<Order> findAllWithItem() {
             return orderItems.stream()
                     .collect(Collectors.groupingBy(OrderItemQueryDto::getOrderId));
         }
-    ```
+```
     
-    - Query: 루트 1번, 컬렉션 1 번
+- Query: 루트 1번, 컬렉션 1 번
     
-    Order 1번
+Order 1번
     
 ![image](https://user-images.githubusercontent.com/45115557/178133200-12882c70-d616-4224-bc1a-aa6c94e24602.png)
 
 
-    Collection 1번
+Collection 1번
     
 ![image](https://user-images.githubusercontent.com/45115557/178133209-17fa36e7-a6e0-48b0-bd6c-2d186cc03899.png)
 
 
-    - ToOne 관계들을 먼저 조회하고, 여기서 얻은 식별자 orderId로 ToMany 관계인 OrderItem 을
-    한꺼번에 조회
-    - MAP을 사용해서 매칭 성능 향상(O(1))
+- ToOne 관계들을 먼저 조회하고, 여기서 얻은 식별자 orderId로 ToMany 관계인 OrderItem 을한꺼번에 조회
+- MAP을 사용해서 매칭 성능 향상(O(1))
     
-    ### 권장 순서
+### 권장 순서
     
-    1. **엔티티 조회 방식으로 우선 접근**
-        - 페치조인으로 쿼리 수를 최적화
+1. **엔티티 조회 방식으로 우선 접근**
+
+- 페치조인으로 쿼리 수를 최적화
         
     
-    2. **컬렉션 최적화**
+2. **컬렉션 최적화**
+- 페이징 필요 hibernate.default_batch_fetch_size , @BatchSize 로 최적화
+- 페이징 필요X→ 페치 조인 사용
     
-    - 페이징 필요 hibernate.default_batch_fetch_size , @BatchSize 로 최적화
-    - 페이징 필요X→ 페치 조인 사용
+3. **엔티티 조회 방식으로 해결이 안되면 DTO 조회 방식 사용**
     
-    3. **엔티티 조회 방식으로 해결이 안되면 DTO 조회 방식 사용**
-    
-    4. **DTO 조회 방식으로 해결이 안되면 NativeSQL or 스프링 JdbcTemplate**
+4. **DTO 조회 방식으로 해결이 안되면 NativeSQL or 스프링 JdbcTemplate**
     
 - 엔티티 조회 방식은 페치 조인이나, hibernate.default_batch_fetch_size , @BatchSize 같이
 코드를 거의 수정하지 않고, 옵션만 약간 변경해서, 다양한 성능 최적화를 시도할 수 있다.
