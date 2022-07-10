@@ -192,7 +192,8 @@ com.fasterxml.jackson.datatype:jackson-datatype-hibernate5
 
 **응답**
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4a6be56d-5851-4b3c-829b-1937cf633a37/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4a6be56d-5851-4b3c-829b-1937cf633a37/Untitled.png)
+![image](https://user-images.githubusercontent.com/45115557/178132561-332d8265-3691-4833-b0e5-9c32993c224a.png)
+
 
 - 지연로딩된 것은 null
 
@@ -210,9 +211,7 @@ Hibernate5Module hibernate5Module() {
 
 **응답**
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8c5cb65b-d4ea-436d-96b8-594b47ae9d8d/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8c5cb65b-d4ea-436d-96b8-594b47ae9d8d/Untitled.png)
-
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ee0db69e-acd6-401a-bada-b7d8b69bf6b7/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ee0db69e-acd6-401a-bada-b7d8b69bf6b7/Untitled.png)
+![image](https://user-images.githubusercontent.com/45115557/178132582-1135b866-105c-4de2-ac67-616b67c73859.png)
 
 → 잘 로딩됨
 
@@ -259,7 +258,8 @@ static class SimpleOrderDto {
 
 **응답OK**
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/90e6b093-c5a4-4807-8a06-d562ccce7baf/x2.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/90e6b093-c5a4-4807-8a06-d562ccce7baf/x2.png)
+![image](https://user-images.githubusercontent.com/45115557/178132596-1d37a5e8-f31d-49bf-937a-f6b54b16e1ba.png)
+
 
 **문제점**
 
@@ -270,16 +270,17 @@ static class SimpleOrderDto {
 - 이미 조회된 경우 JPA 영속성 컨텍스트 안에서 캐싱, 그러나 이런 경우는 흔치 않다고 함
 
 order query1번 호출
+![image](https://user-images.githubusercontent.com/45115557/178132606-d4197da1-ea69-47ab-bb13-78a3ae493d7d.png)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0a5c0b2d-d049-4aca-99cb-6e245b138bee/lazy1.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0a5c0b2d-d049-4aca-99cb-6e245b138bee/lazy1.png)
 
 member query 2번 호출(+N)
+![image](https://user-images.githubusercontent.com/45115557/178132609-e150fde6-d292-4128-aeeb-71971053ec50.png)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d2592de7-2afb-489a-8eea-dbd8ddb9fbd2/lazy2.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d2592de7-2afb-489a-8eea-dbd8ddb9fbd2/lazy2.png)
 
 delivery 2번 호출(+N)
+![image](https://user-images.githubusercontent.com/45115557/178132615-553294db-45de-4c2a-82c5-a402327726a2.png)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b5c21048-9a09-4e56-9ba2-1b8ad77d5666/lazy3.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b5c21048-9a09-4e56-9ba2-1b8ad77d5666/lazy3.png)
+
 
 ### 주문 조회 V3: 엔티티를 DTO로 변환 - 페치 조인 최적화
 
@@ -316,13 +317,13 @@ public List<Order> findAllWithMemberDelivery() {
 
 **응답OK**
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b767f704-6f02-4543-8ece-fac353bfe224/x2.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b767f704-6f02-4543-8ece-fac353bfe224/x2.png)
+![image](https://user-images.githubusercontent.com/45115557/178132751-a2d8ff64-7030-401e-91fa-bd862a543936.png)
 
 **쿼리 1번 호출**
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fb9174bb-a89a-4846-86ed-5625fe741c22/fetch1.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fb9174bb-a89a-4846-86ed-5625fe741c22/fetch1.png)
+![image](https://user-images.githubusercontent.com/45115557/178132756-f8f6cf16-2741-478e-9e96-67ed912d25e7.png)
+![image](https://user-images.githubusercontent.com/45115557/178132761-5dc749bd-5b41-424b-965f-8460e2ed8d19.png)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c5d5782e-f9eb-4e82-bbd9-730040788900/fetch2.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c5d5782e-f9eb-4e82-bbd9-730040788900/fetch2.png)
 
 ### 주문 조회 V4: JPA에서 DTO로 바로 조회
 
@@ -385,8 +386,8 @@ public class OrderSimpleQueryRepository {
 - new 명령어를 사용해서 JPQL의 결과를 DTO로 즉시 변환
 
 **쿼리 1회 호출** 
+![image](https://user-images.githubusercontent.com/45115557/178132779-5f205417-8aa6-404d-ba63-a21e6a3e9972.png)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/aac92e08-f944-466d-bce5-a8a3fa7be393/v4.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/aac92e08-f944-466d-bce5-a8a3fa7be393/v4.png)
 
 **Pros**
 
@@ -412,21 +413,4 @@ public class OrderSimpleQueryRepository {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-참고: 인프런 김영한 강사님 강의 및 본인이 스터디 세미나에서 발표한 내용~
+참고: 인프런 김영한 강사님 강의 + 본인이 스터디 세미나에서 발표한 내용~
