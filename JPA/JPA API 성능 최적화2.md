@@ -515,8 +515,8 @@ public List<Order> findAllWithItem() {
 
 - Query: 루트 1번, 컬렉션 N 번
 - ToOne(N:1, 1:1) 관계들을 먼저 조회하고, ToMany(1:N) 관계는 각각 별도로 처리한다.
-    - ToOne 관계는 조인해도 데이터 row 수 동일
-    - ToMany(1:N) 관계는 조인하면 row 수가 증가
+- ToOne 관계는 조인해도 데이터 row 수 동일
+- ToMany(1:N) 관계는 조인하면 row 수가 증가
     
     ### V5: JPA에서 DTO 직접 조회 - 컬렉션 조회 최적화
     
