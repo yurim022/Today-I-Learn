@@ -270,14 +270,17 @@ static class SimpleOrderDto {
 - 이미 조회된 경우 JPA 영속성 컨텍스트 안에서 캐싱, 그러나 이런 경우는 흔치 않다고 함
 
 order query1번 호출
+
 ![image](https://user-images.githubusercontent.com/45115557/178132606-d4197da1-ea69-47ab-bb13-78a3ae493d7d.png)
 
 
 member query 2번 호출(+N)
+
 ![image](https://user-images.githubusercontent.com/45115557/178132609-e150fde6-d292-4128-aeeb-71971053ec50.png)
 
 
 delivery 2번 호출(+N)
+
 ![image](https://user-images.githubusercontent.com/45115557/178132615-553294db-45de-4c2a-82c5-a402327726a2.png)
 
 
@@ -386,6 +389,7 @@ public class OrderSimpleQueryRepository {
 - new 명령어를 사용해서 JPQL의 결과를 DTO로 즉시 변환
 
 **쿼리 1회 호출** 
+
 ![image](https://user-images.githubusercontent.com/45115557/178132779-5f205417-8aa6-404d-ba63-a21e6a3e9972.png)
 
 
