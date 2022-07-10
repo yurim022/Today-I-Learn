@@ -74,5 +74,5 @@ member.getOrder(); //null
 → Team은 있는데 Order는 비어있을 수 있음...Order도 또 call 해줘야되..!!!
     
 
-*DB조회를 객체지향적으로 하려 하면 mapping을 위해 더 많은 코드가 필요..ROI가 안나온다!*
-그래서 JPA가 있다~
+**DB조회를 객체지향적으로 하려 하면 mapping을 위해 더 많은 코드가 필요..ROI가 안나온다!
+그래서 JPA가 있다~~~**
