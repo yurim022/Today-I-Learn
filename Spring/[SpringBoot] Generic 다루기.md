@@ -1,4 +1,4 @@
-#Generic 다루기
+# Generic 다루기
 
 ### vehicle을 구현한 Car class
 
