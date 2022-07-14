@@ -1,5 +1,8 @@
 
 관리자 페이지를 개발하다 smart search를 사용해서 검색 기능을 구현하게 되었다.
+
+
+*like vs ilike*
 ilike는 대소문자를 구분하지 않는다. 즉 like는 대소문자를 구분한다.
 
 ## like 예시
