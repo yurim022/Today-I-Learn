@@ -3,6 +3,7 @@
 
 
 *like vs ilike*
+
 ilike는 대소문자를 구분하지 않는다. 즉 like는 대소문자를 구분한다.
 
 ## like 예시
