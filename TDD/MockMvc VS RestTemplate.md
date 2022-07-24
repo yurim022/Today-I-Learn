@@ -39,9 +39,14 @@ public class MyControllerTest {
 ```
  
 @SpringBootTest는 통합 테스트를 위한 어노테이션이다. 
+단위테스트와 같이 기능검증을 위한 것이 아니라 spring framework에서 전체 플로우가 제대로 동작하는지 테스트하기 위함이기 때문에, Controller 뿐만아니라 service, repository 등 모든 스프링 빈을 등록한다. 모든 Bean을 로드하기 때문에 시간이 오래걸리고 무겁다.    
+반면 다 불러오는 만큼, 운영환경과 가장 유사한 테스트가 가능하다.    
+* 주의사항 : 각자 서로의 MockMVC를 모킹하기 때문에, @WebMvcTest와 같이 사용할 수 없다. 
 
-
-
+```
+@ActiveProfiles("dev")
+```
+프로파일 전략을 사용 중이라면 원하는 프로파일 환경값을 설정 가능하다. 
 
 
 
