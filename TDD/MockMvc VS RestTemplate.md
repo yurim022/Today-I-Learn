@@ -49,6 +49,24 @@ public class MyControllerTest {
 프로파일 전략을 사용 중이라면 원하는 프로파일 환경값을 설정 가능하다. 
 
 
+### @WebMvcTest (단위테스트)
+
+다음은 통합테스트는 아니지만, 단위테스트에서 Mock을 사용하는 @WebMvcTest이다.    
+@WebMvcTest는 @Controller, @ControllerAdvice 와 같은 Web레이어와 관련된 특정 빈들만 등록하기 때문에 비교적 가볍다. 
+
+```
+@WebMvcTest(controllers = MyController.class)
+public class MyControllerTest {
+    @Autowired
+    private MockMvc mockMvc;
+    
+     @MockBean
+    private MyService myService;
+}
+```
+Web 관련 레이어만 등록하기 때문에, Service 빈은 등록되지 않으므로 가짜 @MockBean을 통해 만들어 줄 수 있다.   
+
+
 
 
 
@@ -61,7 +79,7 @@ public class MyControllerTest {
 
 
 참고링크: 
-https://www.baeldung.com/integration-testing-in-spring
-https://we1cometomeanings.tistory.com/65
+https://www.baeldung.com/integration-testing-in-spring   
+https://we1cometomeanings.tistory.com/65   
 https://velog.io/@gidskql6671/Spring-Boot-SpringBootTest%EC%99%80-WebMvcTest
 
