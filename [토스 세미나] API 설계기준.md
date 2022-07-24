@@ -131,7 +131,8 @@ endDate=2021-01-30
 
 ### Recycle Object
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5eeee046-f670-4dda-8594-1598754c2b8d/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5eeee046-f670-4dda-8594-1598754c2b8d/Untitled.png)
+![Untitled (10)](https://user-images.githubusercontent.com/45115557/180636470-851b11ce-9199-4545-bfd1-13d6d863b26b.png)
+
 
 - TOSS 결제 승인, 결제 조회, 결제 취소의 객체 레이아웃 모
 - 비슷한 도메인의 요청/응답의 경우, 개발자가 예측하기 쉬움
