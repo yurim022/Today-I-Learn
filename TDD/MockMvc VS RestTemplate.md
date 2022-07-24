@@ -25,9 +25,9 @@ MVC 프로젝트를 테스트 할 때, 컨트롤러 테스트를 쉽게 하기 �
 </dependencies>
 ```
    
-### @SpringBootTest
+### @AutoConfigureMockMvc
 
-스프링에서 MockMVC를 사용하는 방식은 두가지가 있는데, 먼저 @SpringBootTest 부터 살펴보자. 
+스프링에서 MockMVC를 사용하는 방식은 두가지가 있는데, 먼저 @AutoConfigureMockMvc 부터 살펴보자. 
 
 ```
 @SpringBootTest
@@ -38,7 +38,7 @@ public class MyControllerTest {
 }
 ```
  
-@SpringBootTest는 통합 테스트를 위한 어노테이션이다. 
+@SpringBootTest는 통합 테스트를 위한 어노테이션이다. @AutoConfigureMockMvc와 함께 mock 객체로 테스트할 수 있다.    
 단위테스트와 같이 기능검증을 위한 것이 아니라 spring framework에서 전체 플로우가 제대로 동작하는지 테스트하기 위함이기 때문에, Controller 뿐만아니라 service, repository 등 모든 스프링 빈을 등록한다. 모든 Bean을 로드하기 때문에 시간이 오래걸리고 무겁다.    
 반면 다 불러오는 만큼, 운영환경과 가장 유사한 테스트가 가능하다.    
 * 주의사항 : 각자 서로의 MockMVC를 모킹하기 때문에, @WebMvcTest와 같이 사용할 수 없다. 
@@ -92,11 +92,19 @@ Web 관련 레이어만 등록하기 때문에, Service 빈은 등록되지 않�
 ## RestTemplate
 
 ```
-ResponseEntity<User> entity = restTemplate.exchange("/api/users",
-            HttpMethod.GET,
-            new HttpEntity<String>(...),
-            User.class);
-assertEquals(HttpStatus.OK, entity.getStatusCode());
+@SpringBootTest
+public class RestApiTest {
+    @Autowired
+    private TestRestTemplate restTemplate;
+
+    @Test
+    public void test() {
+        ResponseEntity<Article> response = restTemplate.getForEntity("/api/articles/1", Article.class);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(response.getBody()).isNotNull();
+        ...
+    }
+}
 ```
 
 restTemplate의 경우 다음과 같이 테스트를 할 수 있다. 
