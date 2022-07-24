@@ -89,6 +89,22 @@ public class MyControllerTest {
 Web 관련 레이어만 등록하기 때문에, Service 빈은 등록되지 않으므로 가짜 @MockBean을 통해 만들어 줄 수 있다.   
 
 
+## RestTemplate
+
+```
+ResponseEntity<User> entity = restTemplate.exchange("/api/users",
+            HttpMethod.GET,
+            new HttpEntity<String>(...),
+            User.class);
+assertEquals(HttpStatus.OK, entity.getStatusCode());
+```
+
+restTemplate의 경우 다음과 같이 테스트를 할 수 있다. 
+
+
+## RestTemplate VS MockMVC
+
+* MockMVC는 서버
 
 
 
@@ -98,9 +114,7 @@ Web 관련 레이어만 등록하기 때문에, Service 빈은 등록되지 않�
 
 
 
-
-
-참고링크: 
+참고링크:    
 https://www.baeldung.com/integration-testing-in-spring   
 https://we1cometomeanings.tistory.com/65   
 https://velog.io/@gidskql6671/Spring-Boot-SpringBootTest%EC%99%80-WebMvcTest
