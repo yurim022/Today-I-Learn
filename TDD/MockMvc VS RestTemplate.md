@@ -104,18 +104,14 @@ restTemplate의 경우 다음과 같이 테스트를 할 수 있다.
    
 ## RestTemplate VS MockMVC
 
-* MockMVC는 서버
-
-
-
-
-
-
-
+* MockMVC는 Servlet Container를 생성하지 않는다. 반면 @SpringBootTest와 TestRestTemplate은 Servlet Container를 사용한다. ( 실제 서버가 동작하는 것처럼 동작)
+* MockMVC는 서버입장에서 구현한 API가 제대로 동작하는지 확인한다면, TestRestTemplate은 클라이언트 입장에서 RestTemplate을 사용하듯이 테스트한다.    
 
 
 참고링크:    
 https://www.baeldung.com/integration-testing-in-spring   
 https://we1cometomeanings.tistory.com/65   
-https://velog.io/@gidskql6671/Spring-Boot-SpringBootTest%EC%99%80-WebMvcTest
+https://velog.io/@gidskql6671/Spring-Boot-SpringBootTest%EC%99%80-WebMvcTest   
+https://blog.naver.com/PostView.naver?blogId=mijosan&logNo=222198041845&redirect=Dlog&widgetTypeCall=true&directAccess=false   
+https://www.javafixing.com/2022/01/fixed-difference-between-mockmvc-and.html
 
