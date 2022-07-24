@@ -89,7 +89,7 @@ public class MyControllerTest {
 Web 관련 레이어만 등록하기 때문에, Service 빈은 등록되지 않으므로 가짜 @MockBean을 통해 만들어 줄 수 있다.   
 
    
-## RestTemplate
+## TestRestTemplate
 
 ```
 @SpringBootTest
@@ -107,7 +107,7 @@ public class RestApiTest {
 }
 ```
 
-restTemplate의 경우 다음과 같이 테스트를 할 수 있다. 
+TestRestTemplate의 경우 다음과 같이 테스트를 할 수 있다. 
 
    
 ## RestTemplate VS MockMVC
