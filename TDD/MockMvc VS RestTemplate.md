@@ -6,7 +6,7 @@
 ## MockMVC
 MVC 프로젝트를 테스트 할 때, 컨트롤러 테스트를 쉽게 하기 위해 요청을 수행하고 응답을 만들어내는 Mock 객체를 사용한다. 
 
-테스트를 위해 실제 객체와 비슷한 객체를 만드는 것을 모킹(Mocking)이라고 하고, 테스트 하려는 객체가 복잡한 의존성을 가지고 있을 때, 모킹한 객체를 이용하면 의존성을 단절시킬 수 있어 쉽게 테스트 가능하다. 
+테스트를 위해 실제 객체와 비슷한 객체를 만드는 것을 모킹(Mocking)이라고 하고, 테스트 하려는 객체가 복잡한 의존성을 가지고 있을 때, 모킹한 객체를 이용하면 의존성을 단절시킬 수 있어 쉽게 테스트 가능하다.    
 
 ### 의존성 추가
 
@@ -24,7 +24,7 @@ MVC 프로젝트를 테스트 할 때, 컨트롤러 테스트를 쉽게 하기 �
     </dependency>
 </dependencies>
 ```
-
+   
 ### @SpringBootTest
 
 스프링에서 MockMVC를 사용하는 방식은 두가지가 있는데, 먼저 @SpringBootTest 부터 살펴보자. 
@@ -70,7 +70,7 @@ public class MyControllerTest {
 ```
 다음과 같이 mockMvc 객체로 request를 날린 후 결과가 원하는 대로 나오는지 확인할수 있다. 
 
-
+   
 ### @WebMvcTest (단위테스트)
 
 다음은 통합테스트는 아니지만, 단위테스트에서 Mock을 사용하는 @WebMvcTest이다.    
@@ -88,7 +88,7 @@ public class MyControllerTest {
 ```
 Web 관련 레이어만 등록하기 때문에, Service 빈은 등록되지 않으므로 가짜 @MockBean을 통해 만들어 줄 수 있다.   
 
-
+   
 ## RestTemplate
 
 ```
@@ -101,7 +101,7 @@ assertEquals(HttpStatus.OK, entity.getStatusCode());
 
 restTemplate의 경우 다음과 같이 테스트를 할 수 있다. 
 
-
+   
 ## RestTemplate VS MockMVC
 
 * MockMVC는 서버
