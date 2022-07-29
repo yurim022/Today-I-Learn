@@ -59,7 +59,7 @@ Mokito는 **개발자가 동작을 직접 제어할 수 있는 가짜(Mock) 객�
 
 ### 3. Junit과 Mockito 결합
 
-기존의 Junit4에서는 @RunWith(MockitoJUnitRunner.class)를 붙여줘야 했는데, SpringBoot 2.2.0부터 공식적으로 JUnit5를 지원하게 되어 @ExtenWith(MockitoExtension.class)를 명시해주면 된다.
+기존의 Junit4에서는 @RunWith(MockitoJUnitRunner.class)를 붙여줘야 했는데, SpringBoot 2.2.0부터 공식적으로 JUnit5를 지원하게 되어 **@ExtenWith(MockitoExtension.class)** 를 명시해주면 된다.
 
 
 
