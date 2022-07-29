@@ -48,7 +48,18 @@ Mokito는 **개발자가 동작을 직접 제어할 수 있는 가짜(Mock) 객�
 * @InjectMocks " @Mock 또는 @Spy로 생성된 가짜 객체를 자동 주입시켜주는 어노테이션
 
 
-### 2. Stub로 결과 
+### 2. Stub로 결과 처리
+
+의존성 있는 객체는 가짜 객체를 주입하여 어떤 결과를 반환하라고 정해진 답을 준비시켜야 한다. Mockito에서는 다음과 같은 stub 메소드를 제공한다. 
+
+* doReturn() : 특정 값 반환
+* doNothing() : 아무것도 반환x
+* doThrow() : 예외 발생
+
+
+### 3. Junit과 Mockito 결합
+
+기존의 Junit4에서는 @RunWith(MockitoJUnitRunner.class)를 붙여줘야 했는데, SpringBoot 2.2.0부터 공식적으로 JUnit5를 지원하게 되어 @ExtenWith(MockitoExtension.class)를 명시해주면 된다.
 
 
 
