@@ -122,6 +122,27 @@ mockMvc로 HTTP 요청을 날려주고 결과를 ResultActions 객체로 받아�
 이 result 객의 andExpect을 통해 원하는 결과를 얻었는지 status, jsonPath 등으로 검증해준다. 
 
 
+### @WebMvcTest
+
+위와 같이 MockMvc를 생성하는 것은 번거롭다. SpringBoot는 컨트롤러 테스트를 위한 @WebMvcTest 어노테이션을 제공하고 있다. 이를 이용하면 MockMvc 객체가 자동으로 생성될 뿐만 아니라 ControllerAdvice, Filter, Interceptor 등 웹 테스트에 필요한 요소들을 모두 빈으로 등록해 스프링 컨텍스트 환경을 구성한다. @WebMvcTest는 스프링부트가 제공하는 테스트 환경이므로 @Mock 대신 @MockBean, @Spy 대신 @SpyBean을 사용해주면 된다. 
+
+```
+@WebMVcTest(UserController.class)
+class UserControllerTest {
+
+    @MockBean
+    private UserService userService;
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    // 테스트 작성
+
+}
+```
+
+
+
 
 ## 서비스 계층 단위테스트
 
@@ -165,7 +186,35 @@ class UserServiceTest {
 ```
 
 
+## 레포지토리 단위 테스트
 
+### @DataJpaTest 
+
+스프링부트에서는 JPA 레포지토리를 손쉽게 테스트 할 수 있는 @DataJpaTest 를 제공한다. 기본적으로 인메모리 데이터베이스인 H2를 기반으로 테스트용 데이터베이스를 구축하며, 테스트가 끝나면 트랜젝션을 롤백해준다. 레포지토리 계층은 실제 DB와 통신없이 단순 모킹하는 것은 의미가 없으므로 @DataJpaTest를 활용하자. 
+
+```
+@DataJpaTest
+class UserRepositoryTest {
+
+   @Autowired
+   private UserRepository userRepository;
+   
+   @DisplayName("사용자 목록 조회")
+   @Test
+   void addUser() {
+   
+      //given
+      userRepository.save(user());
+      
+      //when
+      List<User> users = userRepository.findAll();
+      
+      //then
+      assertThat(users.size()).isEqualTo(1);
+      
+   }
+}
+```
 
 
 
