@@ -23,11 +23,11 @@
 @Test
 void testExample(){
 
-//given
+   //given
 
-//when
+   //when
 
-//then
+   //then
 
 }
 ```
@@ -62,6 +62,7 @@ Mokito는 **개발자가 동작을 직접 제어할 수 있는 가짜(Mock) 객�
 기존의 Junit4에서는 @RunWith(MockitoJUnitRunner.class)를 붙여줘야 했는데, SpringBoot 2.2.0부터 공식적으로 JUnit5를 지원하게 되어 **@ExtenWith(MockitoExtension.class)** 를 명시해주면 된다.
 
 
+   
 ## 컨트롤러 단위테스트
 
 테스트 코드를 어떻게 구현하는지에 중점을 두었기 떄문에, 컨트롤러 로직은 제외하고 테스트 코드만 정리했다. 
@@ -71,15 +72,95 @@ Mokito는 **개발자가 동작을 직접 제어할 수 있는 가짜(Mock) 객�
 @ExtendWith(MockitoExtension.class)
 class UserControllerTest {
 
+    @InjectMocks
+    private UserController userController;
+
+    @Mock
+    private UserService userService;
+
+    private MockMvc mockMvc;
+
+    @BeforeEach
+    public void init() {
+        mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
+    }
+
+}
+```
+
+컨트롤러 테스트를 위해서는 HTTP 호출이 필요하다. 스프링에서는 이를 위한 MockMVC를 제공하고 있다. @BeforeEach에서 MockMvcBuilders.standaloneSetup(userController).build() 를 통해 MockMvc를 초기화 해준다. 
+
+
+```
+@DisplayName("회원가입 성공 테스트")
+@Test
+void signUpSuccess() throws Exception {
+
+   // given
+    SignUpRequest request = signUpRequest();
+    UserResponse response = userResponse();
+    
+    doReturn(response).when(userService).signUp(any(SignUpRequest.class));
+    
+    // when
+    ResultActions resultActions = mockMvc.perform(
+        MockMvcRequestBuilders.post("/users/signUp")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(new Gson().toJson(request))
+    );
+
+    // then
+    MvcResult mvcResult = resultActions.andExpect(status().isOk())
+        .andExpect(jsonPath("email", response.getEmail()).exists())
+        .andExpect(jsonPath("pw", response.getPw()).exists())
+        .andExpect(jsonPath("role", response.getRole()).exists());
+}
+
+```
+
+mockMvc로 HTTP 요청을 날려주고 결과를 ResultActions 객체로 받아준다. 
+이 result 객의 andExpect을 통해 원하는 결과를 얻었는지 status, jsonPath 등으로 검증해준다. 
+
+
+
+## 서비스 계층 단위테스트
+
+회원가입 성공 테스트를 진행해보자. 리포지토리 계층은 mock으로 만들어 doReturn 에서 원하는 응답값을 리턴하게 해주고, 의존성을 userService에 @InjectMocks 어노테이션으로 주입해주자. 실제 사용자의 비밀번호를 암호화 해야 하므로 엔코더는 @Spy로 실제 객체를 주입시켜 준다. 
+
+
+```
+@ExtendWith(MockitoExtension.class)
+class UserServiceTest {
+
    @InjectMocks
-   private UserController userController;
-   
-   @Mock
    private UserService userService;
    
+   @Mock
+   private UserRepository userRepository;
+    
+   @Spy
+   private BCryyPasswordEncoder passwordEncoder;
    
-
-
+   
+   @Displayname("회원가입 테스트")
+   @Test
+   void signUp(){
+   
+      //given
+      BCrytPasswordEncoder encoder = new BCryptPasswordEncoder();
+      SignUpRequest request = signUpRequest();
+      String encryptedPw = encoder.encode(request.getPw());
+      
+      doReturn(new User(request.getEmail(), encrytedPw, UserRole.ROLE_USER)).when(userRepository).save(any(User.class));
+      
+      //when
+      UserResponse user = userService.signUp(request);
+      
+      //then
+      assertThat(user.getEmail().isEqualTo(request.getEmail());
+      asswerThat(encoder.matches(signUpDTO.getPw(),uesr.getPw())).isTrue();
+     
+   }
 }
 ```
 
