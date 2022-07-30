@@ -62,6 +62,26 @@ Mokito는 **개발자가 동작을 직접 제어할 수 있는 가짜(Mock) 객�
 기존의 Junit4에서는 @RunWith(MockitoJUnitRunner.class)를 붙여줘야 했는데, SpringBoot 2.2.0부터 공식적으로 JUnit5를 지원하게 되어 **@ExtenWith(MockitoExtension.class)** 를 명시해주면 된다.
 
 
+## 컨트롤러 단위테스트
+
+테스트 코드를 어떻게 구현하는지에 중점을 두었기 떄문에, 컨트롤러 로직은 제외하고 테스트 코드만 정리했다. 
+더 자세한 코드를 보고 싶다면 [Junit과 Mockito 기반의 Spring 단위 테스트 코드 작성법](https://mangkyu.tistory.com/145) 을 참고하면 된다. 
+
+```
+@ExtendWith(MockitoExtension.class)
+class UserControllerTest {
+
+   @InjectMocks
+   private UserController userController;
+   
+   @Mock
+   private UserService userService;
+   
+   
+
+
+}
+```
 
 
 
@@ -73,4 +93,5 @@ Mokito는 **개발자가 동작을 직접 제어할 수 있는 가짜(Mock) 객�
 
 
 
-참고 링크:   https://mangkyu.tistory.com/144   
+참고 링크:   https://mangkyu.tistory.com/144
+           https://mangkyu.tistory.com/145
