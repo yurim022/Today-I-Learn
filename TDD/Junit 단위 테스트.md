@@ -88,7 +88,7 @@ class UserControllerTest {
 }
 ```
 
-컨트롤러 테스트를 위해서는 HTTP 호출이 필요하다. 스프링에서는 이를 위한 MockMVC를 제공하고 있다. @BeforeEach에서 MockMvcBuilders.standaloneSetup(userController).build() 를 통해 MockMvc를 초기화 해준다. 
+컨트롤러 테스트를 위해서는 HTTP 호출이 필요하다. 스프링에서는 이를 위한 MockMVC를 제공하고 있다.    @BeforeEach에서 MockMvcBuilders.standaloneSetup(userController).build() 를 통해 MockMvc를 초기화 해준다. 
 
 
 ```
@@ -125,7 +125,7 @@ mockMvc로 HTTP 요청을 날려주고 결과를 ResultActions 객체로 받아�
 
 ## 서비스 계층 단위테스트
 
-회원가입 성공 테스트를 진행해보자. 리포지토리 계층은 mock으로 만들어 doReturn 에서 원하는 응답값을 리턴하게 해주고, 의존성을 userService에 @InjectMocks 어노테이션으로 주입해주자. 실제 사용자의 비밀번호를 암호화 해야 하므로 엔코더는 @Spy로 실제 객체를 주입시켜 준다. 
+회원가입 성공 테스트를 진행해보자. 리포지토리 계층은 mock으로 만들어 doReturn 에서 원하는 응답값을 리턴하게 해주고, 의존성을 userService에 @InjectMocks 어노테이션으로 주입해주자.    실제 사용자의 비밀번호를 암호화 해야 하므로 엔코더는 @Spy로 실제 객체를 주입시켜 준다. 
 
 
 ```
