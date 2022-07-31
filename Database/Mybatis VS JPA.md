@@ -26,15 +26,17 @@ Controller -> Service -> Mapper(인터페이스) -> xml
 객체지향적으로 DB에 접근하기 위해 고안된 Hibernate 구현체이다. 
 ![image](https://user-images.githubusercontent.com/45115557/182015769-724239c1-d8fd-4e35-8fe2-d62029c3e629.png)
 
+
+```
+Controller -> Service -> Respository(JPARepository 상속)
+```
+
 SpringDataJpa는 JPA를 한단계 추상화시킨 Repository 인터페이스를 제공함으로써 EntityManger가 수행하는 코드를 개발자가 신경쓰지 않아도 되게 추상화 했다. 
 
 ![image](https://user-images.githubusercontent.com/45115557/182015847-5f8b8856-1a1f-41f8-8d07-5a8c50ec08ff.png)
 
 위 사진을 보면 entityManager가 em.persist(), em.flush() 등을 통해 영속성 관리를 하는 엔티티 생명주기를 볼 수 있다. SpringDataJpa를 사용하면 이를 알아서 해준다. 
 
-```
-Controller -> Service -> Respository(JPARepository 상속)
-```
 
 ### 장점
 
