@@ -1,21 +1,24 @@
 ## 스프링 트랜잭션 전파 타입
 
-Propagation 즉, 전파타입이란 트랜잭션이 시작하거나 참여하는 방법에 관한 설정이다. 트랜잭션의 경계에서 트랜잭션이 어떻게 동작할지를 정하는 룰이라고 할 수 있다. 
+Propagation 즉, 전파타입이란 **트랜잭션이 시작하거나 참여하는 방법에 관한 설정**이다. 트랜잭션의 경계에서 트랜잭션이 어떻게 동작할지를 정하는 룰이라고 할 수 있다. 
 
 ```
-public class ServiceA {
+public class ParentService {
 
-  private ServiceB serviceB;
+  private ChildService childService;
   
   @Transactional
-  public void a() {
-    serviceB.b(); //a함수에서 b함수 호출
+  public void parent() {
+  
+    childService.child();
+    
   }
   
-  public class ServiceB {
+  public class ChildService {
   
     @Transactional
-    public void b() {...}
+    public void child() {...}
+    
   }
 
 }
