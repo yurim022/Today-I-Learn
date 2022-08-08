@@ -87,6 +87,43 @@ public void doSomething() {...}
 * 해당 메소드가 부모 트랜젝션에서 진행될 경우 **별개로 커밋되거나 롤백** 될 수 있다. 
 
 
+### Propagation.MANDATORY
+
+```
+@Transactional(propagaion = Propagation.NESTED)
+public void doSomething() {...}
+```
+
+* 부모 트랜젝션 내에서 실행되며, 부모 트랜잭션이 없을 경우 Exception이 발생한다. 
+
+### Propagation.SUPPORT
+
+```
+@Transactional(propagaion = Propagation.SUPPORT)
+public void doSomething() {...}
+```
+
+* 부모 트랜젝션이 존재하면 부모 트랜잭션으로 동작하고, 없을 경우 non-transactional 하게 동작한다. 
+
+
+### Propagation.NOT_SUPPORT
+
+```
+@Transactional(propagaion = Propagation.NOT_SUPPORT)
+public void doSomething() {...}
+```
+
+* non-transactional하게 실행되며, 부모 트랜잭션이 존재하면 부모 트랜잭션을 일시 정지하고 수행한다.  
+
+
+### Propagation.NEVER
+
+```
+@Transactional(propagaion = Propagation.NOT_SUPPORT)
+public void doSomething() {...}
+```
+
+* non-transactional 하게 실행되며, 부모 트랜잭션이 존재하면 Exception이 발생한다. 
 
 출처:
 https://www.baeldung.com/spring-transactional-propagation-isolation   
