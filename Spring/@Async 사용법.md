@@ -253,7 +253,7 @@ POST http://localhost:8888/actuator/shutdown
 @Async 어노테이션을 사용할때 세 가지 사항을 주의하자.
 
 **1. private method 사용불가, public method만 사용가능**.  
-**2. self-invocation(자가 호출) qnfrk, 즉 inner method는 사용 불가**.  
+**2. self-invocation(자가 호출), 즉 inner method는 사용 불가**.  
 **3. QueueCapacity 초과 요청에 대한 비동기 method 호출시 방어코드 작성**.  
 
 자세한 이유는 [Spring-Async-Annotation비동기-메소드-사용하기](https://velog.io/@gillog/Spring-Async-Annotation%EB%B9%84%EB%8F%99%EA%B8%B0-%EB%A9%94%EC%86%8C%EB%93%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)에서 확인하자.
