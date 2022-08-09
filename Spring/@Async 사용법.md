@@ -218,7 +218,7 @@ POST http://localhost:8888/actuator/shutdown
 
 ```
 * WaitForTasksToCompleteOnShutdown : true로 하면 queue에 남아있는 모든 작업이 완료될 때까지 기다림
-* AwaitTerminationSeconds : shutdown 최대 대시시간 설정
+* AwaitTerminationSeconds : shutdown 최대 대시간 설정
 
 
 
