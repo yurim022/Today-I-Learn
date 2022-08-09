@@ -137,7 +137,7 @@ public class SpringAsyncConfig {
     }
 }
 
-```
+``` 
 
 * CorePoolSize : 기본 스레드 수
 * MaxPoolSize : 최대 스레드 수
@@ -162,10 +162,37 @@ public class MessageService {
 
 스레드 풀 설정을 적용하고 싶은 메소드에 @Async("설정한 빈이름")으로 명시해 주면 된다. 스레드 풀 설정 빈은 메소드마다 다른 설정값을 적용하고 싶다면, 빈을 여러개 만들어 관리할 수 있다. 
 
++)
+
+```
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.AsyncConfigurerSupport;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+
+@Configuration
+@EnableAsync
+public class SpringAsyncConfig extends AsyncConfigurerSupport {
+    
+    @Override
+    public Executor getAsyncExecutor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(5);
+        executor.setMaxPoolSize(30);
+        executor.setQueueCapacity(50);
+        executor.setThreadNamePrefix("DDAJA-ASYNC-");
+        executor.setThreadNamePrefix("YURIM_SPRING_THREAD_EXECUTOR");
+        return executor;
+    }
+}
+```
+Config class는 AsyncConfigurerSupport 를 상속받아 구현할 수도 있다.
+
+
 
 ### RejectedExecutionHandler
 
-max 스레드까지 생성하고 queue까지 꽉 찬 상태에서 추가 요청이 오면 RejectedexecutionException 예외가 발생한다. 더 이상 처리할 수 없다는 오류인데, 이 오류를 핸들링하기 위해 RejectedExecutionHandler 인터페이스를 구현한 몇가지 클래스가 제공된다. 
+max 스레드까지 생성하고 queue까지 꽉 찬 상태에서 추가 요청이 오면 RejectedExecutionException 예외가 발생한다. 더 이상 처리할 수 없다는 오류인데, 이 오류를 핸들링하기 위해 RejectedExecutionHandler 인터페이스를 구현한 몇가지 클래스가 제공된다. 
 
 * AbortPolicy
     * 기본설정
@@ -220,6 +247,16 @@ POST http://localhost:8888/actuator/shutdown
 * WaitForTasksToCompleteOnShutdown : true로 하면 queue에 남아있는 모든 작업이 완료될 때까지 기다림
 * AwaitTerminationSeconds : shutdown 최대 대시간 설정
 
+
+## 주의사항
+
+@Async 어노테이션을 사용할때 세 가지 사항을 주의하자.
+
+**1. private method 사용불가, public method만 사용가능**
+**2. self-invocation(자가 호출) qnfrk, 즉 inner method는 사용 불가**
+**3. QueueCapacity 초과 요청에 대한 비동기 method 호출시 방어코드 작성**
+
+자세한 이유는 [Spring-Async-Annotation비동기-메소드-사용하기](https://velog.io/@gillog/Spring-Async-Annotation%EB%B9%84%EB%8F%99%EA%B8%B0-%EB%A9%94%EC%86%8C%EB%93%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)에서 확인하자.
 
 
 출처:
