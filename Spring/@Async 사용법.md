@@ -67,6 +67,9 @@ public class Main {
 
 ```
 
+전체 스레드의 개수를 10개로 제한하고 있고, 멀티 스레딩 방식의 비동기 처리도 할 수 인ㅆ게 되었다. 하지만 위 방식은 비동기 방식으로 처리하고 싶은 메소드마다 ExecutorService의 submit() 메소드를 적용해야 하므로 반복적인 수정작업이 필요하다. 처음에 동기로 
+
+
 출처:
 https://steady-coding.tistory.com/611   
 http://dveamer.github.io/java/SpringAsync.html   
