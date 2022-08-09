@@ -127,11 +127,11 @@ public class SpringAsyncConfig {
     @Bearn(name="threadPoolTaskExecutor")
     publi Executor threadPoolTaskExecutor() {
     
-        ThreadPoolTaskExecutor taskExecutor = new ThreadPooltaskExecutor();
+        ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
         taskExecutor.setCorePoolSize(3);
         taskExecutor.setMaxPoolSize(30);
         taskExecutor.setQueueCapacity(100);
-        taskExecutor.setThreadNamePrefix("YURIMS_Spring_Thread_Executor");
+        taskExecutor.setThreadNamePrefix("YURIM_SPRING_THREAD_EXECUTOR");
         return taskExecutor;
    
     }
@@ -139,7 +139,28 @@ public class SpringAsyncConfig {
 
 ```
 
+* CorePoolSize : 기본 스레드 수
+* MaxPoolSize : 최대 스레드 수
+* QueueCapacity : Queue size
+* ThreadNamePrefix : 스레드 이름 앞에 명시할 수 있는 옵션
 
+
+최초 core 사이즈만큼 동작하다가 이 이상 작업을 처리할 수 없을 경우 max 사이즈만큼 스레드가 증가하는 것이 아니다. 내부적으로 Integer.MAX_VALUE 사이즈의(QueueCapacity가 설정되어 있다면 해당 개수만큼) LinkedBlockingQueue를 생성해서 core 사이즈만큼의 스레드에서 작업을 처리 할 수 없을 경우 Queue에서 대기하게 된다. Queue가 꽉 차게 되면 그때 max 사이즈만큼 스레드를 생성해서 처리하게 된다.    
+위의 예시로 들자면 최초 3개의 스레드에서 처리하다가 처리 속도가 밀릴 경우 작업을 100개 사이즈 Queue에 넣어놓고 그 이상의 요청이 들어오면 최대 30개의 스레드를 생성해서 작업을 처리하게 된다. 
+
+
+```
+@Service
+public class MessageService {
+
+    @Async("threadPoolTaskExecutor")
+    public void print(String message) {
+        System.out.println(message);
+    }
+}
+```
+
+스레드 풀 설정을 적용하고 싶은 메소드에 @Async("설정한 빈이름")으로 명시해 주면 된다. 스레드 풀 설정 빈은 메소드마다 다른 설정값을 적용하고 싶다면, 빈을 여러개 만들어 관리할 수 있다. 
 
 출처:
 https://steady-coding.tistory.com/611   
