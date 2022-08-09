@@ -67,7 +67,7 @@ public class Main {
 
 ```
 
-전체 스레드의 개수를 10개로 제한하고 있고, 멀티 스레딩 방식의 비동기 처리도 할 수 인ㅆ게 되었다. 하지만 위 방식은 비동기 방식으로 처리하고 싶은 메소드마다 ExecutorService의 submit() 메소드를 적용해야 하므로 반복적인 수정작업이 필요하다. 처음에 동기로 작성한 메소드를 비동기로 바꾸고 싶다면 메소드 자체의 로직을 변경해야 하는 불편함이 있다. 
+전체 스레드의 개수를 10개로 제한하고 있고, 멀티 스레딩 방식의 비동기 처리도 할 수 있게 되었다. 하지만 위 방식은 비동기 방식으로 처리하고 싶은 메소드마다 ExecutorService의 submit() 메소드를 적용해야 하므로 반복적인 수정작업이 필요하다. 처음에 동기로 작성한 메소드를 비동기로 바꾸고 싶다면 메소드 자체의 로직을 변경해야 하는 불편함이 있다. 
 
 
 ## Spring @Async without ThreadPool (비추)
@@ -84,7 +84,7 @@ public class AsyncApplication {
 }
 ```
 
-먼저 첫번째 방식은 @EnableAsync 어노테이션을 Application 클래스에 붙여주고, 비동기 방식으로 처리하고 싶응ㄴ 동기 로직의 메소드 위에 @Async를 붙이는 것이다.
+먼저 첫번째 방식은 @EnableAsync 어노테이션을 Application 클래스에 붙여주고, 비동기 방식으로 처리하고 싶 동기 로직의 메소드 위에 @Async를 붙이는 것이다.
 
 ```
 @Service
@@ -124,8 +124,8 @@ Spring에서 스레드풀을 사용하기 위해, 우선 Application 클래스�
 @EnableAsync
 public class SpringAsyncConfig {
 
-    @Bearn(name="threadPoolTaskExecutor")
-    publi Executor threadPoolTaskExecutor() {
+    @Bean(name="threadPoolTaskExecutor")
+    public Executor threadPoolTaskExecutor() {
     
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
         taskExecutor.setCorePoolSize(3);
@@ -162,7 +162,68 @@ public class MessageService {
 
 스레드 풀 설정을 적용하고 싶은 메소드에 @Async("설정한 빈이름")으로 명시해 주면 된다. 스레드 풀 설정 빈은 메소드마다 다른 설정값을 적용하고 싶다면, 빈을 여러개 만들어 관리할 수 있다. 
 
+
+### RejectedExecutionHandler
+
+max 스레드까지 생성하고 queue까지 꽉 찬 상태에서 추가 요청이 오면 RejectedexecutionException 예외가 발생한다. 더 이상 처리할 수 없다는 오류인데, 이 오류를 핸들링하기 위해 RejectedExecutionHandler 인터페이스를 구현한 몇가지 클래스가 제공된다. 
+
+* AbortPolicy
+    * 기본설정
+    * RejectedExecutionException 발생
+
+* DiscardOldestPolicy
+    * 오래된 작업을 skip
+    * 모든 task가 무조건 처리되어야 할 필요가 없을 경우 사용
+
+* DiscardPolicy
+    * 처리하려는 작업을 skip
+    * 모든 task가 무조건 처리되어야 할 필요가 없을 경우 사용
+
+* CallerRunsPolicy
+    * shutdown 상태가 아니라면 ThreadPoolTaskExecutor에 요청한 thread에서 직접 처리
+    * 예외와 누락없이 최대한 처리하려면 해당 옵션 사용
+
+
+```
+@Bean(name="threadPoolTaskExecutor")
+    public Executor threadPoolTaskExecutor() {
+    
+        ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
+        taskExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+        return taskExecutor;
+   
+    }
+
+```
+
+### Shutdown 처리
+
+```
+POST http://localhost:8888/actuator/shutdown
+```
+별도로 정의한 스레드 풀에서 작업이 이루어지고 있을때 애플리케이션 종료 요청을 하게 되면 아직 처리되지 못한 task는 유실된다. 유실 없이 마지막까지 다 처리하고 종료되길 원한다면 설정을 추가해줘야 한다. 
+종료는 Spring Boot Actuator를 이용할 수 있다. 
+
+
+```
+@Bean(name="threadPoolTaskExecutor")
+    public Executor threadPoolTaskExecutor() {
+    
+        ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
+        taskExecutor.setWaitForTasksToCompleteOnShutdown(true);
+        taskExecutor.setAwaitTerminationSeconds(60); //shutdown 최대 60초 
+        return taskExecutor;
+   
+    }
+
+```
+* WaitForTasksToCompleteOnShutdown : true로 하면 queue에 남아있는 모든 작업이 완료될 때까지 기다림
+* AwaitTerminationSeconds : shutdown 최대 대시시간 설정
+
+
+
 출처:
-https://steady-coding.tistory.com/611   
+https://steady-coding.tistory.com/611  
+https://kapentaz.github.io/spring/Spring-ThreadPoolTaskExecutor-%EC%84%A4%EC%A0%95/#   
 http://dveamer.github.io/java/SpringAsync.html   
 https://velog.io/@gillog/Spring-Async-Annotation%EB%B9%84%EB%8F%99%EA%B8%B0-%EB%A9%94%EC%86%8C%EB%93%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0   
