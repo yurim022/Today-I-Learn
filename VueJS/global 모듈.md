@@ -2,7 +2,6 @@
 
 ```
 const loading = this.$loading({ lock: true, text: this.$t('loading.data'), spinner: 'el-icon-loading' });
-
 ```
 
 관리자 포털을 개발하다 다음과 같은 코드를 발견했다. 현재 프로젝트에서는 element-plus를 사용하고 있는데 로딩할때 element-plus에서 아이콘을 띄워주기 위해 사용한 것이다. 
