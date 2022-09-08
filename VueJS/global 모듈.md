@@ -44,3 +44,16 @@ declare module '@vue/runtime-core' {
 ```
 
 global.d.ts 파일에 다음과 같이 $loading이 명시되어 있었다. 
+
+## .d.ts 파일
+
+global.d.ts 파일이 확장자가 좀 특이하다.  .d.ts 파일은 무엇일까
+* 구현부가 아닌 선언부만을 작성하는 용도의 파일
+* JS코드로 컴파일 불가
+* 최상위에 존재하는 변수, 상수, 함수, 클래스, 네임스페이스의 선언 앞에는 반드시 ``` declare ``` 또는 ``` export``` 가 붙어야 한다.
+* 파일에 작성되는 ```declare namespace``` 블록과 ```declare module``` 블록의 필드들에는 ```export``` 키워드가 기본으로 붙기 때문에 굳이 붙여줄 필요가 없다. 
+
+
+참고링크:
+https://it-eldorado.tistory.com/127
+
