@@ -6,7 +6,7 @@ const loading = this.$loading({ lock: true, text: this.$t('loading.data'), spinn
 ```
 
 관리자 포털을 개발하다 다음과 같은 코드를 발견했다. 현재 프로젝트에서는 element-plus를 사용하고 있는데 로딩할때 element-plus에서 아이콘을 띄워주기 위해 사용한 것이다. 
-데이터를 다 불러오고 나면 
+
 
 ```
 this.$axios
@@ -31,7 +31,7 @@ this.$axios
     }
 
 ```
-finally 문에 보면 ```loaing.close()``` 로 종료시켜주면 된다. 
+데이터를 다 불러온뒤, finally 문에서 ```loaing.close()``` 로 종료시켜주면 된다. 
 
 
 ### global.d.ts
