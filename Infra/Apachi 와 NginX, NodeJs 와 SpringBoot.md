@@ -34,6 +34,9 @@ Node.js는 Tomcat,Spring 뒤에 개발되었기 때문에 올인원으로 관리
 * 멀티쓰레드 이기 때문에, 메모리 사용량이 Node.js보다 많다
 
 
+Tomcat과 Netty의 차이점도 [Reactive Spring WebFlux: Tomcat과 Netty](https://ooeunz.tistory.com/109) 를 참고해보면 좋을듯하다!
+ 
+
 
 참고링크:   
 https://ooeunz.tistory.com/109   
