@@ -1,6 +1,7 @@
 # RabbitMQ VS Kafka
 
 깊게 들어가면 방대하지만 우선 간단하게 정리해보겠다.
+[Benchmarking Apache Kafka, Apache Pulsar, and RabbitMQ: Which is the Fastest?](https://www.confluent.io/blog/kafka-fastest-messaging-system/) 글을 참고하였다.
 
 ![image](https://user-images.githubusercontent.com/45115557/189939000-c005fa55-b888-4e24-8553-0ca70ec6fc69.png)
 
