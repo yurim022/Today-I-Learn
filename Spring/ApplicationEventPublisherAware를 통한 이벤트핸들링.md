@@ -3,9 +3,10 @@
 먼저 특정상황을 가정해보자. 타 서비스와 연계해서 동작하는 서비스A와 서비스B가 있다.    
 * 서비스A의 멤버 정보가 가입한 경우 서비스B에 이를 알리도록 구현해보자. 
 * 단 서비스B에 알릴 때에는 비동기로 알리며, 누락되어도 신경쓰지 않는다. 
+cf ) 보통 비동기 처리는 요청이 긴 경우, 로그 처리, 푸시 처리 등에 많이 사용된다. 
 
 ### ApplicationEventPublisherAware
-`ApplicationEventPublisher`는 옵저버 패턴의 구현체이다. ApplicationEventPublisherAware 인터페이스를 구현하면 Spring이 자동으로 ApplicationEventPublisher를 주입해준다. 
+`ApplicationEventPublisher`는 옵저버 패턴의 구현체이다. `ApplicationEventPublisherAware` 인터페이스를 구현하면 Spring이 자동으로 ApplicationEventPublisher를 주입해준다. 
 publishEvent 함수를 통해 Event를 발행할 수 있다. 
 
 
@@ -25,7 +26,7 @@ public class MemberExecuteService implements ApplicationEventPublisherAware {
   
   
   @Transactional(propagation = Propagation.REQUIRES_NEW)
-  public void memberExecute(CHANG_TYPE type, Member member) {
+  public void memberExecute(CHANGE_TYPE type, Member member) {
     
     memberMapper.join(member);
     eventPublisher.publishEvent(new MemberChangeEvent(type,member));
@@ -35,6 +36,24 @@ public class MemberExecuteService implements ApplicationEventPublisherAware {
 
 ```
 
+#### 이벤트 정의
+발생시킬 이벤트도 함께 정의해준다. 이벤트는 정보를 담고 있다. 
+
+```java
+@Data
+public class MemberChangeEvent {
+
+    private CHANGE_TYPE type;
+    private Member member;
+
+    public MemberChangeEvent(CHANGE_TYPE type, Member member) {
+        this.woType = woType;
+        this.member = member;
+    }
+}
+
+
+```
 
 
 
@@ -96,7 +115,34 @@ async:
     queue-size: 0
 ```
 
+비동기 처리는 좀 더 딥하게 다뤄야 할 필요가 있으므로 여기에서는 간단하게 `@EnableAsync`를 통해 비동기 처리를 할 수 있다는 정도만 알아두자!
 
+
+### Subscribe 한 이벤트 처리
+
+```java
+
+@RequiredArgsConstructor
+@Service
+public class EventSubscribeService {
+
+private final RestTemplate restTemplate;
+
+  @Async("memberChangedTaskExecutor")
+  @EventListener
+  public void handleMemberChangedEvent(MemberChangeEvent event){
+  
+    Member member = event.getMember();
+    restTemplate.exchange(),,,, // 다른 서비스에 요청 보내기
+    
+  }
+}
+
+```
+ `@EventListener` 어노테이션으로 이벤트 리스너임을 명시해 줄 수 있다. 
+ `@Async("memberChangedTaskExecutor")`로 위에 등록했던 ThreadPoolExecutor가 별도 쓰레드를 만들어서 요청을 비동기로 처리하게 한다. 
+ 
+ 
 
 
 참고링크:
