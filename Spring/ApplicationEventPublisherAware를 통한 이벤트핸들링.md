@@ -5,7 +5,7 @@
 * 단 서비스B에 알릴 때에는 비동기로 알리며, 누락되어도 신경쓰지 않는다. 
 
 ### ApplicationEventPublisherAware
-**ApplicationEventPublisher**는 옵저버 패턴의 구현체이다. ApplicationEventPublisherAware 인터페이스를 구현하면 Spring이 자동으로 ApplicationEventPublisher를 주입해준다. 
+`ApplicationEventPublisher`는 옵저버 패턴의 구현체이다. ApplicationEventPublisherAware 인터페이스를 구현하면 Spring이 자동으로 ApplicationEventPublisher를 주입해준다. 
 publishEvent 함수를 통해 Event를 발행할 수 있다. 
 
 
