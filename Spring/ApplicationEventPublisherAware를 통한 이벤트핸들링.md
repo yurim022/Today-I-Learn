@@ -37,6 +37,7 @@ public class MemberExecuteService implements ApplicationEventPublisherAware {
 
 
 
+
 ### Async 등록
 
 Spring에서 제공하는 `ThreadPoolTaskExecutor`를 사용하면 비동기방식의 별도 쓰레드로 작업을 위임해서 처리할 수 있다. 시간이 오래 걸릴 수 있는 작업들은 이를 활용하면 좋다. 
@@ -44,7 +45,7 @@ Spring에서 제공하는 `ThreadPoolTaskExecutor`를 사용하면 비동기방�
 
 #### ThreadPool 설정값
 ![image](https://user-images.githubusercontent.com/45115557/192103106-b5594f75-79e1-41db-8c53-ac304997b90d.png)   
-출처: https://keichee.tistory.com/382
+표 출처: https://keichee.tistory.com/382
 
 
 ```java
@@ -102,4 +103,6 @@ async:
 https://atoz-develop.tistory.com/entry/Spring-ApplicationEventPublisher%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D   
 https://kim-jong-hyun.tistory.com/104    
 https://keichee.tistory.com/382     
+https://velog.io/@jeongyunsung/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-%ED%95%B4%EB%B6%80%ED%95%99-Async-EnableAsync-AsyncAnnotationBeanPostProcessor.     
+
 
