@@ -38,7 +38,7 @@ public class MemberExecuteService implements ApplicationEventPublisherAware {
 
 ### Async 등록
 
-Spring에서 제공하는 **ThreadPoolTaskExecutor**를 사용하면 비동기방식의 별도 쓰레드로 작업을 위임해서 처리할 수 있다. 시간이 오래 걸릴 수 있는 작업들은 이를 활용하면 좋다. 
+Spring에서 제공하는 `ThreadPoolTaskExecutor`를 사용하면 비동기방식의 별도 쓰레드로 작업을 위임해서 처리할 수 있다. 시간이 오래 걸릴 수 있는 작업들은 이를 활용하면 좋다. 
 
 ```java
 
