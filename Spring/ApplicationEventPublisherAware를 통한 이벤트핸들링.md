@@ -43,7 +43,7 @@ Spring에서 제공하는 `ThreadPoolTaskExecutor`를 사용하면 비동기방�
 자세한 내용은 [Spring공식 ThreadpoolExecutor](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/scheduling/concurrent/ThreadPoolTaskExecutor.html)를 참고하자.   
 
 #### ThreadPool 설정값
-![image](https://user-images.githubusercontent.com/45115557/192103106-b5594f75-79e1-41db-8c53-ac304997b90d.png)
+![image](https://user-images.githubusercontent.com/45115557/192103106-b5594f75-79e1-41db-8c53-ac304997b90d.png)   
 출처: https://keichee.tistory.com/382
 
 
