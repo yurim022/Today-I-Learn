@@ -36,9 +36,11 @@ public class MemberExecuteService implements ApplicationEventPublisherAware {
 ```
 
 
+
 ### Async 등록
 
 Spring에서 제공하는 `ThreadPoolTaskExecutor`를 사용하면 비동기방식의 별도 쓰레드로 작업을 위임해서 처리할 수 있다. 시간이 오래 걸릴 수 있는 작업들은 이를 활용하면 좋다. 
+자세한 내용은 [Spring 공식 ThreadpoolExecutor](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/scheduling/concurrent/ThreadPoolTaskExecutor.html)를 참고하자.   
 
 ```java
 
@@ -64,9 +66,9 @@ public class AsyncConfig implements AsyncConfigurer {
   public Executor memberChangedTaskExecutor() {
   
     ThreadPoolTaskExecutor memberChangedTaskExecutor = new ThreadPoolTaskExecutor();
-    memberChangedTaskExecutor.setCorePoolSize(memberChange.getCorePoolSize());
-    memberChangedTaskExecutor.setMaxPoolSize(memberChange.getMaxPoolSize());
-    memberChangedTaskExecutor.setQueueCapacity(memberChange.getQueueSize());
+    memberChangedTaskExecutor.setCorePoolSize(memberChange.getCorePoolSize()); //동시에 실행시킬 쓰레드 개수 default 1
+    memberChangedTaskExecutor.setMaxPoolSize(memberChange.getMaxPoolSize()); //쓰레드 풀의 최대사이즈 default Integer.MAX_VALUE
+    memberChangedTaskExecutor.setQueueCapacity(memberChange.getQueueSize()); //corePoolSIze
     memberChangedTaskExecutor.setThreadNamePrefix("MEMBER-CHANE-THREAD-");
     memberChangedTaskExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.AbortPolicy());
     memberChangedTaskExecutor.initialize();
