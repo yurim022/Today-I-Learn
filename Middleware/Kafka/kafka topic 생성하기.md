@@ -21,7 +21,7 @@ zookeeper는 2181, kafka는 9092를 default 포트로 사용하고 있다.
 netstat -anv | grep LISTEN
 ```
 ![image](https://user-images.githubusercontent.com/45115557/192152474-6dbf2786-80bc-4613-b9b5-235357fe50f2.png)
-<br/><br/>
+<br/><br/><br/><br/>
 
 ## 2. topic 생성
 
@@ -29,7 +29,7 @@ netstat -anv | grep LISTEN
 ./bin/kafka-topics.sh --create --topic quickstart-events --bootstrap-server localhost:9092 --partitions 1
 ```
 다음 명령어로 topic을 생성할 수 있다. 이때, `kafka-could-not-be-established-Broker-may-not-be-available-orgapachekafkaclientsNetworkClient` 와 같은 에러가 났다. 
-
+<br/><br/><br/><br/>
 ## 3. 에러 해결
 
 ```
@@ -50,8 +50,8 @@ config 파일로 이동해서 `#listeners = PLAINTEXT://your.host.name:9092` 주
 listeners=PLAINTEXT://localhost:9092
 
 ```
-
-## Topic 정보 확인
+<br/><br/><br/><br/>
+## 4. Topic 정보 확인
 
 ### topic 목록 확인
 ```
@@ -73,7 +73,7 @@ host:9092
 
 
 
-
+<br/><br/><br/><br/>
 
 참고링크: 
 https://somjang.tistory.com/entry/Kafka-could-not-be-established-Broker-may-not-be-available-orgapachekafkaclientsNetworkClient-해결-방법 .  
