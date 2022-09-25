@@ -29,7 +29,7 @@ netstat -anv | grep LISTEN
 ./bin/kafka-topics.sh --create --topic quickstart-events --bootstrap-server localhost:9092 --partitions 1
 ```
 다음 명령어로 topic을 생성할 수 있다. 이때, `kafka-could-not-be-established-Broker-may-not-be-available-orgapachekafkaclientsNetworkClient` 와 같은 에러가 났다. 
-<br/><br/><br/><br/>
+<br/><br/><br/>
 ## 3. 에러 해결
 
 ```
@@ -50,7 +50,7 @@ config 파일로 이동해서 `#listeners = PLAINTEXT://your.host.name:9092` 주
 listeners=PLAINTEXT://localhost:9092
 
 ```
-<br/><br/><br/><br/>
+<br/><br/><br/>
 ## 4. Topic 정보 확인
 
 ### topic 목록 확인
@@ -73,7 +73,7 @@ host:9092
 
 
 
-<br/><br/><br/><br/>
+<br/><br/><br/>
 
 참고링크: 
 https://somjang.tistory.com/entry/Kafka-could-not-be-established-Broker-may-not-be-available-orgapachekafkaclientsNetworkClient-해결-방법 .  
