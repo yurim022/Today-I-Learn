@@ -21,7 +21,7 @@ zookeeper는 2181, kafka는 9092를 default 포트로 사용하고 있다.
 netstat -anv | grep LISTEN
 ```
 ![image](https://user-images.githubusercontent.com/45115557/192152474-6dbf2786-80bc-4613-b9b5-235357fe50f2.png)
-<br></br?>
+<br/><br/>
 
 ## 2. topic 생성
 
