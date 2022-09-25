@@ -76,7 +76,7 @@ host:9092
 
 
 참고링크: 
-https://somjang.tistory.com/entry/Kafka-could-not-be-established-Broker-may-not-be-available-orgapachekafkaclientsNetworkClient-해결-방법 [솜씨좋은장씨:티스토리].  
+https://somjang.tistory.com/entry/Kafka-could-not-be-established-Broker-may-not-be-available-orgapachekafkaclientsNetworkClient-해결-방법 .  
 https://woonizzooni.tistory.com/entry/Mac-listen-%ED%8F%AC%ED%8A%B8-pid-%ED%99%95%EC%9D%B8-%EB%B0%A9%EB%B2%95-TCPUDP-%EC%84%B8%EC%85%98-%ED%99%95%EC%9D%B8-%EB%B0%A9%EB%B2%95   
 
 https://velog.io/@jmjmjames/Kafka-could-not-be-established.-Broker-may-not-be-available.-org.apache.kafka.clients.NetworkCilent-%ED%95%B4%EA%B2%B0%EB%B0%A9%EB%B2%95
