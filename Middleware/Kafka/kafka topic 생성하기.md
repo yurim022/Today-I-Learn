@@ -69,6 +69,9 @@ host:9092
 
 ![image](https://user-images.githubusercontent.com/45115557/192153044-18f72205-359d-46e8-9033-f12f32935ee3.png)
 
+잘 생성된걸 확인할 수 있다! 휴!
+
+
 
 
 
