@@ -1,7 +1,7 @@
 # Blocking IO vs Non-Blocking IO
 
-기본적으로 IO(입/출력) 작업은 Kernel에서만 수행할 수 있다. Process와 Thread는 커널에게 IO를 요청한다. 
-입출력은 컴퓨터 내부/외부장치와 프로그램 간에 데이터를 주고받는 행위이다. 
+기본적으로 IO(입/출력) 작업은 Kernel에서만 수행할 수 있다. Process와 Thread는 커널에게 IO를 요청한다.    
+참고로 입출력은 컴퓨터 내부/외부장치와 프로그램 간에 데이터를 주고받는 행위이다. 
 
 ## Blocking IO
  
