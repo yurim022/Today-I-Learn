@@ -17,11 +17,14 @@ Blocking IO의 경우 Thread는 작업을 중단한 채 대기한다. IO작업�
 **Blocking 방식은 여러 Client가 접속하는 서버를 Blocking 방식으로 구현하는 경우 불리하다.**
 다른 client가 진행중인 작업을 중지하면 안되므로, client 별로 별도의 Thread를 만들어야 하고 많아진 Thread의 컨텍스트 스위칭 횟수가 증가하게 된다. 
 
+### Asynchronous Blocking I/O
+![image](https://user-images.githubusercontent.com/45115557/193401394-0a61d59d-cacb-4dff-8ab9-5eeeb0334701.png)
+
 
 ## Non-Blocking IO
 
 ### Synchronous non-blocking I/O
-![image](https://user-images.githubusercontent.com/45115557/193401234-2dad96d3-6127-42d6-b9b4-6e13acd3623d.png)
+![image](https://user-images.githubusercontent.com/45115557/193401409-5e97b591-8104-46ca-81fe-a484c08008e7.png)
 출처: [IBM Developer](https://developer.ibm.com/articles/l-async/)
 
 1. User Process가 recvfrom 함수 호출 (커널에게 해당 socket으로부터 data를 받고 싶다 요청)
@@ -32,6 +35,8 @@ Blocking IO의 경우 Thread는 작업을 중단한 채 대기한다. IO작업�
 
 
 ### ASynchronous non-blocking I/O
+
+비동기는 I/O 처리가 완료된 타이밍으로 결과를 회신한다.
 ![image](https://user-images.githubusercontent.com/45115557/193401266-7591aae7-7b79-4f2b-886b-919b864292fc.png)
 출처: [IBM Developer](https://developer.ibm.com/articles/l-async/)
 
