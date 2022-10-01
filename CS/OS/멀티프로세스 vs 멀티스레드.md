@@ -1,8 +1,7 @@
+### 프로세스와 스레드
+![image](https://user-images.githubusercontent.com/45115557/193408344-e3f975e0-60a3-4a4f-899c-00a60ba891ff.png)
 기본적인건 생략하고 아주 간단하게 정리만 해보겠다!
 우선 프로세스는 운영체제로부터 자원을 할당받는 작업의 단위이고, 스레드는 프로세스가 할당받은 자원을 이용하는 실행의 단위이다. 
-
-![image](https://user-images.githubusercontent.com/45115557/193408344-e3f975e0-60a3-4a4f-899c-00a60ba891ff.png)
-
 
 ## Multi Process
 
