@@ -26,7 +26,7 @@
 
 
 
-#### Context Switching 이란
+### Context Switching 이란
 프로세스의 상태정보를 저장하고 복원하는 과정이다.    
 CPU는 한번에 하나의 프로세스만 실행이 가능하기 때문에, 여러 프로세스를 돌아가면서 작업을 처리하면서 Context switching이 발생하게 된다. 
 
