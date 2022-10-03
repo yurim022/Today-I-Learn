@@ -272,7 +272,7 @@ dev환경엔 cosole 만 있으면 되니까 파일 저장 없이 콘솔 옵션�
 </included>
 ```
 
-# Log LEVEl
+# Log LEVEL
 
 * DEBUG : 개발/장애 시 내부 로직, 라이브러리 동작 확인 용도
 * INFO : 정상 처리 되었으나 VOC 등 처리를 위해 남겨야 할 정보
