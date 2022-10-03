@@ -274,14 +274,16 @@ dev환경엔 cosole 만 있으면 되니까 파일 저장 없이 콘솔 옵션�
 
 # Log LEVEl
 
-[로그 레벨](https://www.notion.so/390718d88bc4415691b53056f3579941)
+* DEBUG : 개발/장애 시 내부 로직, 라이브러리 동작 확인 용도
+* INFO : 정상 처리 되었으나 VOC 등 처리를 위해 남겨야 할 정보
+* WARN : 아용자 에러, 사용자 요청으로 인한 에러로 사용자가 잘못 파라미터를 입력하거나 개발자는 몰라도 VOC 대응을 위해 운영자가 알아야 할 오류 발생 시
+* ERROR : 시스템 에러, 사용자 요청으로 인한 에러가 아닌 개발/운영자가 알아햐 할 내부 DB, MQ 등 미들웨어 오류 발생 시
 
-- 로그 파일에는 default INFO 부터 기록한다. Debug, Trace는 콘솔에는 출력되나 파일에는 기록되지 않는다.
-- 파싱에러와 같이 오류가 발생했지만 application 동작에 영향을 주지 않는 경우는 WARN 이다.
+보통 로그 파일은 default INFO 부터 기록한다. Debug, Trace는 콘솔에는 출력되나 파일에는 기록되지 않는다.
 
 # Error Handling
 
-```jsx
+```java
 @ExceptionHandler(IllegalChartRequestExeption.class)
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   public final ErrorResponse handleIllegalStateException(IllegalChartRequestExeption e) {
@@ -295,6 +297,22 @@ dev환경엔 cosole 만 있으면 되니까 파일 저장 없이 콘솔 옵션�
 ```
 
 위와 같이 CustomExceptionHandler에서 에러가 발생하면 log.warn 을 발생시키도록 설정하였다. 
+
+### Exception e 로그 남기는 법
+
+```java
+try {
+    process();
+} catch (IOException e) {
+    log.warn("Service Layer IOException {}", e.getMessage(), e);
+    throw e
+}    
+    
+```
+
+* e : 로깅 시 trace 포함 출력, 에러 발생 코드 위치 등
+* e.getMesssage() : 간단하게 한줄 에러 메시지 로깅
+* e.toString : Exception 종류 및 간단한 에러 
 
 참고링크
 
