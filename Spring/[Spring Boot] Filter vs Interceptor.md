@@ -1,3 +1,5 @@
+## Spring 흐름
+
 ![spring](https://user-images.githubusercontent.com/45115557/194739307-58d96f72-2c13-41dc-b6bc-4e696f4072fa.PNG)
 
 
@@ -22,6 +24,9 @@ doFilter method를 통해 url-pattern에 맞는 모든 HTTP 요청에 대한 처
 - 모든 요청에 대한 로깅/감사
 - Spring 과 분리되어야 하는 기능
 - ServletRequest, ServletResponse를 조작하고 싶을 때 (인터셉터는 불가능)
+
+#### 에러처리
+에러 발생 시 Web Application에서 실행해야 하기 때문에 tomcat을 사용한다면 `<error-page>`를 선언하거나 Filter내에서 에러를 잡아 `request.getRequestDespatcher(String)` 으로 다뤄야 한다. 
 
 # 인터셉터(Interceptor)
 
@@ -49,3 +54,16 @@ public interface HandlerInterceptor {
 - 세부적인 보안, 인증/인가 작업
 - API 호출에 대한 로깅 또는 감사
 - Controller로 넘겨주는 정보의 가공
+
+#### 에러처리
+에러 발생 시 Interceptor는 Spring의 ServletDispatcher 내에 있기 때문에 `@ControllerAdvice`에서 `@ExceptionHandler`를 사용해서 예외처리를 할 수 있다. 작성해야 할 전후처리 로직에서 예외를 전역적으로 처리하고 싶다면 Interceptor가 좀 더 적합니다. 
+
+
+## CF..
+
+보통 애플리케이션 전역에 영향을 주는 작업은 Filter, 특정 영역에 해당하는 작업은 Interceptor로 처리한다고 하나 Filter도 Interceptor도 모두 요청에 대한 전후처리 역할을 수행한다. 또 Filter도 Uri를 기반으로 언제 실행할 것인지 조정한다.
+오히려 둘의 차이점은 에러처리가 더 명확하다. 
+
+참고링크: 
+https://supawer0728.github.io/2018/04/04/spring-filter-interceptor/
+https://goddaehee.tistory.com/154
