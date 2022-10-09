@@ -80,6 +80,9 @@ public interface HandlerInterceptor {
 보통 애플리케이션 전역에 영향을 주는 작업은 Filter, 특정 영역에 해당하는 작업은 Interceptor로 처리한다고 하나 Filter도 Interceptor도 모두 요청에 대한 전후처리 역할을 수행한다. 또 Filter도 Uri를 기반으로 언제 실행할 것인지 조정한다.
 오히려 둘의 차이점은 에러처리가 더 명확하다. 
 
+추가로 Filter도 이제는 Spring Bean 등록이 가능한데 이는 망나니 개발자님의 [[Spring] 필터(Filter)가 스프링 빈 등록과 주입이 가능한 이유(DelegatingFilterProxy의 등장)](https://mangkyu.tistory.com/221) 을 참고하자.
+
+
 참고링크: 
 https://mangkyu.tistory.com/173   
 https://supawer0728.github.io/2018/04/04/spring-filter-interceptor/   
