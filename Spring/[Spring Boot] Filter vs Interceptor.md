@@ -28,6 +28,22 @@ doFilter method를 통해 url-pattern에 맞는 모든 HTTP 요청에 대한 처
 #### 에러처리
 에러 발생 시 Web Application에서 실행해야 하기 때문에 tomcat을 사용한다면 `<error-page>`를 선언하거나 Filter내에서 에러를 잡아 `request.getRequestDespatcher(String)` 으로 다뤄야 한다. 
 
+
+### Custom Filter
+```
+public class SomeFilter implements Filter {
+  //...
+  
+  public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) {
+    chain.doFilter(new BodyCachedServletRequestWrapper(request), response);
+  }
+}
+
+```
+직접 정의한 필터를 사용하고 싶다면 다음과 같이 web의 Filter를 구현하여 사용할 수 있다. 
+Filter는 GenericFilterBean, OncePerRequestFilter 등 목적에 따라 Filter를 확장한 인터페이스를 구현하면 된다. 
+
+
 # 인터셉터(Interceptor)
 
 필터와 달리 스프링이 제공하는 기술이다. DispatcherServlet이 컨트롤러를 호출하기 전에 요청, 응답을 참조하거나 가공한다. 
@@ -57,21 +73,6 @@ public interface HandlerInterceptor {
 
 #### 에러처리
 에러 발생 시 Interceptor는 Spring의 ServletDispatcher 내에 있기 때문에 `@ControllerAdvice`에서 `@ExceptionHandler`를 사용해서 예외처리를 할 수 있다. 작성해야 할 전후처리 로직에서 예외를 전역적으로 처리하고 싶다면 Interceptor가 좀 더 적합니다. 
-
-
-### Custom Filter
-```
-public class SomeFilter implements Filter {
-  //...
-  
-  public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) {
-    chain.doFilter(new BodyCachedServletRequestWrapper(request), response);
-  }
-}
-
-```
-직접 정의한 필터를 사용하고 싶다면 다음과 같이 web의 Filter를 구현하여 사용할 수 있다. 
-Filter는 GenericFilterBean, OncePerRequestFilter 등 목적에 따라 Filter를 확장한 인터페이스를 구현하면 된다. 
 
 
 ## CF..
