@@ -59,6 +59,21 @@ public interface HandlerInterceptor {
 에러 발생 시 Interceptor는 Spring의 ServletDispatcher 내에 있기 때문에 `@ControllerAdvice`에서 `@ExceptionHandler`를 사용해서 예외처리를 할 수 있다. 작성해야 할 전후처리 로직에서 예외를 전역적으로 처리하고 싶다면 Interceptor가 좀 더 적합니다. 
 
 
+### Custom Filter
+```
+public class SomeFilter implements Filter {
+  //...
+  
+  public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) {
+    chain.doFilter(new BodyCachedServletRequestWrapper(request), response);
+  }
+}
+
+```
+직접 정의한 필터를 사용하고 싶다면 다음과 같이 web의 Filter를 구현하여 사용할 수 있다. 
+Filter는 GenericFilterBean, OncePerRequestFilter 등 목적에 따라 Filter를 확장한 인터페이스를 구현하면 된다. 
+
+
 ## CF..
 
 보통 애플리케이션 전역에 영향을 주는 작업은 Filter, 특정 영역에 해당하는 작업은 Interceptor로 처리한다고 하나 Filter도 Interceptor도 모두 요청에 대한 전후처리 역할을 수행한다. 또 Filter도 Uri를 기반으로 언제 실행할 것인지 조정한다.
