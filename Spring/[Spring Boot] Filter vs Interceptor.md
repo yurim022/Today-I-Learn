@@ -83,6 +83,15 @@ public interface HandlerInterceptor {
 추가로 Filter도 이제는 Spring Bean 등록이 가능한데 이는 망나니 개발자님의 [[Spring] 필터(Filter)가 스프링 빈 등록과 주입이 가능한 이유(DelegatingFilterProxy의 등장)](https://mangkyu.tistory.com/221) 을 참고하자.
 
 
+
+
+
+
+
+
+
+
+
 참고링크: 
 https://mangkyu.tistory.com/173   
 https://supawer0728.github.io/2018/04/04/spring-filter-interceptor/   
