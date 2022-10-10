@@ -5,12 +5,13 @@
 도커이미지를 생성하는 방법은 build와 commit 두가지가 있다. 
 build는 도커 파일을 통해 만들고 싶은 이미지를 생성하는 것이고, commit은 이미 사용하고 있는 컨테이너를 이미지로 백업하는 것이다. 
 
+</br></br>
 ## commit
 
 ![image](https://user-images.githubusercontent.com/45115557/194800116-42cb8fb6-482e-4f9b-940f-59a34d5dfe63.png)
 
 수정한 컨테이너에 commit을 하면 그 컨테이너가 새로운 이미지가 된다. 새로운 이미지를 push하면 다른 개발자들도 pull 을 받을 수 있고, docker hub와 같은 레지스트리에 업로드하면 전 세계 사람들이 pull 받을 수 있다. 
-
+</br></br>
 ## Docker file
 
 ```dockerfile
@@ -32,6 +33,7 @@ ADD target/demo-backend-*.jar demo-backend.jar
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-Dspring.profiles.active=dev","-jar","/demo-backend.jar"]
 
 ```
+</br></br>
 ### DockerFile 옵션
 
 - **FROM** : 베이스 이미지로 해당 이미지를 실행시키는 기반 이미지. DockerFile은 `FROM`으로 시작. 이미지를 생성할때 FROM에 설정한 이미지가 로컬에 있으면 바로 사용하고, 없으면  Docker Hub에서 받아옴.
@@ -51,7 +53,7 @@ cf) **RUN와 CMD 차이**
 `RUN`은 Build가 되는 시점에 실행되는 명령어 -> **이미지에 반영**  
 `CMD`는 Container가 실행되는 시점에 실행되는 명령어 -> **컨테이너에 반영**
 
-
+</br></br>
 ### Docker build 명령어로 컨테이너 이미지 빌드
 
 ```
@@ -60,6 +62,7 @@ docker build -t my-proj .
 - **t** : tab의 약어. 이미지에 태그 지정
 - **.** : 현재 디렉터리에서 Docker 파일을 찾으라 지정. 명령어 실행 위치에 따라 도커파일의 위치에 맞게 조정해주면 됨
 
+</br></br>
 ### Docker run 으로 컨테이너 생성 및 실행
   
 ```
