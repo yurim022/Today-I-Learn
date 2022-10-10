@@ -2,7 +2,7 @@
 
 ## Docker file 생성
 
-```shell
+```dockerfile
 # Start with a base image containing Java runtime
 FROM openjdk:8-jdk-alpine
 
