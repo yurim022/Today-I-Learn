@@ -3,7 +3,8 @@
 ![image](https://user-images.githubusercontent.com/45115557/194799943-e2d479f4-7a93-4271-9a9c-9ecee9c3c6da.png)
 
 도커이미지를 생성하는 방법은 build와 commit 두가지가 있다. 
-build는 도커 파일을 통해 만들고 싶은 이미지를 생성하는 것이고, commit은 이미 사용하고 있는 컨테이너를 이미지로 백업하는 것이다. 
+build는 도커 파일을 통해 만들고 싶은 이미지를 생성하는 것이고, commit은 이미 사용하고 있는 컨테이너를 이미지로 백업하는 것이다.    
+commit은 어떤 과정을 통해서 이미지가 생성되었는지 알기 힘들기 때문에 dockerfile로 남기는것이 나에게도, 남들에게도 더 좋지 않나 싶다^.^
 
 </br></br>
 ## commit
