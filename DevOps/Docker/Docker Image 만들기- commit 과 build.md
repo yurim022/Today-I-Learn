@@ -1,8 +1,8 @@
-# Docker파일 만들기
+# Docker 이미지 만들기
 
 ![image](https://user-images.githubusercontent.com/45115557/194799943-e2d479f4-7a93-4271-9a9c-9ecee9c3c6da.png)
 
-먼저 파일을 생성하기 전에, 도커이미지를 생성하는 방법은 build와 commit 두가지가 있다. 
+도커이미지를 생성하는 방법은 build와 commit 두가지가 있다. 
 build는 도커 파일을 통해 만들고 싶은 이미지를 생성하는 것이고, commit은 이미 사용하고 있는 컨테이너를 이미지로 백업하는 것이다. 
 
 ## commit
