@@ -2,15 +2,21 @@
 
 ## Docker file 생성
 
-- FROM : 베이스 이미지로 해당 이미지를 실행시키는 기반 이미지
+- FROM : 베이스 이미지로 해당 이미지를 실행시키는 기반 이미지. DockerFile은 `FROM`으로 시작. 이미지를 생성할때 FROM에 설정한 이미지가 로컬에 있으면 바로 사용하고, 없으면  Docker Hub에서 받아옴.
 - LABEL : 
 - VOLUME : 
 - EXPOSE : 
 - ADD : 
 - ENTRYPOINT : 
-- RUN : 도커 이미지가 생성되기 전에 수행할 쉘 명령어 
-- COPY : Docker 클라이언트의 현재 디렉토리에서 파일을 추가 (COPY (source) (dist))
-- CMD : 컨테이너에서 실행할 명령을 지정, 도커 파일 내에서 한번만 사용 가능
+- RUN : 도커 이미지가 생성되기 전에 수행할 쉘 명령어. FROM으로 설정한 이미지에 포한된 /bin/sh 실행파일을 사용하게 되면 /bin/sh 실행파일이 없으면 사용 불가
+- WORKDIR : 해당 디렉터리가 없다면 만들고, 사용자를 해당 디렉터리로 이동
+- COPY : 호스트 OS의 로컬파일 또는 디렉토리를 이미지(컨테이너) 내의 경로로 복사 `COPY <Host파일의 복사할 파일 경로> <이미지에서 파일이 위치할 경로>`
+- CMD : 컨테이너에서 실행할 명령을 지정. 즉 `docker run`명령으로 컨테이너를 생성하거나, `docker start` 명령으로 정지된 컨테이너를 시작할 때 실행되는 명령어를 지정. `CMD`는 도커 파일 내에서 한번만 사용 가능
+
+
+cf) RUN와 CMD 차이 
+RUN은 Build가 되는 시점에 실행되는 명령어 -> 이미지에 반영
+CMD는 Container가 실행되는 시점에 실행되는 명령어 -> 컨테이너에 반영
 
 
 ## Docker build 명령어로 컨테이너 이미지 빌드
@@ -32,4 +38,5 @@ docker run -dp 5656:5656 my-proj
 
 </br></br>
 참고링크:   
-https://code-masterjung.tistory.com/133
+https://code-masterjung.tistory.com/133   
+https://velog.io/@monadk/Docker-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EB%A7%8C%EB%93%A4%EA%B8%B0   
