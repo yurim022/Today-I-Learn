@@ -1,6 +1,17 @@
 # Docker파일 만들기
 
-## Docker file 생성
+![image](https://user-images.githubusercontent.com/45115557/194799943-e2d479f4-7a93-4271-9a9c-9ecee9c3c6da.png)
+
+먼저 파일을 생성하기 전에, 도커이미지를 생성하는 방법은 build와 commit 두가지가 있다. 
+build는 도커 파일을 통해 만들고 싶은 이미지를 생성하는 것이고, commit은 이미 사용하고 있는 컨테이너를 이미지로 백업하는 것이다. 
+
+## commit
+
+![image](https://user-images.githubusercontent.com/45115557/194800116-42cb8fb6-482e-4f9b-940f-59a34d5dfe63.png)
+
+수정한 컨테이너에 commit을 하면 그 컨테이너가 새로운 이미지가 된다. 새로운 이미지를 push하면 다른 개발자들도 pull 을 받을 수 있고, docker hub와 같은 레지스트리에 업로드하면 전 세계 사람들이 pull 받을 수 있다. 
+
+## Docker file
 
 ```dockerfile
 # Start with a base image containing Java runtime
@@ -41,7 +52,7 @@ cf) **RUN와 CMD 차이**
 `CMD`는 Container가 실행되는 시점에 실행되는 명령어 -> **컨테이너에 반영**
 
 
-## Docker build 명령어로 컨테이너 이미지 빌드
+### Docker build 명령어로 컨테이너 이미지 빌드
 
 ```
 docker build -t my-proj .
@@ -49,7 +60,7 @@ docker build -t my-proj .
 - **t** : tab의 약어. 이미지에 태그 지정
 - **.** : 현재 디렉터리에서 Docker 파일을 찾으라 지정. 명령어 실행 위치에 따라 도커파일의 위치에 맞게 조정해주면 됨
 
-## Docker run 으로 컨테이너 생성 및 실행
+### Docker run 으로 컨테이너 생성 및 실행
   
 ```
 docker run -dp 5656:5656 my-proj 
@@ -60,5 +71,7 @@ docker run -dp 5656:5656 my-proj
 
 </br></br>
 참고링크:   
+https://www.youtube.com/watch?v=0kQC19w0gTI   
+https://velog.io/@miracle-21/DOCKER%EC%9D%B4%EB%AF%B8%EC%A7%80-%EB%A7%8C%EB%93%A4%EA%B8%B0-Build   
 https://code-masterjung.tistory.com/133   
 https://velog.io/@monadk/Docker-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EB%A7%8C%EB%93%A4%EA%B8%B0   
