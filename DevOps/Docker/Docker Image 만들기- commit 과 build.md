@@ -36,7 +36,7 @@ docker commit my-ubuntu yurimming:ubuntu-git
 
 자세한건 생활코딩님의 [도커 이미지 빌드 commit](https://www.youtube.com/watch?v=RMNOQXs-f68) 영상을 참고하자.
 
-
+</br></br>
 ## Docker file
 
 ```dockerfile
