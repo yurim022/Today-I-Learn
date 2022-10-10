@@ -12,6 +12,31 @@ build는 도커 파일을 통해 만들고 싶은 이미지를 생성하는 것�
 
 수정한 컨테이너에 commit을 하면 그 컨테이너가 새로운 이미지가 된다. 새로운 이미지를 push하면 다른 개발자들도 pull 을 받을 수 있고, docker hub와 같은 레지스트리에 업로드하면 전 세계 사람들이 pull 받을 수 있다. 
 </br></br>
+
+<img width="1300" alt="image" src="https://user-images.githubusercontent.com/45115557/194803324-4ee44b92-8919-4f9b-8221-4a313605185c.png">
+
+다음과 같이 ubuntu 파일을 다운받아서 docker를 실행시킨 후 git을 설치하고 이를 이미지로 빌드한다고 했을 때, 
+
+```
+docker run -it --name my-ubuntu ubuntu bash
+```
+it 옵션을 줘서 컨테이너를 실행하자 마자 컨테이너 쉘로 들어간 후 
+
+```
+apt update && apt install git
+```
+컨테이너에서 git을 실행시켜준다.
+
+```
+docker commit my-ubuntu yurimming:ubuntu-git
+```
+을 해주면 ubuntu에 git이 깔린 이미지 파일이 생성되게 된다. 
+이때 commit 뒤에 [이미지화할 컨테이너 이름][레포지토리:이미지 태그]
+순으로 작성해주면 된다.
+
+자세한건 생활코딩님의 [도커 이미지 빌드 commit](https://www.youtube.com/watch?v=RMNOQXs-f68) 영상을 참고하자.
+
+
 ## Docker file
 
 ```dockerfile
