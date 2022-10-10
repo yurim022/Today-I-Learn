@@ -2,7 +2,7 @@
 
 ## Docker file 생성
 
-```
+```shell
 # Start with a base image containing Java runtime
 FROM openjdk:8-jdk-alpine
 
@@ -21,7 +21,7 @@ ADD target/demo-backend-*.jar demo-backend.jar
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-Dspring.profiles.active=dev","-jar","/demo-backend.jar"]
 
 ```
-### 옵션
+### DockerFile 옵션
 
 - **FROM** : 베이스 이미지로 해당 이미지를 실행시키는 기반 이미지. DockerFile은 `FROM`으로 시작. 이미지를 생성할때 FROM에 설정한 이미지가 로컬에 있으면 바로 사용하고, 없으면  Docker Hub에서 받아옴.
 - **LABEL** : 라벨 정보 작성(docker inspect으로 label 확인 가능)
