@@ -41,22 +41,11 @@ docker commit my-ubuntu yurimming:ubuntu-git
 ## Docker file
 
 ```dockerfile
-# Start with a base image containing Java runtime
-FROM openjdk:8-jdk-alpine
-
-# Add Maintainer Info
-LABEL maintainer="yurim2220@gmail.com"
-
-# Add a volume pointing to /tmp
-VOLUME /tmp
-
-# Make port 5656 available to the world outside this container
-EXPOSE 5656
-
-ADD target/demo-backend-*.jar demo-backend.jar
-
-# Run the jar file
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-Dspring.profiles.active=dev","-jar","/demo-backend.jar"]
+FROM adoptopenjdk/openjdk11
+CMD ["./mvnw", "clean", "package"]
+ARG JAR_FILE_PATH=target/*.jar
+COPY ${JAR_FILE_PATH} app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]
 
 ```
 </br></br>
