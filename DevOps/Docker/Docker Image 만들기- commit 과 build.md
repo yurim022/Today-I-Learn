@@ -48,7 +48,7 @@ COPY ${JAR_FILE_PATH} app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
 
 ```
-</br></br>
+
 ### DockerFile 옵션
 
 - **FROM** : 베이스 이미지로 해당 이미지를 실행시키는 기반 이미지. DockerFile은 `FROM`으로 시작. 이미지를 생성할때 FROM에 설정한 이미지가 로컬에 있으면 바로 사용하고, 없으면  Docker Hub에서 받아옴.
