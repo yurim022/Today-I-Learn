@@ -3,7 +3,7 @@
 <img width="601" alt="image" src="https://user-images.githubusercontent.com/45115557/195275286-8195423a-c2bc-418f-9b18-c71e661fb719.png">
 
 1. 개발자가 .java 파일 생성 및 빌드(build)
-2. 자바 컴파일러가 javac 명령어를 통해 바이트코드(.class) 생성
+2. 자바 컴파일러가 javac 명령어를 통해 바이트코드(.class) 생성 -> JVM을 위한 기계어
 3. 클래스 로더(class loader)가 라이브러리 파일과 묶어 JVM 메모리 내에 로드
 4. 실행엔진을 통해 컴퓨터가 읽을 수 있는 기계어로 해석(각 운영체제에 맞는)
 
