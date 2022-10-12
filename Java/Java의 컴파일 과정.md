@@ -18,6 +18,12 @@
 
 </br>
 
+### JIT
+
+- 속도 이슈를 해결하기 위함 (인터프리터 언어의 단점 보완. 초장기 JAVA는 인터프리터 언어)
+- 자주 읽게되는 소스에 대해 메모리에 해당 부분을 캐싱해두고, 읽어야 하는 시점에 덩어리째 반환
+</br>
+
 ### Java가 컴파일러와 인터프리터 모두 사용하는 이유
 
 - **OS Dependent**       
@@ -49,6 +55,7 @@ Java 인터프리팅은 자바 컴파일러를 통해 생성된 클래스파일(
 
 
 참고링크:   
+https://rumor1993.tistory.com/90   
 https://dev-coco.tistory.com/153   
 https://velog.io/@tsi0521/Java%EB%8A%94-%EC%BB%B4%ED%8C%8C%EC%9D%BC%EB%9F%AC%EC%99%80-%EC%9D%B8%ED%84%B0%ED%94%84%EB%A6%AC%ED%84%B0-%EB%91%98-%EB%8B%A4-%EA%B0%80%EC%A7%84%EB%8B%A4   
 https://velog.io/@jhur98/%EC%BB%B4%ED%8C%8C%EC%9D%BC%EB%9F%ACcompiler%EC%99%80-%EC%9D%B8%ED%84%B0%ED%94%84%EB%A6%AC%ED%84%B0interpreter%EC%9D%98-%EC%B0%A8%EC%9D%B4
