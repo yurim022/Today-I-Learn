@@ -6,6 +6,9 @@
 2. 자바 컴파일러가 javac 명령어를 통해 바이트코드(.class) 생성
 3. 클래스 로더(class loader)가 라이브러리 파일과 묶어 JVM 메모리 내에 로드
 4. 실행엔진을 통해 컴퓨터가 읽을 수 있는 기계어로 해석(각 운영체제에 맞는)
+
+<img width="756" alt="image" src="https://user-images.githubusercontent.com/45115557/195278671-2292073c-51c2-48a1-8df9-26d55eaea06d.png">
+
 </br></br>
 ### JVM (Java Virtual Machine)
 
