@@ -15,9 +15,9 @@ JWT 토큰을 통한 인증은 다양한 플랫폼에서 토큰만으로 인증�
 ## Refresh Token 사용 sequence
 
 1. Access Token의 유효기간은 짧게, Refresh Token의 유효기간은 길게 설정한다.
-2. 사용자는 Access Token으로 인증하고 만료됬을 시 Refresh Token으로 새로운 Access Token, RefreshToken을 발급받는다.
-2-1. 공격자는 Access Token을 탈취하더라도 짧은 유효기간이 지나면 사용할 수 없다. 
-2-2. 정상적인 클라이언트는 유효기간이 지나더라도 Refresh Token을 사용하여 새로 발급받을 수 있다. 
+2. 사용자는 Access Token으로 인증하고 만료됬을 시 Refresh Token으로 새로운 Access Token, RefreshToken을 발급받는다.   
+2-1. 공격자는 Access Token을 탈취하더라도 짧은 유효기간이 지나면 사용할 수 없다.    
+2-2. 정상적인 클라이언트는 유효기간이 지나더라도 Refresh Token을 사용하여 새로 발급받을 수 있다.    
 
 이러한 방식을 사용함으로써 Access Token이 탈취되더라도 그 피해를 줄이기 위해 토큰의 사용시간 자체를 줄이는 것이다. 
 
