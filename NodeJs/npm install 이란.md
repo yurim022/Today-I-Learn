@@ -70,11 +70,15 @@ npm install의 동작은 크게 두가지로 나눌 수 있다.
 
 </br>
 
-#### 플래그
+### 플래그
 * `-P` , `--save-prod` (default) : 패키지를 설치하고 프로젝트의 `dependencies` 목록에 추가
 * `-D`, `--save-dev` : 패키지를 설치하고 프로젝트의 `devDependencies` 목록에 추가
 * `-g` : 패키지를 프로젝트가 아닌 시스템의 `node_modules` 폴더에 설치
 
+</br>
+플래그 없이 `npm install` 만 사용해도 동작은 하지만, 플래그를 동해 `dependencies`와 `devDependencies`로 의존성 목록을 구분하면 **개발용과 서비스를 구분하기 쉬워진다.**
+
+</br></br>
 
 참고링크:   
 https://c17an.netlify.app/blog/node.js/npm-install-%EC%A0%95%EB%A6%AC/article/
