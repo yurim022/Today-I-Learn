@@ -1,6 +1,6 @@
 # npm install 이란
 
-현재 프로젝트에서 springboot와 view를 함께 배포하는 요구사항이 있다.
+현재 프로젝트에서 springboot와 view를 함께 배포하는 요구사항이 있다.   
 pom.xml에 보니 다음과 같이 npm install을 실행하는 부분이 있었다.
 
 ```xml
@@ -57,6 +57,9 @@ npm install의 동작은 크게 두가지로 나눌 수 있다.
 
 ```
 
+</br>
+
+### 특정 패키지 설치
 
 
 
