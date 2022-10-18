@@ -4,14 +4,14 @@
 pom.xml에 보니 다음과 같이 npm install을 실행하는 부분이 있었다.
 
 ```xml
-						<configuration>
-							<skip>${skip.local.npm.build}</skip>
-							<executable>npm</executable>
-							<arguments>
-								<argument>install</argument>
-							</arguments>
-							<workingDirectory>${basedir}/view</workingDirectory>
-						</configuration>
+<configuration>
+	<skip>${skip.local.npm.build}</skip>
+	<executable>npm</executable>
+	<arguments>
+		<argument>install</argument>
+	</arguments>
+	<workingDirectory>${basedir}/view</workingDirectory>
+</configuration>
 
 ```
 
@@ -42,6 +42,16 @@ npm install의 동작은 크게 두가지로 나눌 수 있다.
     "vue-json-viewer": "^2.2.22",
     "vue-router": "^4.0.13",
     "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
+    "@kazupon/vue-i18n-loader": "^0.5.0",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^8.0.3"
   },
   ..(중략)
 
