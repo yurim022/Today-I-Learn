@@ -68,6 +68,8 @@ npm install의 동작은 크게 두가지로 나눌 수 있다.
 
 이때 `-D`와 같은 접미어를 *플래그* 라고 부른다. 
 
+</br>
+
 #### 플래그
 * `-P` , `--save-prod` (default) : 패키지를 설치하고 프로젝트의 `dependencies` 목록에 추가
 * `-D`, `--save-dev` : 패키지를 설치하고 프로젝트의 `devDependencies` 목록에 추가
