@@ -64,7 +64,7 @@ npm install의 동작은 크게 두가지로 나눌 수 있다.
 특정 패키지를 설치할 때는 크게 두 가지 옵션으로 구분된다. 
 
 *  프로젝트 구동 시 필요한 `dependencies` 목록에 추가될 겨우 `npm install (프로젝트명)` 으로 설치
-*  개발 단계에서면 필요한 `devDependencies` 목록에 추가될 경우 `npm install -D (프로젝트명) 으로 설치
+*  개발 단계에서면 필요한 `devDependencies` 목록에 추가될 경우 `npm install -D (프로젝트명)` 으로 설치
 
 이때 `-D`와 같은 접미어를 *플래그* 라고 부른다. 
 
