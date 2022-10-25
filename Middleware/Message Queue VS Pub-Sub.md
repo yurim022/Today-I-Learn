@@ -101,9 +101,19 @@ Pub-Sub를 사용하면 구독자(subscriber)가 다운되더라도 손실된 �
 핵심 기준은 **모든 consumer들이 모든 메세지를 전부 수신해야 하는가?** 이다.
 Pub-Sub구조는 모든 consumer가 모든 메세지를 전부 수신하는 반면 Message Queue의 경우 consumer그룹이 나누어서 큐를 소비한다. 
 
+</br>
+
+#### cf) Message Queue VS Message Broker
+
+*한줄요약: Message Queue는 소비되는 데이터를 저장하는 구조, Message Broker는 message queue를 관리하는 소프트웨어 컴포넌트.*
+
+Message Queue는 Queue를 사용해 데이터의 전송, 수신, 저장하는 애플리케이션의 통신에 책임을 진다. queue를 통해 데이터가 전달되지만, 이데이터들의 내용을 알지 못한다. 
+
+반면 Message Broker는 message queue의 사용을 상속하는 매커니즘으로, message queue와 달리 관리되는 데이터들의 정보를 알고 있다. 
 
 
-
+</br>
 
 참고링크:   
-https://escapefromcoding.tistory.com/706
+https://escapefromcoding.tistory.com/706   
+https://www.baeldung.com/pub-sub-vs-message-queues   
