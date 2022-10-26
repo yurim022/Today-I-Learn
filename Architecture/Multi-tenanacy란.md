@@ -55,7 +55,7 @@
 
 멀티 테넌시 아키텍처는 복잡성과 비용에 따라 세 가지 유형으로 나눌 수 있다. 
 
-![image](https://user-images.githubusercontent.com/45115557/198054141-c814a404-b143-476c-b0fc-3016487cd3a8.png)
+![image](https://user-images.githubusercontent.com/45115557/198058293-7b95c759-b12d-4de4-b8c1-38f1dbf8cf0f.png)
 
 > 단일 애플리케이션, 공유 데이터베이스 스키마
 
