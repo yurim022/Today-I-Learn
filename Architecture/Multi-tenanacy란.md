@@ -55,6 +55,8 @@
 
 멀티 테넌시 아키텍처는 복잡성과 비용에 따라 세 가지 유형으로 나눌 수 있다. 
 
+</br>
+
 ![image](https://user-images.githubusercontent.com/45115557/198058293-7b95c759-b12d-4de4-b8c1-38f1dbf8cf0f.png)
 
 </br>
