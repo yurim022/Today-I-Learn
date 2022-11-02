@@ -50,9 +50,33 @@ Pod는 쿠버네티스의 가장 기본적인 배포 단위로, 하나 이상의
 
 
 컨테이너 restart에 상관없이 파일을 영속적으로 저장해야 할때 사용하는 스토리지가 볼륨이다. pod가 기동할 때 컨테이너에서 마운트해서 사용한다. 
-쿠버네티스는 다양한 외장 디스크를 추상화된 형태로 제공한다. iSCSI나 NFS 같은 온프레미스 기반의 일반적인 외장 스토리지 외에도, 클라우드의 외장 스토리지인 AWS EBS, Google PD 이외에도 github와 같은 오픈소스 기반의 스토리지 서비스를 지원한다. 
+쿠버네티스는 다양한 외장 디스크를 추상화된 형태로 제공한다. **iSCSI나 NFS 같은 온프레미스 기반의 일반적인 외장 스토리지** 외에도, **클라우드의 외장 스토리지인 AWS EBS**, Google PD 이외에도 **github와 같은 오픈소스 기반의 스토리지 서비스를 지원**한다. 
 
 </br>
+
+#### Service
+
+![image](https://user-images.githubusercontent.com/45115557/199519389-ffb69f63-09b3-47ef-a6d1-24979aea2da2.png)
+
+pod와 volume을 이용하여 컨테이너들을 정의한 후에 pod를 서비스로 제공할때, **일반적인 분산환경에서는 여러개의 pod를 서비스하면서 이를 로드밸런서를 이용하여 하나의 ip와 port로 묶어서 서비스를 제공**한다. pod의 경우 동적으로 생성이 되고, 장애가 생기면 자동으로 restart 되면서 ip가 바뀌기 때문에 **로드밸런서에서 pod의 목록을 지정할때는 ip주소를 사용하기 어렵다.** 또한 auto-scaling으로 pod가 동적으로 추가, 삭제되기 때문에 (실제에서 auto-scaling을 쓰지 않는 경우도 많지만,,,) 추가/삭제된 pod 목록을 로드밸런서가 유연하게 선택해주어야 한다. 이때 사용하는 것이 **라벨(label) 과 셀렉터(selector)** 개념이다. 
+   
+서비스를 정의할 때 어떤 파드를 서비스로 묶을 것인지 정의한데 이를 라벨 셀렉터라고 한다. 서비스는 **라벨 셀렉터에서 특정 라벨을 가지고 있는 pod만 선택하여 서비스로 묶게 된다.**
+
+```
+kind: Service
+apiVersion: v1
+metadata:
+  name: my-service
+spec:
+  selector:
+    app: myapp
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 9376
+```
+
+spec:selector 룰 보면 라벨이 app:myapp 인 pod만 선택해서 서비스로 묶고 TCP, 80포트로 서비스하되, 80포트의 요청을 컨테이너의 9376포트로 연결해서 서비스를 제공한다.  
 
 ## Deployment, Service, Ingress 관계 Flow
 
