@@ -15,7 +15,7 @@
 클러스터 전체를 관리하는 컨트롤러로써 마스터노드가 존재하고, 컨테이너가 배포되는 머신인 워커노드가 존재한다. 
 
 
-#### Node
+### Node
 
 ![image](https://user-images.githubusercontent.com/45115557/199511290-8c863710-c7e2-42df-8081-1f5f2eb51827.png)
 
@@ -26,13 +26,13 @@ kubelet은 쿠버네티스 마스터와 노드 간 통신을 책임지는 프로
 </br>
 
 
-#### 오브젝트
+### 오브젝트
 
 가장 기본적인 구성단위가 되는 기본 오브젝트(Basicc Object)와 기본 오브젝트를 생성하고 관리하는 추가적인 기능을 가진 컨트롤러(Controller)로 이루어진다. 오브젝트들은 오브젝트의 특성(설정정보)를 기술한 Object Spec으로 정의가 되고, 커맨트라인 혹은 yaml/sjon 파일로 스펙을 정의할 수 있다.    
 
 </br>
 
-#### Pod
+### Pod
 
 ![image](https://user-images.githubusercontent.com/45115557/199516434-0028676e-8b32-402c-965d-add0b4ab20c9.png)
 
@@ -44,7 +44,7 @@ Pod는 쿠버네티스의 가장 기본적인 배포 단위로, 하나 이상의
 
 </br>
 
-#### Volume
+### Volume
 
 ![image](https://user-images.githubusercontent.com/45115557/199517829-efbb3c5d-4c20-4f0b-9d2f-3cca0e783bc9.png)
 
@@ -54,7 +54,7 @@ Pod는 쿠버네티스의 가장 기본적인 배포 단위로, 하나 이상의
 
 </br>
 
-#### Service
+### Service
 
 ![image](https://user-images.githubusercontent.com/45115557/199519389-ffb69f63-09b3-47ef-a6d1-24979aea2da2.png)
 
@@ -72,11 +72,40 @@ spec:
     app: myapp
   ports:
   - protocol: TCP
-    port: 80
-    targetPort: 9376
+    port: 80 #외부포트
+    targetPort: 9376 #컨테이너 내부 포트
 ```
 
 spec:selector 룰 보면 라벨이 app:myapp 인 pod만 선택해서 서비스로 묶고 TCP, 80포트로 서비스하되, 80포트의 요청을 컨테이너의 9376포트로 연결해서 서비스를 제공한다.  
+
+</br>
+
+### Label
+
+* 특정 리소스만 배포/업데이트
+* 네트워크 접근 권한 관리
+* 특정 라벨 Service 연결
+
+등의 역할을 한다. 
+
+```
+"metadata": {
+  "labels": {
+    "key1" : "value1",
+    "key2" : "value2"
+  }
+}
+```
+위와 같이 하나의 리소스에는 여러 라벨을 동시에 적용할 수 있다. 
+
+
+
+</br>
+
+#### Namespace
+
+한 쿠버네티스 클러스터 내의 논리적인 분리 단위이다. pod, service 등은 네임스페이스 별로 생성이나 관리가 될 수 있고, 사용자 권한 역시 네임스페이스 별로 나워서 부여 가능하다. 
+예를 들어 하나의 클러스터 내에 개발/운영/테스트 환경을 3개의 네임스페이스로 나눠서 운영할 수 있다. 네임스페이스 별로 리소스 할당량을 지정할 수 있어 개발은 CPU 100, 운영은 CPU 400 등 리소스를 분배할 수 있다. 하지만 이는 물리적으로 분리된 것이 아니므로 다른 네임스페이스의 pod간 통신이 가능하다. 네트워크 정책으로 통신을 막는 것은 가능하나 높은 수준의 분리 정책을 원하는 경우 클러스터(Cluster) 자체를 분리하는 것이 좋다.  
 
 ## Deployment, Service, Ingress 관계 Flow
 
