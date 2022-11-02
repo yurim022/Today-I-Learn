@@ -6,6 +6,17 @@
 
 </br></br>
 
+## 리소스
+
+#### Node
+
+![image](https://user-images.githubusercontent.com/45115557/199511290-8c863710-c7e2-42df-8081-1f5f2eb51827.png)
+
+* kubelet은 쿠버네티스 마스터와 노드 간 통신을 책임지는 프로세스이며, 하나의 머신 상에서 동작하는 파드와 컨테이너를 관리
+* 도커와 같은 컨테이너 런타임은 레지스트리에서 컨테이너 이미지를 가져와 묶여있는 것을 풀고 애플리케이션을 동작시킴 
+
+</br></br>
+
 ## Deployment, Service, Ingress 관계 Flow
 
 ![image](https://user-images.githubusercontent.com/45115557/199504975-3f3bbe5e-38f8-48db-8375-4a3ce1c79401.png)
