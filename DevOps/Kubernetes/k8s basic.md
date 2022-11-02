@@ -107,7 +107,41 @@ spec:selector 룰 보면 라벨이 app:myapp 인 pod만 선택해서 서비스�
 한 쿠버네티스 클러스터 내의 논리적인 분리 단위이다. pod, service 등은 네임스페이스 별로 생성이나 관리가 될 수 있고, 사용자 권한 역시 네임스페이스 별로 나워서 부여 가능하다. 
 예를 들어 하나의 클러스터 내에 개발/운영/테스트 환경을 3개의 네임스페이스로 나눠서 운영할 수 있다. 네임스페이스 별로 리소스 할당량을 지정할 수 있어 개발은 CPU 100, 운영은 CPU 400 등 리소스를 분배할 수 있다. 하지만 이는 물리적으로 분리된 것이 아니므로 다른 네임스페이스의 pod간 통신이 가능하다. 네트워크 정책으로 통신을 막는 것은 가능하나 높은 수준의 분리 정책을 원하는 경우 클러스터(Cluster) 자체를 분리하는 것이 좋다.  
 
-## Deployment, Service, Ingress 관계 Flow
+</br>
+
+## Service Expose(Ingress/Route)
+
+![image](https://user-images.githubusercontent.com/45115557/199528775-4dd82abb-2941-42d3-83bd-775db3016d6d.png)
+
+Ingress는 도메인으로 서비스를 접속하기 위해 필요한 오브젝트이다. 하나의 pod만 띄운다면 굳이 사용하지 않아도 Service의 type (ClusterIP, NodePort, LoadBalancer 등)을 NodePort로 routing 할 수 있지만 여러개의 pod가 띄워져 있을때에는 도메인 서비스를 사용해서 로드밸런싱 해줘야 할 것이다. (꼭 도메인을 할 필요는 없을지도..) NodePort를 이용하면 서비스 개수만큼 포트를 오픈하고 사용자에게 어떤 포트인지 알려줘야 하는데 이는 불가능하니까..^^
+
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    ingress.kubernetes.io/rewrite-target: /
+    ingressclass.kubernetes.io/is-default-class: "true"
+spec:
+  rules:
+  - host: 210.106.105.165.nip.io
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: flask-edu4-app
+            port:
+              number: 5000
+```
+
+다음과 같이 kind를 Ingress로 주고 `ingress.networking.k8s.io/nginx-ingress created` 명령어를 실행하면 ingress가 생성되고 외부에서 여러 replica set에 동일한 도메인으로 접속할 수 있다.
+
+
+### Deployment, Service, Ingress 관계 Flow
 
 ![image](https://user-images.githubusercontent.com/45115557/199504975-3f3bbe5e-38f8-48db-8375-4a3ce1c79401.png)
 
