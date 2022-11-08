@@ -124,6 +124,8 @@ public void update(final UpdateLineNameAndIntervalTime request) {
 
 id로 해당 자원을 찾은 뒤, 자원의 일부만을 수정한다. 나머지 필드 값들은 변경되지 않는다. 
 
+</br></br>
+
 참고링크:      
 https://tecoble.techcourse.co.kr/post/2020-08-17-put-vs-patch/   
 https://developer-talk.tistory.com/745   
