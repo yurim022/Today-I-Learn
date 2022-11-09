@@ -62,7 +62,7 @@ circuit breaker를 적용하기 위한 라이브러리에는 Resilience4j이 있
 
 pom.xml에 다음과 같이 의존성을 추가해준다. 
 
-```
+```xml
 <dependency>
     <groupId>org.springframework.cloud</groupId>
     <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
@@ -72,14 +72,18 @@ pom.xml에 다음과 같이 의존성을 추가해준다.
 user서비스에서 order서비스를 호출하는 관계라 하자. order service에 문제가 생겼을때 fallback 하기 위한 코드이다. 
 
 userSerive.java
+
 ```java
-@Autowired
-CircuitBreakerFactory circuitBreakerFactory;
 
-CircuitBreaker circuitBreaker = circuitBreakerFactory.create("circuitbreaker");
-List<ResponseOrder> orderList = circuitBreaker.run(() -> orderServiceClient.getOrders(userId), throwable -> new ArrayList());
+    @Autowired
+    CircuitBreakerFactory circuitBreakerFactory;
 
-userDto.setOrders(orderList);
+    ,,,
+
+    CircuitBreaker circuitBreaker = circuitBreakerFactory.create("circuitbreaker");
+    List<ResponseOrder> orderList = circuitBreaker.run(() -> orderServiceClient.getOrders(userId), throwable -> new ArrayList());
+
+    userDto.setOrders(orderList);
 ```
 
 이렇게 구현하면 circuitbreaker가 open되었을 때 빈 리스트를 반환해준다. 
@@ -115,6 +119,22 @@ public class Resilience4JConfiguration {
 
 </br>
 
+```java
+
+    TimeLimiterConfig timeLimiterConfig = TimeLimiterConfig.custome()
+            .timeoutDuration(Duration.ofSecondes(4))
+            .build();
+
+    return factory -> factory.configureDefault(id -> new Resilience4JConfigBuilder(id)
+            .timeLimiterConfig(timeLimiterConfig)
+            .circuitBrakerConfig(circuitBreakerConfig)
+            .build());
+```
+
+TimeLimiter는 future supplier(호출되는 서비스)의 time limit을 정하는 API이다.    
+호출되는 서비스에서 얼마동안 응답이 없으면 오류로 간주하느냐에 관한 값이다. default 1초이다.
+
+</br></br>
 참고링크:
 https://godekdls.github.io/Resilience4j/circuitbreaker/   
 https://velog.io/@hyeondev/MSA-%EC%84%9C%EB%B9%84%EC%8A%A4%EC%97%90%EC%84%9C-Circuit-Breaker-%EB%8F%84%EC%9E%85%ED%95%98%EA%B8%B0   
