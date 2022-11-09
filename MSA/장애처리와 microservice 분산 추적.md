@@ -14,7 +14,7 @@ serviceA의 문제가 아님에도 serviceA의 문제처럼 보일 수 있는데
 
 </br>
 
-## Circuit Breaker
+## Circuit Breaker란
 
 장애 전파를 막기 위해 사용하는 것이 바로 circuit breaker 이다. 
 
@@ -33,6 +33,20 @@ serviceA -> Circuit Breaker -> serviceB
 * **장애가 발생하는 서비스에 반복적인 호출이 되지 못하게 차단**
 * **특정 서비스가 정상적으로 동작하지 않을 경우 다른 기능으로 대체 수행(fall back message) -> 장애 회피** 
 
+</br>
+
+## Close VS Open
+
+![image](https://user-images.githubusercontent.com/45115557/200859651-61ec97f2-786a-4e68-b69b-b85d3318eb38.png)
+
+
+### Close
+
+circuit breaker가 닫혔다는 것은 작동하지 않았다는 뜻으로, 정상적으로 다른 마이크로 서비스를 사용할 수 있는 상태이다. 
+
+### Open
+
+circuit breaker가 작동하는 상태이다. serviceB 에 접속이 안되었다던가, 다른 이유에 의해 정상적인 서비스가 불가능하고 일정한 수치에 다다랐을때 (ex. 30초 안에 10번의 호출을 했는데 절반 이상의 수치동안 실패. 70% 이상의 확률로 원하는 데이터가 돌아오지 않음 등,,) 서킷브레이커가 오픈상태가 된다. 
 
 참고링크:
 https://godekdls.github.io/Resilience4j/circuitbreaker/   
