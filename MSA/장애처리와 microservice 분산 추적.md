@@ -49,7 +49,40 @@ circuit breaker가 닫혔다는 것은 작동하지 않았다는 뜻으로, **�
 **circuit breaker가 작동하는 상태**이다. serviceB 에 접속이 안되었다던가, 다른 이유에 의해 정상적인 서비스가 불가능하고 일정한 수치에 다다랐을때 서킷브레이커가 오픈상태가 된다.   
 *ex.    
 30초 안에 10번의 호출을 했는데 절반 이상의 수치동안 실패.     
-70% 이상의 확률로 원하는 데이터가 돌아오지 않음 등,,*
+70% 이상의 확률로 원하는 데이터가 돌아오지 않음 등,,*   
+
+서킷브레이커가 open이 되었다는 것은 클라이언트의 요청을 더이상 최종적인 마이크로 서비스에게 전달하지 않고 circuit breaker 자체적으로 우회하는 값을 리턴시켜주는 작업을 의미한다. 
+
+
+</br>
+
+### Resilience4j
+
+circuit breaker를 적용하기 위한 라이브러리에는 Resilience4j이 있다. 
+
+pom.xml에 다음과 같이 의존성을 추가해준다. 
+
+```
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+</dependency>
+```
+
+user서비스에서 order서비스를 호출하는 관계라 하자. order service에 문제가 생겼을때 fallback 하기 위한 코드이다. 
+
+userSerive.java
+```java
+@Autowired
+CircuitBreakerFactory circuitBreakerFactory;
+
+CircuitBreaker circuitBreaker = circuitBreakerFactory.create("circuitbreaker");
+List<ResponseOrder> orderList = circuitBreaker.run(() -> orderServiceClient.getOrders(userId), throwable -> new ArrayList());
+
+userDto.setOrders(orderList);
+```
+
+이렇게 구현하면 circuitbreaker가 open되었을 때 빈 리스트를 반환해준다. 
 
 </br>
 
