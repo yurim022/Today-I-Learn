@@ -86,6 +86,35 @@ userDto.setOrders(orderList);
 
 </br>
 
+
+## CircuitBreaker Customize
+
+기본으로 제공되는 CircuitBreaker가 아닌 customize 해서 사용하고 싶다면 Resilience4JCircuitBreakerFactory를 Customizer로 감싸서 사용하면 된다. 
+
+```java
+@Configuration
+public class Resilience4JConfiguration {
+
+    @Bean
+    public Customizer<Resilience4JCircuitBreakerFactory> globalCustomConfiguartion() {
+
+        CircuitBreakerConfig circuitBreakerConfig = CircuitBreakerConfig.custom()
+            .failureRateThreshold(4);
+            .waitDurationInOpenState(Duration.ofMillis(1000)) //1sec
+            .slidingWindowType(CircuitBreakerConfig.SlidingWindowType.COUNT_BASED)
+            .slidingWindowSize(2)
+            .build();
+    }
+}
+```
+
+* failureRateThreshold : CircuitBreaker를 open할지 결정하는 failure rate threshold percentage. default 5 (50%)
+* waitDurationInOpenState : CircuitBreaker를 open한 상태를 유지하는 지속 시간. 이 기간 이후에는 half open 상태이다. default 60 seconds
+* slidingWindowType : CircuitBreaker가 닫힐때 통화 결과를 기록하는데 사용되는 슬라이딩 창의 유형. COUNT based OR TIME based
+* slidingWindowSize : CircuitBreaker가 정상작동이라 판단하여 close 될때 호출결과를 기록하는데 사용되는 슬라이딩 창의 크기. default 100
+
+</br>
+
 참고링크:
 https://godekdls.github.io/Resilience4j/circuitbreaker/   
 https://velog.io/@hyeondev/MSA-%EC%84%9C%EB%B9%84%EC%8A%A4%EC%97%90%EC%84%9C-Circuit-Breaker-%EB%8F%84%EC%9E%85%ED%95%98%EA%B8%B0   
