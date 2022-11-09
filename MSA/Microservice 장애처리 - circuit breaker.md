@@ -108,10 +108,10 @@ public class Resilience4JConfiguration {
 }
 ```
 
-* failureRateThreshold : CircuitBreaker를 open할지 결정하는 failure rate threshold percentage. default 5 (50%)
-* waitDurationInOpenState : CircuitBreaker를 open한 상태를 유지하는 지속 시간. 이 기간 이후에는 half open 상태이다. default 60 seconds
-* slidingWindowType : CircuitBreaker가 닫힐때 통화 결과를 기록하는데 사용되는 슬라이딩 창의 유형. COUNT based OR TIME based
-* slidingWindowSize : CircuitBreaker가 정상작동이라 판단하여 close 될때 호출결과를 기록하는데 사용되는 슬라이딩 창의 크기. default 100
+* **failureRateThreshold** : CircuitBreaker를 open할지 결정하는 failure rate threshold percentage. default 5 (50%)
+* **waitDurationInOpenState** : CircuitBreaker를 open한 상태를 유지하는 지속 시간. 이 기간 이후에는 half open 상태이다. default 60 seconds
+* **slidingWindowType** : CircuitBreaker가 닫힐때 통화 결과를 기록하는데 사용되는 슬라이딩 창의 유형. COUNT based OR TIME based
+* **slidingWindowSize** : CircuitBreaker가 정상작동이라 판단하여 close 될때 호출결과를 기록하는데 사용되는 슬라이딩 창의 크기. default 100
 
 </br>
 
