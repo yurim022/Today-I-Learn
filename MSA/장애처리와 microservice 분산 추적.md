@@ -56,7 +56,7 @@ circuit breaker가 닫혔다는 것은 작동하지 않았다는 뜻으로, **�
 
 </br>
 
-### Resilience4j
+## Resilience4j
 
 circuit breaker를 적용하기 위한 라이브러리에는 Resilience4j이 있다. 
 
