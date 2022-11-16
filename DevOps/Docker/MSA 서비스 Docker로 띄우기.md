@@ -31,9 +31,21 @@ docker network create --gateway 172.18.0.1 --subnet 172.18.0.0/16 ecommerce-netw
 
 gateway와 subnet을 지정하지 않고 만들수도 있지만, 이때 ip를 지정해서 컨테이너를 띄우고 싶은 경우 오류가 날 수 있다. 
 
+</br>
 
+#### 네트워크 정보 확인
 
+```
+docker inspect ecommerce-network
+```
 
+inspect 명령어를 통해 네트워커의 gateway,subnet, 연결된 container 등의 정보를 확인할 수 있다. 
+
+![image](https://user-images.githubusercontent.com/45115557/202169843-bc689d89-6f86-40c1-b65b-06c0b1f33950.png)
+
+일반적인 컨테이너는 하나의 guest os라고 생각하면 된다. 각각의 guest os마다 고유의 ip가 할당이 되게 되는데, **같은 network에 포함된 컨테이너는 ip address 외에도 container id, container 이름을 통해서 통신할 수 있다.** ip address는 변경될 수 있기 때문에 컨테이너 이름을 통해 네트워크 해주어야 한다. 
+
+</br>
 
 
 
