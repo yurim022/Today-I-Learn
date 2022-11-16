@@ -50,8 +50,11 @@ ip address는 변경될 수 있기 때문에 컨테이너 이름을 통해 네�
 
 </br>
 
-### Docker run
+## 컨테이너 기동
 
+</br>
+
+#### RabbitMQ
 rabbitmq 를 기동해준다. 
 
 ```
@@ -61,7 +64,34 @@ docker run -d --name rabbitmq --network ecommerce-network \
 ```
 -p 옵션으로 각각 호스트에서 접속할 포트 매핑도 해주고, -e로 환경변수 값도 세팅해준다. 
 
+</br>
 
+#### Config-Service
+
+서비스를 컨테이너화 하기 위해 DockerFile을 만들어준다. 
+
+```
+FROM openjdk:17-ea-11-jdk-slim
+VOLUME /tmp
+COPY apiEncryptionKey.jks apiEncryptionKey.jks
+COPY target/config-service-1.0.jar ConfigServer.jar
+ENTRYPOINT ["java","-jar","ConfigServer.jar"]
+```
+   
+만들어준 도커파일을 실행시키는데 내 도커허브 아이디는 yurimming 이니까 앞에 yurimming을 붙여줬다. 저장하고자 하는 repositroy에 맞게 붙여주면 된다.
+
+```
+docker build -t yurimming/config-service:1.0 .
+```
+   
+   
+그다음 생성된 이미지를 실행시켜주는데, 여기서 application.yml 파일의 설정정보를 덮어쓸 수 있다. rabbitmq.host 값이 기존에 127.0.0.1이 되어있었는데 docker에서 다른 ip를 가지므로 같은 네트워크 안에서 이름으로 접근하도록 `-e "spring.rabbitmq.host=rabbitmq"`를 해준다. 
+
+
+```
+docker run -d -p 8888:8888 --network ecommerce-network -e "spring.rabbitmq.host=rabbitmq" -e "spring.profiles.active=default" --name config-service yurimming/config-se
+rvice:1.0
+```
 
 </br>
  
