@@ -41,19 +41,29 @@ docker inspect ecommerce-network
 
 inspect 명령어를 통해 네트워커의 gateway,subnet, 연결된 container 등의 정보를 확인할 수 있다. 
 
-![image](https://user-images.githubusercontent.com/45115557/202169843-bc689d89-6f86-40c1-b65b-06c0b1f33950.png)
+![스크린샷 2022-11-16 오후 11 46 00](https://user-images.githubusercontent.com/45115557/202211957-306a3fc2-7f76-4488-aa8d-fc0ed068f3df.png)
+
 
 일반적인 컨테이너는 하나의 guest os라고 생각하면 된다. 각각의 guest os마다 고유의 ip가 할당이 되게 되는데,    
-**같은 network에 포함된 컨테이너는 ip address 외에도 container id, container 이름을 통해서 통신할 수 있다.** ip address는 변경될 수 있기 때문에 컨테이너 이름을 통해 네트워크 해주어야 한다. 
+**같은 network에 포함된 컨테이너는 ip address 외에도 container id, container 이름을 통해서 통신할 수 있다.**    
+ip address는 변경될 수 있기 때문에 컨테이너 이름을 통해 네트워크 해주어야 한다. 
 
 </br>
 
+### Docker run
+
+rabbitmq 를 기동해준다. 
+
+```
+docker run -d --name rabbitmq --network ecommerce-network \
+-p 15672:15672 -p 5672:5672 -p 15671:15671 -p 5671:5671 -p 4369:4369 \
+-e RABBITMQ_DEFAULT_USER=guest -e RABBITMQ_DEFAULT_PASS=guest rabbitmq:management
+```
+-p 옵션으로 각각 호스트에서 접속할 포트 매핑도 해주고, -e로 환경변수 값도 세팅해준다. 
 
 
 
-
-
-
+</br>
  
 참고링크:   
 https://jangseongwoo.github.io/docker/docker_container_network/   
