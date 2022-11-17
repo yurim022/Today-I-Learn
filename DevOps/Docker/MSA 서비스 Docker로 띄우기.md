@@ -1,3 +1,9 @@
+#MSA Docker로 띄우기
+
+위 MSA 아키텍쳐는 e-commerce 레포지토리의 모듈들을 업로드 하는 과정이다. 
+
+</br>
+
 ## 네트워크 생성
 
 Docker에서 container간 network를 통해 통신할 수 있다. 
@@ -92,6 +98,25 @@ docker build -t yurimming/config-service:1.0 .
 docker run -d -p 8888:8888 --network ecommerce-network -e "spring.rabbitmq.host=rabbitmq" -e "spring.profiles.active=default" --name config-service yurimming/config-se
 rvice:1.0
 ```
+</br>
+
+#### Discovery-Service
+
+도커파일 빌드하는 부분은 위에서 했으니 생각하고, 이번에는 config-service 정보를 가져오기 위해 docker run 할때 `-e "spring.cloud.config.uri=http://config-service:8888"` 로 설정값을 오버라이드 해서 사용해 주었다.
+
+```
+docker run -d -p 8761:8761 \
+--network ecommerce-network \
+-e "spring.cloud.config.uri=http://config-service:8888" \
+--name discovery-service yurimming/discovery-service:1.0
+```
+
+커스텀하게 생성한 도커이미지를 허브나 기타 리포지토리에 올리고 싶다면 해당 리포지토리에 login 한 후 `docker push [이미지]` 를 해주면 된다. 
+
+```
+docker push yurimming/discovery-service:1.0
+```
+
 
 </br>
  
