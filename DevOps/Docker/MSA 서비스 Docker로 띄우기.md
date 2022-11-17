@@ -217,6 +217,20 @@ docker-compose 파일을 작성하여 준 뒤에 아래 명령어로 실행시�
 docker-compose -f docker-compose-single-broker.yml up -d
 ```
 
+</br>
+
+#### zipkin
+
+```
+docker run -d -p 9411:9411 \
+--network ecommerce-network \
+--name zipkin openzipkin/zipkin
+```
+
+</br>
+
+
+
 
 </br>
  
