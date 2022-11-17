@@ -153,7 +153,11 @@ ENTRYPOINT ["mysqld","--user=root"]
 ```
 docker run -d -p 3306:3306 --name mariadb yurimming/my_mariadb:1.0
 ```
-
+다른 서비스에서 db에 접근하기 위해 접근 권한을 준다. 여기에선 모든 데이터베이스에 root의 접속권한을 주도록 한다.  
+```
+grant all privileges on *.* to 'root'@'%' identified by 'test1357'; //grant all privileges on [datbase] to 'root'@'%'[접속권한을] identified by [password];
+flush priviledges
+```
 
 </br>
  
