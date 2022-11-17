@@ -165,6 +165,59 @@ flush priviledges;
 docker network connect ecommerce-network mariadb
 ```
 
+#### Kafka 
+
+kafka는 zookeeper에 의존성이 있으므로 docker-compose로 배포해보자. 
+여기에서 
+```Dockerfile
+    networks:
+      my-network:
+        ipv4_address: 172.18.0.100
+```
+와 같이 어떤 포트로 매핑할건지 명시되어 있는데, 이는 기존 코드에 bootstrapserver가 localhost로 되어있기 때문에 다른 컨테이너에서 접속이 안될 수 있어 ecommerce-network의 대역폭 안에 있는 값으로 매핑해주었다. 현재는 single cluster 버전으로 배포하였으며 원래 kafka는 3개 이상 띄우는 것을 권장한다. 
+
+
+```
+version: '2'
+
+networks:
+  my-network: 
+    name: ecommerce-network
+
+
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+    networks:
+      my-network:
+        ipv4_address: 172.18.0.100
+
+  kafka:
+    # build: .
+    image: wurstmeister/kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 172.18.0.101
+      KAFKA_CREATE_TOPICS: "test:1:1"
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - zookeeper
+    networks:
+      my-network:
+        ipv4_address: 172.18.0.101
+```
+docker-compose 파일을 작성하여 준 뒤에 아래 명령어로 실행시켜준다. 
+
+```
+docker-compose -f docker-compose-single-broker.yml up -d
+```
+
+
 </br>
  
 참고링크:   
