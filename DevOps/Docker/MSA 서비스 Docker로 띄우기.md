@@ -131,15 +131,19 @@ docker run -d -p 8000:8000 --network ecommerce-network \
 > --name apigateway-service yurimming/apigateway-service:1.0
 ```
 
+</br>
+
 #### Mariadb
 
-다음과 같이 도커파일을 만들어준다. 기존에 
+다음과 같이 도커파일을 만들어준다. 기존에 로컬에서 사용했던 db 내용을 사용하기 위해 `cp -R /usr/local/var/mysql .` 로 `mysql_data`디렉토리(다른 디렉토리이름도 상관없다)에 mysql 폴더를 옮겨준다. 
+
+그리고 Dockerfile을 다음과 같이 생성한다. 
 
 ```
 FROM mariadb
 ENV MYSQL_ROOT_PASSWORD test1357
 ENV MYSQL_DATABASE mydb
-COPY ./mysql_data/mysql /var/lib/mysql
+COPY ./mysql_data/mysql /var/lib/mysql   //COPY [Host경로] [컨테이너 내부경로]
 EXPOSE 3306
 ENTRYPOINT ["mysqld"]
 ```
