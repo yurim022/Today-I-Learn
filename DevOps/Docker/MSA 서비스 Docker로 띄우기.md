@@ -60,7 +60,7 @@ ip address는 변경될 수 있기 때문에 컨테이너 이름을 통해 네�
 
 </br>
 
-#### RabbitMQ
+### RabbitMQ
 rabbitmq 를 기동해준다. 
 
 ```
@@ -72,7 +72,7 @@ docker run -d --name rabbitmq --network ecommerce-network \
 
 </br>
 
-#### Config-Service
+### Config-Service
 
 서비스를 컨테이너화 하기 위해 DockerFile을 만들어준다. 
 
@@ -100,7 +100,7 @@ rvice:1.0
 ```
 </br>
 
-#### Discovery-Service
+### Discovery-Service
 
 도커파일 빌드하는 부분은 위에서 했으니 생각하고, 이번에는 config-service 정보를 가져오기 위해 docker run 할때 `-e "spring.cloud.config.uri=http://config-service:8888"` 로 설정값을 오버라이드 해서 사용해 주었다.
 
@@ -119,7 +119,7 @@ docker push yurimming/discovery-service:1.0
 
 </br>
 
-#### Apigateway-service
+### Apigateway-service
 
 Dockerfile생성 및 빌드 과정을 거친후 마찬가지로 run 해준다. 
 
@@ -133,7 +133,7 @@ docker run -d -p 8000:8000 --network ecommerce-network \
 
 </br>
 
-#### Mariadb
+### Mariadb
 
 다음과 같이 도커파일을 만들어준다. 기존에 로컬에서 사용했던 db 내용을 사용하기 위해 `cp -R /usr/local/var/mysql .` 로 `mysql_data`디렉토리(다른 디렉토리이름도 상관없다)에 mysql 폴더를 옮겨준다. 
 
@@ -165,7 +165,7 @@ flush priviledges;
 docker network connect ecommerce-network mariadb
 ```
 
-#### Kafka 
+### Kafka 
 
 kafka는 zookeeper에 의존성이 있으므로 docker-compose로 배포해보자. 
 여기에서 
@@ -219,7 +219,7 @@ docker-compose -f docker-compose-single-broker.yml up -d
 
 </br>
 
-#### zipkin
+### zipkin
 
 ```
 docker run -d -p 9411:9411 \
@@ -228,6 +228,57 @@ docker run -d -p 9411:9411 \
 ```
 
 </br>
+
+### premetheus
+
+먼저 프로메테우스의 경우, prometheus.yml의 설정정보로 어느 job에 접근할지 정의해주고 있다. 
+호스트 파일의 prometheus.yml 파일과 매핑시켜주고, 해당 파일의 값들은 컨테이너이름으로 접근하도록 설정정보를 추가해준다. 
+
+**prometheus.yml**
+```
+    static_configs:
+      - targets: ["prometheus:9090"]
+
+
+
+  - job_name: 'user-service'
+    scrape_interval: 15s
+    metrics_path: '/user-service/actuator/prometheus'
+    static_configs:
+    - targets: ['apigateway-service:8000']
+
+
+  - job_name: 'apigateway-service'
+    scrape_interval: 15s
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+    - targets: ['apigateway-service:8000']
+
+
+  - job_name: 'order-service'
+    scrape_interval: 15s
+    metrics_path: '/order-service/actuator/prometheus'
+    static_configs:
+    - targets: ['apigateway-service:8000']
+
+```
+
+docker run
+
+```
+docker run -d -p 9090:9090 --network ecommerce-network --name prometheus \
+-v /Users/lena/work/prometheus.yml:/etc/prometheus/prometheus.yml \
+prom/prometheus
+```
+
+</br>
+
+### grafana
+
+```
+docker run -d -p 3000:3000 --network ecommerce-network --name grafana grafana/grafana
+```
+
 
 
 
