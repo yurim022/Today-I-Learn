@@ -145,9 +145,14 @@ ENV MYSQL_ROOT_PASSWORD test1357
 ENV MYSQL_DATABASE mydb
 COPY ./mysql_data/mysql /var/lib/mysql   //COPY [Host경로] [컨테이너 내부경로]
 EXPOSE 3306
-ENTRYPOINT ["mysqld"]
+ENTRYPOINT ["mysqld","--user=root"]
 ```
 
+그리고 빌드한 뒤 run 해준다.
+
+```
+docker run -d -p 3306:3306 --name mariadb yurimming/my_mariadb:1.0
+```
 
 
 </br>
