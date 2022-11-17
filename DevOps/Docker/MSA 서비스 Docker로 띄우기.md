@@ -133,6 +133,23 @@ docker run -d -p 8000:8000 --network ecommerce-network \
 
 </br>
 
+### Order-service
+
+```
+docker run -d --network ecommerce-network \
+--name order-service \
+-e "spring.cloud.config.uri=http://config-service:8888" \
+-e "spring.rabbitmq.host=rabbitmq" \
+-e "spring.zipkin.base-url=http://zipkin:9411" \
+-e "spring.datasource.url=jdbc:mariadb://mariadb:3306/mydb" \
+-e "eureka.client.serviceUrl.defaultZone=http://discovery-service:8761/eureka/" \
+-e "logging.file=/api-logs/orders-ws.log" \
+yurimming/order-service:1.0
+```
+user-service와 catalog-service도 설정값들을 오버라이드 해야 되는 것들을 파악해서 올려준다. 
+
+</br>
+
 ### Mariadb
 
 다음과 같이 도커파일을 만들어준다. 기존에 로컬에서 사용했던 db 내용을 사용하기 위해 `cp -R /usr/local/var/mysql .` 로 `mysql_data`디렉토리(다른 디렉토리이름도 상관없다)에 mysql 폴더를 옮겨준다. 
