@@ -117,6 +117,19 @@ docker run -d -p 8761:8761 \
 docker push yurimming/discovery-service:1.0
 ```
 
+</br>
+
+#### Apigateway-service
+
+Dockerfile생성 및 빌드 과정을 거친후 마찬가지로 run 해준다. 
+
+```
+docker run -d -p 8000:8000 --network ecommerce-network \
+> -e "spring.cloud.config.uri=http://config-service:8888" \
+> -e "spring.rabbitmq.host=rabbitmq" \
+> -e "eureka.client.serviceUrl.defaultZone=http://discovery-service:8761/eureka/" \
+> --name apigateway-service yurimming/apigateway-service:1.0
+```
 
 </br>
  
