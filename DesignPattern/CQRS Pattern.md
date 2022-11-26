@@ -1,15 +1,18 @@
+[스프링-클라우드-마이크로서비스](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C%EC%84%9C%EB%B9%84%EC%8A%A4) 강의를 기반으로 공부한 내용입니다. 
+
+   
 # CQRS 패턴이란
 
-CQRS : Command and Query Responsibility Segregation 의 약자로 **명령과 조회의 책임을 분리** 하는 것이다. 
+CQRS : Command and Query Responsibility Segregation 의 약자로 **명령과 조회의 책임을 분리** 하는 것이다.    
+MSA 아키텍처에서 기존 monoithic 형태에서 ACID 가 보장되었다고 한다면, 여러가지 서비스가 연동되어 있는 MSA에서는 여러서비스의 각기다른 DB 가 하나의 요청에 수행되어야 할 경우 ACID를 보장하기 어렵다. 
+
+![image](https://user-images.githubusercontent.com/45115557/204090080-a20200ff-d034-4a15-820b-703336a97efa.png)
+
+위와 같이 order service 에서 주문을 하면 catalog service의 db도 업데이트 되어야 한다고 했을때, order service에서 catalog service의 DB에 직접적으로 접근할 수 없고, 
+API 요청이나 다른 방법을 통해 통해 접근해야 한다. 
 
 
-## 기존 아키텍처 데이터 접근 방식 
 
-![image](https://user-images.githubusercontent.com/45115557/204089552-d27e7a40-b9b2-4b33-845a-d5acaf8cec55.png)
-
-일반적인 아키텍처에서는 비지니스 로직이 데이터액세스 클래스를 호출하여 DB에 접근한다.    
-이 같은 아키텍처에서 비지니스 로직에 따라 데이터에 접근할 경우, DB입장에서는 하나의 트랜잭션 형태로 수행될 것이고 
-해당 트랜젝션의 쿼리들이 여러개일 경우 (select 100개, update 1개) 트랜잭션 격리로 인해 데이터 경합이 발생 할 수 있다. 
 
 
 
