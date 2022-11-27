@@ -12,6 +12,37 @@ CQRS : Command and Query Responsibility Segregation 의 약자로 **명령과 �
 
 </br>
 
+## CQRS 종류
+
+### 전통적인 CRUD 시스템
+
+![전통적인](https://user-images.githubusercontent.com/45115557/204135397-6aaa84e2-2ef6-4f89-b952-896619d5c404.png)
+
+전통적인 시스템은 다음과 같은 계층 구조를 가진다. 이에 CQRS를 적용하기 위한 방법은 최소 3가지 방법이 있다. 
+
+</br>
+
+### 1. Simple CQRS Architecture
+
+![1](https://user-images.githubusercontent.com/45115557/204135862-a91caac8-2593-4e37-91e9-1332234a326e.png)
+
+단일 data store에 Command Query Model을 분리된 계층으로 나누는 방식이다. Database(RDBMS)는 분리하지 않고 기존 구조를 유지하고 Command 와 Query Model로 분리하는 수준으로 간단하게 적용할 수 있다. 
+
+#### 장점 
+
+훨씬 단순하게 구현 및 적용할 수 있다. 
+
+#### 단점
+
+동일한 Database 사용에 따른 성능상 문제점은 개선하지 못한다. 
+
+</br>
+
+
+
+
+</br>
+
 ## CQRS 장점
 
 * **Independent Scaling** : 읽기 모델과 쓰기 모델을 필요에 따라 독립적으로 확장 가능
