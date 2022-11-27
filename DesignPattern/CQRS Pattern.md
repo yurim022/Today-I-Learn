@@ -120,6 +120,7 @@ query 모델에서 최종 상태값만 가지고 와서 해당하는 값을 클�
 
 
 참고링크:    
+https://velog.io/@_koiil/MSA-CQRS-%ED%8C%A8%ED%84%B4-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0.  
 https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C%EC%84%9C%EB%B9%84%EC%8A%A4   
 https://velog.io/@zihs0822/CQRS-%ED%8C%A8%ED%84%B4%EC%9D%B4%EB%9E%80   
 https://azderica.github.io/02-architecture-msa/.  
