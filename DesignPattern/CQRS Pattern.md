@@ -74,11 +74,11 @@ Event Sourcing Model이란 이벤트스트림을 저장하는 데이터베이스
 
 </br>
 
-### 서비스 적용
+## e-commerce 서비스 적용
 
 ![image](https://user-images.githubusercontent.com/45115557/204136470-18917551-47b9-4287-a6e2-d290cf16b69c.png)
 
-3번의 방식으로 만들었던 e-commerce 어플리케이션에 적용을 해보자. 
+3번의 Event Sourcing 방식으로 만들었던 e-commerce 어플리케이션에 적용을 해보자. 
 사용자가 주문을 POST /orders 로 요청을 했을 때 주문을 업데이트 하거나 생성, 삭제 할 수 있고 GET /orders로 주문 자체를 조회할 수 있다.    
 요청이 들어오면 아래 시퀀스로 실행이 될 수 있다.    
 
