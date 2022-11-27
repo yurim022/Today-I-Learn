@@ -38,8 +38,39 @@ CQRS : Command and Query Responsibility Segregation 의 약자로 **명령과 �
 
 </br>
 
+### 2. CQRS with separated persistence mechanisms
 
+![2](https://user-images.githubusercontent.com/45115557/204136012-0ead0e26-5545-4077-9734-f1bab81c0787.png)
 
+해당 방식은 Command 용 DB와 Query용 DB를 분리하고 별도의 Broker를 통해 둘간의 Data를 동기화 처리하는 방식이다. 
+이 경우 데이터를 조회하려는 서비스들은 서비스에 맞는 저장소를 선택할 수 있기 때문에 polyglot 구조로도 구성할 수 있다.    
+각가의 Model에 맞게 저장소 (RDBMS, NoSQL, Cache)를 튜닝해서 사용할 수 있다. 
+
+* *polyglot : 다수의 Database를 혼용해서 사용하는 것*
+
+#### 장점
+
+simple CQRS에서 거론도의 DB사용에 발생하는 성능 문제를 해결할 수 있다. 
+
+#### 단점
+
+동기화 처리를 위한 Broker의 가용성과 신뢰도가 보장되어야 한다. 
+
+</br>
+
+### 3. EventSourcing Model
+
+![3](https://user-images.githubusercontent.com/45115557/204136154-c28ad11e-a369-4f16-8cbd-a49f256333b8.png)
+
+해당 방식은 이벤트 소싱(Event Sourcing)을 적용한 구조이다.    
+
+* *이벤트 소싱 : Application 내의 모든 활동을 이벤트로 전환해서 이벤트 스트림(Event Stream)을 별도의 DB에 저장하는 방식*
+
+Event Sourcing Model이란 이벤트스트림을 저장하는 데이터베이스에는 오직 데이터 추가만 가능하고, 계속적으로 쌓이는 데이터를 구체화시키는 시점에서 그때까지 
+구축된 데이터를 바탕으로 조회 대상 데이터를 작성하는 방법을 의미한다. 즉, Application 내 상태변경을 이력으로 관리하는 패턴의 발전된 형태이다. 
+이벤트 소싱의 이벤트 스트림은 오직 추가만 가능하고, 필요로 하는 시점에 구체화 단계를 가지는 처리과정이 CQRS의 모델 분리 관점에서 잘 맞기 때문에 주로 선택한다.    
+
+*cf) CQRS 패턴에 이벤트 소싱은 필수가 아니지만 이벤트 소싱에는 CQRS가 필요하다.*
 
 </br>
 
