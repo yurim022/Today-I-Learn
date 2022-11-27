@@ -4,15 +4,31 @@
 # CQRS 패턴이란
 
 CQRS : Command and Query Responsibility Segregation 의 약자로 **명령과 조회의 책임을 분리** 하는 것이다.    
-MSA 아키텍처에서 기존 monoithic 형태에서 ACID 가 보장되었다고 한다면, 여러가지 서비스가 연동되어 있는 MSA에서는 여러서비스의 각기다른 DB 가 하나의 요청에 수행되어야 할 경우 ACID를 보장하기 어렵다. 
+즉 쉽게 말해서 상태를 변경할 수 있는 command와 조회를 담당하는 call 이라는 파트 2개를 분리해서 각각의 작업을 처리해주는 것이다. 
 
-![image](https://user-images.githubusercontent.com/45115557/204090080-a20200ff-d034-4a15-820b-703336a97efa.png)
+![image](https://user-images.githubusercontent.com/45115557/204132735-c9c9100a-a8f0-4fc6-b3cb-92a8151863fe.png)
 
-위와 같이 order service 에서 주문을 하면 catalog service의 db도 업데이트 되어야 한다고 했을때, order service에서 catalog service의 DB에 직접적으로 접근할 수 없고, 
-API 요청이나 다른 방법을 통해 통해 접근해야 한다. 
+</br>
 
+## CQRS 장점
 
+* **Independent Scaling** : 읽기 모델과 쓰기 모델을 필요에 따라 독립적으로 확장 가능
+* **Optimized data schemas** : 읽기 모델은 쿼리에 최적화된 스키마 사용 가능
+* **Security** : 호출되는 도메인 엔티티에 대해 확인하는 로직 구현이 더 쉬움
+* **Seperation of concerns** : 복잡한 비지니스 로직 구현은 대부분 쓰기 모델에 속하며, 읽기 모델은 간단하게 구현된다. 그에 따라 읽기와 쓰기를 분리하면 유지관리가 더 쉽고 유연한 모델이 구현될 수 있다. 
+* **Simpler queries** : DB에 논리적인 View가 아닌, Materialized View(물리적인 View)를 저장함으로써 애플리케이션에서 복잡한 조인이 사용된 쿼리문을 피할 수 있다. 
 
+</br>
+
+## CQRS 단점
+
+* **Complexity** : 아이디어는 간단하나, 해당 아이디어가 이벤트 소싱 패턴까지 이어질 경우 구현이 어렵다. 
+* **Messaging** : CQRS 패턴에서 메시징이 필요하진 않지만 메시징을 사용해서 명령을 처리하고 이벤트를 게시하는 것이 일반적이다. (Kafka) 
+메시징을 사용하는 경우, Application은 메시지 실패 또는 중복 메시지 처리에 대한 로직을 상세하게 구현해야 한다. 
+* **Eventual consistency** : 읽기 모델과 쓰기 모델이 서로 다른 DB로 분리되었을 경우, 읽기 모델을 쓰기 모델의 변경사항이 실시간으로 반영되도록 구현해야 한다.
+만약 유저에게서 과거의 데이터를 기준으로 요청이 발생했을 경우 처리하는데 어려움이 발생한다. 
+
+</br>
 
 
 
