@@ -74,6 +74,25 @@ Event Sourcing Model이란 이벤트스트림을 저장하는 데이터베이스
 
 </br>
 
+### 서비스 적용
+
+![image](https://user-images.githubusercontent.com/45115557/204136470-18917551-47b9-4287-a6e2-d290cf16b69c.png)
+
+3번의 방식으로 만들었던 e-commerce 어플리케이션에 적용을 해보자. 
+사용자가 주문을 POST /orders 로 요청을 했을 때 주문을 업데이트 하거나 생성, 삭제 할 수 있고 GET /orders로 주문 자체를 조회할 수 있다.    
+요청이 들어오면 아래 시퀀스로 실행이 될 수 있다.    
+
+1) command 모델로 주문 update 요청
+2) kafka topic에 데이터를 저장
+3) topic에 저장된 데이터 값은 연결되어 있는 micro service, email 시스템으로 전달
+4) event handler에서 topic에 전달된 값을 catch
+5) 실제 값을 database에 update
+
+이 방식으로 상태값을 전부 topic 에 기록할 수 있고, topic에 기록된 실제 데이터의 마지막 상태값을 데이터베이스에 반영할 수 있다.     
+query 모델에서 최종 상태값만 가지고 와서 해당하는 값을 클라이언트에 전달시켜줌으로써 클라이언트는 마지막에 주문된 내역의 상태값을 확인할 수 있다. 
+
+</br>
+
 ## CQRS 장점
 
 * **Independent Scaling** : 읽기 모델과 쓰기 모델을 필요에 따라 독립적으로 확장 가능
