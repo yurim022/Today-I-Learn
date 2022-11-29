@@ -40,6 +40,27 @@ elasticsearch는 왜 빠를까? 이유는 inverted index(역색인)이다.
 
 </br></br>
 
+## 특징
+
+* **Scale out**
+
+를 통해 규모가 수평적으로 늘어날 수 있음
+
+* **고가용성**
+
+Replica를 통해 데이터 안정성 보장
+
+* **Schema Free**
+
+Json문서를 통해 데이터 검색을 수행하므로 스키마 개념이 없음
+
+* **Restful**
+
+데이터 CRUD 작업은 HTTP RestfulAPI를 통해 수행하며, 다음과 같이 대응됨
+
+![image](https://user-images.githubusercontent.com/45115557/204546227-fd344fe9-c8e4-40b4-ac10-94a67f0bf6ea.png)
+
+
 
  
 출처:   
