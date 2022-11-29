@@ -40,22 +40,7 @@ elasticsearch는 왜 빠를까? 이유는 inverted index(역색인)이다.
 
 </br></br>
 
-# Elasticsearch 시스템구조
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-</br>
  
 출처:   
 https://www.slideshare.net/kjmorc/ss-80803233   
