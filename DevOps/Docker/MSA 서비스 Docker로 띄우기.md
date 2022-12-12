@@ -173,7 +173,7 @@ docker run -d -p 3306:3306 --name mariadb yurimming/my_mariadb:1.0
 다른 서비스에서 db에 접근하기 위해 접근 권한을 준다. 여기에선 모든 데이터베이스에 root의 접속권한을 주도록 한다.  
 ```
 grant all privileges on *.* to 'root'@'%' identified by 'test1357'; //grant all privileges on [datbase] to 'root'@'%'[접속권한] identified by [password];
-flush priviledges;
+flush privileges;
 ```
 
 아, 네트워크 추가하는걸 까먹었다. 그렇다면 `connect` 명령어로 이미 생성된 컨테이너에 네트워크를 연결시켜주면 된다. 
