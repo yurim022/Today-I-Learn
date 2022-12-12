@@ -172,9 +172,16 @@ docker run -d -p 3306:3306 --name mariadb yurimming/my_mariadb:1.0
 ```
 다른 서비스에서 db에 접근하기 위해 접근 권한을 준다. 여기에선 모든 데이터베이스에 root의 접속권한을 주도록 한다.  
 ```
-grant all privileges on *.* to 'root'@'%' identified by 'test1357'; //grant all privileges on [datbase] to 'root'@'%'[접속권한] identified by [password];
-flush privileges;
+docker exec -it [mariadb container id] mysql -u root -p
+
+>grant all privileges on *.* to 'root'@'%' identified by 'test1357'; //grant all privileges on [datbase] to 'root'@'%'[접속권한] identified by [password];
+>flush privileges;
 ```
+
+해당 권한설정을 안해주면 아래와 같은 에러가 나면서 order-service가 죽게된다. 
+
+![image](https://user-images.githubusercontent.com/45115557/206972145-7a0820c3-b723-4c45-a1b3-3030a69b46a9.png)
+
 
 아, 네트워크 추가하는걸 까먹었다. 그렇다면 `connect` 명령어로 이미 생성된 컨테이너에 네트워크를 연결시켜주면 된다. 
 
