@@ -167,6 +167,8 @@ networks:
 docker-compose up -d
 ```
 
+</br>
+
 ### 에러해결1
 
 처음 발생한 문제는 ip할당이 모호해서 생긴 문제였다. 컨테이너를 내렸다 올렸다 하면서 ip 매핑이 꼬여서 발생한 이슈.
@@ -177,6 +179,7 @@ user specified IP address is supported
 only when connecting to networks with user configured subnets
 ```
 
+</br>
 
 ### 에러해결2
 
