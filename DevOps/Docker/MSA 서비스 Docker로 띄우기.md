@@ -174,7 +174,7 @@ docker run -d -p 3306:3306 --name mariadb yurimming/my_mariadb:1.0
 ```
 docker exec -it [mariadb container id] mysql -u root -p
 
->grant all privileges on *.* to 'root'@'%' identified by 'test1357'; //grant all privileges on [datbase] to 'root'@'%'[접속권한] identified by [password];
+>grant all privileges on *.* to 'root'@'%' identified by 'test1357'; //grant all privileges on [datbase] to [접속권한] identified by [password];
 >flush privileges;
 ```
 
