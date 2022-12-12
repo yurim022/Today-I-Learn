@@ -1,6 +1,6 @@
 # MSA Docker로 띄우기2
 
-앞서 작성한 글대로 컨테이너 환경을 구성한 뒤 docker-compose 파일로 서비스를 실행하였다. 
+앞서 작성한 글대로 내 도커허브 레포지토리의 이미지를 사용하여 docker-compose 파일을 만들어준다. 
 
 ```
 version: '2'
@@ -161,9 +161,32 @@ networks:
     name: ecommerce-network
 ```
 
-내 도커허브 레포지토리의 이미지를 사용하여 작성한 다음 docker-compose 파일을 실행시켜주었다.  
+ 작성한 다음 docker-compose 파일을 실행시켜주었다.  
 
 ```
 docker-compose up -d
 ```
+
+### 에러해결1
+
+처음 발생한 문제는 ip할당이 모호해서 생긴 문제였다. 컨테이너를 내렸다 올렸다 하면서 ip 매핑이 꼬여서 발생한 이슈.
+network를 삭제하고 external로 새로 생성해준뒤 다시 띄우니 해결되었다. 
+
+```
+user specified IP address is supported
+only when connecting to networks with user configured subnets
+```
+
+
+### 에러해결2
+
+더 큰 문제는 eureka에 서비스들은 잘 등록이 되었는데, 접속이 되지 않는다는 것이였다. 
+
+![image](https://user-images.githubusercontent.com/45115557/206977323-1d0ea75d-d0a6-4335-9e88-5ddb6f62653f.png)
+
+eureka에 등록된 port주소로 들어가면 모든 서비스에서 다 접속 불가창이 떴다. rabbitmq는 잘 접속이 되었는데 말이다,,,
+
+![image](https://user-images.githubusercontent.com/45115557/206977376-fa8d1536-4d30-4a33-b1b0-45c30eb7006a.png)
+
+
 
