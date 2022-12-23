@@ -17,8 +17,18 @@ kibana를 올리는데 이런 에러가 났다...
 ["error","elasticsearch-service"],"pid":7,"message":"Unable to retrieve version information from Elasticsearch nodes. connect ECONNREFUSED 127.0.0.1:9200"}
 ```
 
-xpack 설정에 문제가 있는가보다.
+xpack 설정에 문제가 있는가 해서 disable 시켜줬는데,,,그래도 안된다ㅠ
 
+```
+xpack.ml.enabled: false
+xpack.monitoring.collection.enabled: false
+xpack.security.enabled: false
+xpack.watcher.enabled: false
+ingest.geoip.downloader.enabled: false
+```
+
+   
+흑, 이제 권한문제가 아닌지 체크해본다....(ing)
 
 
 
@@ -26,4 +36,7 @@ xpack 설정에 문제가 있는가보다.
    
 참고링크:   
 https://juntcom.tistory.com/121   
-https://discuss.elastic.co/t/set-password-and-user-with-docker-compose/225075   
+https://discuss.elastic.co/t/set-password-and-user-with-docker-compose/225075      
+https://koocci-dev.tistory.com/18.  
+
+ 
