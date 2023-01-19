@@ -55,7 +55,7 @@ Batch 역시 스케쥴 기능을 지원하지 않는다. 그래서 Quartz + Batc
 - 대량 처리를 하는 경우 Tasklet 보다 비교적 쉽게 구현
 - 예를 들면 10,000개의 데이터 중 1,000개씩 10개의 덩어리로 수행
 
-</br>
+</br></br>
 
 ## 적용
 
@@ -63,13 +63,140 @@ Batch 역시 스케쥴 기능을 지원하지 않는다. 그래서 Quartz + Batc
 글을 참고하자. Job, Step, Execution 등 구성요소에 대한 설명이 잘 되어있다.    
 
 
-chunk 방식의 경우 
+Tasklet은 단순하게 처리할 수 있으나, 대용량을 감당하기엔 부하를 감당할 수 없다. 개발중인 서비스는 부하가 높지 않아 빨리 적용할 수 있는 Tasklet을 선택했다. 
+
+</br>
+
+#### application.yml
+
+<img width="711" alt="image" src="https://user-images.githubusercontent.com/45115557/213388118-c128c834-46a0-4f89-958d-a916afb77769.png">
 
 
+```yml
+
+spring.batch.initialize-schema: always
+
+```
+
+Spring Batch는 필수적으로 메타 테이블이 필요하다. 위 설정을 이용하면 스크립트 파일이 실행되어서 일일이 타이핑 할 필요없이 테이블이 생성되니 첫 기동시에는 always를 사용해주고 그 다음 never 등 다른 설정값을 사용해주면 된다. 
 
 
+#### BatchConfig
 
 
+```java
+@Slf4j
+@Configuration
+@RequiredArgsConstructor
+@EnableBatchProcessing
+public class BatchConfig {
+
+  private final SimpleTasklet simpleTaskelt;
+
+
+ @Bean
+    public Job simpleJob() {
+        return jobBuilderFactory.get(SIMPLE_JOB)
+                .start(simpleStep())
+                .build();
+    }
+
+
+    @Bean
+    public Step simpleStep() {
+        return stepBuilderFactory.get(REMOVE_TICKET_STEP)
+                .tasklet(simpleTasklet)
+                .build();
+    }
+
+
+```
+
+config 파일에 job과 job을 구성하는 step을 구성해준다. 이때 @EnableBatchProcessing을 붙여줘야 Spring Batch가 적용되니 꼭 붙여주자!
+
+</br></br>
+
+
+#### Tasklet.Class
+
+```java
+@Slf4j
+@RequiredArgsConstructor
+@Component
+public class SimpleTasklet implements Tasklet, StepExecutionListener {
+
+    private final AppRepository appRepository;
+
+
+    @Override
+    public void beforeStep(StepExecution stepExecution) {
+        log.info("SimpleTasklet Task Start");
+    }
+
+    @Override
+    public ExitStatus afterStep(StepExecution stepExecution) {
+        log.info("SimpleTasklet Task End");
+        return ExitStatus.COMPLETED;
+    }
+
+    @Override
+    public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
+
+        log.info(">>>>>>>>>>>> SimpleTasklet ticket execute!");
+
+        // 실행
+
+        return RepeatStatus.FINISHED;
+    }
+
+}
+
+```
+ 
+ step에 등록할 Tasklet class를 Tasklet, StepExecutionListener 를 상속받아 구현해준다. 
+
+</br></br>
+
+#### BatchScheduler
+
+```java
+
+@Slf4j
+@Component
+@RequiredArgsConstructor
+@EnableScheduling
+public class BatchScheduler {
+
+    private final JobLauncher jobLauncher;
+
+    private final BatchConfig batchConfig;
+
+    @Scheduled(cron = "${batch.simple-job.cron}")
+    public void runSimpleJob() {
+
+        JobParameters jobParameters = new JobParametersBuilder()
+                .addDate(GlobalObject.SIMPLE_JOB_EXEC_TIME,new Date()).toJobParameters();
+
+        try {
+            jobLauncher.run(batchConfig.simpleJob(),jobParameters);
+
+        } catch (JobExecutionAlreadyRunningException | JobInstanceAlreadyCompleteException
+        | JobParametersInvalidException | JobRestartException e) {
+            log.error(e.getMessage());
+        }
+
+    }
+
+}
+
+```
+
+마지막으로 Job을 실행시켜줄 Schedular를 등록해준다. 여기서 @EnableScheduling 안붙여줬다가 에러원인 찾느라 고생했다ㅋ
+   
+cron 값은 application.yml에서 가져와서 쉽게 변경할 수 있게 해주었다. 
+
+
+</br></br></br>
 
 
 참고링크:    
@@ -82,3 +209,5 @@ chunk 방식의 경우
 [https://github.com/redis-developer/spring-batch-redis/tree/master/subprojects/spring-batch-redis/src/main/java/com/redis/spring/batch](https://github.com/redis-developer/spring-batch-redis/tree/master/subprojects/spring-batch-redis/src/main/java/com/redis/spring/batch) (spring batch-redis example)
 
 [https://stackoverflow.com/questions/41927582/accessing-job-parameters-spring-batch](https://stackoverflow.com/questions/41927582/accessing-job-parameters-spring-batch) (job parameter 관련)
+
+[https://kitty-geno.tistory.com/161](https://kitty-geno.tistory.com/161) (간단한 예시)
