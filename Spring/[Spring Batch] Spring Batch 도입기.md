@@ -93,7 +93,7 @@ Spring Batch는 필수적으로 메타 테이블이 필요하다. 위 설정을 
 @EnableBatchProcessing
 public class BatchConfig {
 
-  private final SimpleTasklet simpleTaskelt;
+  private final SimpleTasklet simpleTasklet;
 
 
  @Bean
@@ -106,7 +106,7 @@ public class BatchConfig {
 
     @Bean
     public Step simpleStep() {
-        return stepBuilderFactory.get(REMOVE_TICKET_STEP)
+        return stepBuilderFactory.get(SIMPLE_STEP)
                 .tasklet(simpleTasklet)
                 .build();
     }
