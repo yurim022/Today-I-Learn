@@ -81,6 +81,8 @@ spring.batch.initialize-schema: always
 Spring Batch는 필수적으로 메타 테이블이 필요하다. 위 설정을 이용하면 스크립트 파일이 실행되어서 일일이 타이핑 할 필요없이 테이블이 생성되니 첫 기동시에는 always를 사용해주고 그 다음 never 등 다른 설정값을 사용해주면 된다. 
 
 
+</br></br>
+
 #### BatchConfig
 
 
