@@ -30,9 +30,79 @@ ingest.geoip.downloader.enabled: false
 ```
 
 </br>
-   
-흑, 이제 권한문제가 아닌지 체크해본다....난 굴하지 않아(ing)
+  
+찾아보니 ssl 문제인것 같은데,,, 127.0.0.1:9200 으로 접근해서 문제가 있는 듯 했다. 
 
+```
+      ELASTICSEARCH_URL: http://es01:9200
+      ELASTICSEARCH_HOSTS: http://es01:9200
+```
+
+위와같이 `containername:9200` 으로 접근하니 성공적으로 접속할 수 있었다!
+
+</br>
+
+![image](https://user-images.githubusercontent.com/45115557/213419553-7ddcb25b-b2e0-4fe4-b58b-f28f0d334ae0.png)
+
+성공~!!!
+
+
+### elk docker-compse.yml
+
+```
+version: '3.8'
+services:
+  es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.7
+    container_name: es01
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - ELASTIC_USERNAME=elastic
+      - ELASTIC_PASSWORD=elastic
+      - "discovery.type=single-node"
+      - "node.data:true"
+      - "network.host:0.0.0.0"
+#      - "discovery.seed_hosts:[]"
+#      - "cluster.initial_master_nodes:[]"
+      - http.cors.enabled=true
+      - http.cors.allow-origin=*
+      - bootstrap.memory_lock=true
+      - xpack.ml.enabled=false
+      - xpack.monitoring.collection.enabled=false
+      - xpack.security.enabled=false
+      - xpack.watcher.enabled=false
+      - ingest.geoip.downloader.enabled=false
+    ports:
+      - 9200:9200
+      - 9300:9300
+    networks:
+      - elk
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.17.7
+    container_name: kibana
+    ports:
+      - 5601:5601
+    environment:
+      ELASTICSEARCH_URL: http://es01:9200
+      ELASTICSEARCH_HOSTS: http://es01:9200
+      XPACK_MONITORING_ENABLED: "false"
+      XPACK_MONITORING_COLLECTION_ENABLED: "false"
+      XPACK_SECURITY_ENABLED: "false"
+      ELASTICSEARCH_USERNAME: "elastic"
+      ELASTICSEARCH_PASSWORD: "elastic"
+    depends_on:
+      - es01
+    networks:
+      - elk
+
+networks:
+  elk:
+    driver: bridge
+```
+
+
+최종 docker-compose 파일. cors-allow all 같은건 로컬인 경우에만 사용하고 상용에서는 상세한 설정을 해서 사용해야 한다. 
 
 
 </br>
