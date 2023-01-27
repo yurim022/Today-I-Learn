@@ -15,3 +15,23 @@ redis를 db로 사용하는 경우도 있는데, 이 때 백업은 리플리케�
 * Set
 * Hash
 * Sorted Set  (score를 줌)
+
+
+# Redis 사용처
+
+* Cache가 필요한곳
+* In-Memory 를 DB로 사용하는 곳
+* Ranking 저장용
+* Job Queue
+
+### 사용 예시
+
+* Web API의 요청을 Key, 응답을 Value로 저장 (Cache)
+* 
+
+
+
+
+
+참고:
+[대용량 서비스를 위한 아키텍처 with Redis by 강대명](https://fastcampus.app/courses/205143/clips/393035?organizationProductId=15883&hasCodeEditor=false)
