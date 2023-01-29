@@ -1,4 +1,4 @@
-# Spring Batch
+# Spring Batch 
 
 채팅상담 백엔드 시스템을 개발하고 있는데, 배치로 상담티켓을 정리해주는 요구사항이 있었다.    
 해당기능 을 구현할때 Spring Batch를 구현하는게 어떨까 해서 구글신에게 물어봤다.   
@@ -212,4 +212,6 @@ cron 값은 application.yml에서 가져와서 쉽게 변경할 수 있게 해�
 
 [https://stackoverflow.com/questions/41927582/accessing-job-parameters-spring-batch](https://stackoverflow.com/questions/41927582/accessing-job-parameters-spring-batch) (job parameter 관련)
 
-[https://kitty-geno.tistory.com/161](https://kitty-geno.tistory.com/161) (간단한 예시)
+[https://kitty-geno.tistory.com/161](https://kitty-geno.tistory.com/161) (간단한 예시)   
+
+[https://techblog.woowahan.com/2662](https://techblog.woowahan.com/2662) (queryDsl + SpringBatch와 성능향상 테스트)
