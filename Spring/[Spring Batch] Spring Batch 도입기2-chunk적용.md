@@ -15,6 +15,8 @@ Chunk를 적용하기 위해선 ItemReader, ItemProcessor(선택), ItemWriter �
 이미 제공되는 JdbcBatchItemWriter, JpaCursorItemReader 등 다양한 reader ,writer가 있지만 복잡한 쿼리를 사용하기엔 적합하지 않았다.   
 해서 custom 하게 만들기로 했다. 
 
+</br>
+
 ### CustomItemReader
 
 ```java
@@ -74,3 +76,48 @@ public class CustomItemReader implements ItemStreamReader<CsHistoryBas> {
 
 }
 ```
+
+ItemReader가 매번 생성되는 것이 아니고, Bean으로 등록하여 작동할때마다 데이터 값이 갱신되어야 했기 때문에 open, update, close를 사용할 수 있는 ItemStreamReader를 사용하였다. 
+
+</br>
+
+### CustomItemWriter
+
+```java
+
+
+@Component
+@RequiredArgsConstructor
+public class CustomItemWriter implements ItemStreamWriter<CsHistoryBas> {
+
+    private final LogSvcES logSvcES;
+
+    @Override
+    public void open(ExecutionContext executionContext) throws ItemStreamException {
+    }
+
+    @Override
+    public void update(ExecutionContext executionContext) throws ItemStreamException {
+    }
+
+    @Override
+    public void close() throws ItemStreamException {
+    }
+
+    @Override
+    public void write(List<? extends CsHistoryBas> csHistories) throws Exception {
+        for (CsHistoryBas csHistoryBas : csHistories) {
+            logSvcES.deleteMessage(csHistoryBas.getCompId(), csHistoryBas.getTicktId());
+        }
+    }
+}
+
+
+```
+
+마찬가지로 ItemStreamWriter 를 구현해준다. 
+
+
+</br>
+
+### 
