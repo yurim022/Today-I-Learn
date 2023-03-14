@@ -124,7 +124,7 @@ public class CustomItemWriter implements ItemStreamWriter<CsHistoryBas> {
 
 ```java
  @Bean
-    public Step removeEsMessageStep() {
+    public Step customStep() {
 
         return stepBuilderFactory.get(REMOVE_ES_MESSAGE_STEP)
                 .<CsHistoryBas,CsHistoryBas>chunk(REMOVE_ES_MESSAGE_CHUNK_SIZE != null ? REMOVE_ES_MESSAGE_CHUNK_SIZE : DEFAULT_CHUNK_SIZE)
