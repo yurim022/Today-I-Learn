@@ -19,5 +19,58 @@ Chunk를 적용하기 위해선 ItemReader, ItemProcessor(선택), ItemWriter �
 
 ```java
 
+@Component
+@RequiredArgsConstructor
+public class CustomItemReader implements ItemStreamReader<CsHistoryBas> {
 
+    @Value("${batch.expire-day}")
+    private EXPIRE_DAY;
+
+    @Value("${batch.period-day}")
+    private long PERIOD_DAY;
+
+    private final CustomRepository customRepository;
+
+    private List<CsHistoryBas> items;
+    private AtomicInteger index = new AtomicInteger();
+
+
+    @Override
+    public CsHistoryBas read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
+
+        CsHistoryBas csHistoryBas = null;
+        int currentIndex = index.getAndIncrement();
+        if ( currentIndex < items.size() ) {
+            csHistoryBas = items.get(currentIndex);
+        }
+
+        return csHistoryBas;
+    }
+
+    @Override
+    public void open(ExecutionContext executionContext) throws ItemStreamException {
+        items = getHistories();
+        index.set(0);
+    }
+
+    @Override
+    public void update(ExecutionContext executionContext) throws ItemStreamException {
+    }
+
+    @Override
+    public void close() throws ItemStreamException {
+        items.clear();
+        index.set(0);
+    }
+
+    private List<CsHistoryBas> getHistories(){
+        LocalDateTime now = LocalDateTime.now();
+        // 180일 전, 1일씩 데이터 삭제
+        LocalDateTime searchBefore = now.minus(REMOVE_ES_MESSAGE_EXPIRE_DAY, ChronoUnit.DAYS);
+        LocalDateTime searchAfter = searchBefore.minus(REMOVE_ES_MESSAGE_PERIOD_DAY, ChronoUnit.DAYS);
+        List<CsHistoryBas> csHistories = customRepository.getCsHistoriesByDateTime(searchAfter, searchBefore);
+        return csHistories;
+    }
+
+}
 ```
