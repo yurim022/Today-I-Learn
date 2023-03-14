@@ -127,12 +127,12 @@ public class CustomItemWriter implements ItemStreamWriter<CsHistoryBas> {
     public Step customStep() {
 
         return stepBuilderFactory.get(REMOVE_ES_MESSAGE_STEP)
-                .<CsHistoryBas,CsHistoryBas>chunk(REMOVE_ES_MESSAGE_CHUNK_SIZE != null ? REMOVE_ES_MESSAGE_CHUNK_SIZE : DEFAULT_CHUNK_SIZE)
+                .<CsHistoryBas,CsHistoryBas>chunk(CHUNK_SIZE != null ? CHUNK_SIZE : DEFAULT_CHUNK_SIZE)
                 .reader(customItemReader)
                 .writer(customItemReaderItemWriter)
                 .faultTolerant()
                 .skip(NoSuchElement.class)
-                .skipLimit(REMOVE_ES_MESSAGE_SKIP_LIMIT != null ? REMOVE_ES_MESSAGE_SKIP_LIMIT : DEFAULT_SKIP_LIMIT)
+                .skipLimit(SKIP_LIMIT != null ? SKIP_LIMIT : DEFAULT_SKIP_LIMIT)
                 .noRetry(NullPointerException.class)
                 .build();
     }
