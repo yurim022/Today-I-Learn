@@ -126,7 +126,7 @@ public class CustomItemWriter implements ItemStreamWriter<CsHistoryBas> {
  @Bean
     public Step customStep() {
 
-        return stepBuilderFactory.get(REMOVE_ES_MESSAGE_STEP)
+        return stepBuilderFactory.get(CUSTOM_STEP)
                 .<CsHistoryBas,CsHistoryBas>chunk(CHUNK_SIZE != null ? CHUNK_SIZE : DEFAULT_CHUNK_SIZE)
                 .reader(customItemReader)
                 .writer(customItemReaderItemWriter)
