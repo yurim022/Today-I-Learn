@@ -131,8 +131,8 @@ public class CustomItemWriter implements ItemStreamWriter<CsHistoryBas> {
                 .reader(customItemReader)
                 .writer(customItemReaderItemWriter)
                 .faultTolerant()
-//                .skip(NoSuchElement.class)
-//                .skipLimit(REMOVE_ES_MESSAGE_SKIP_LIMIT != null ? REMOVE_ES_MESSAGE_SKIP_LIMIT : DEFAULT_SKIP_LIMIT)
+                .skip(NoSuchElement.class)
+                .skipLimit(REMOVE_ES_MESSAGE_SKIP_LIMIT != null ? REMOVE_ES_MESSAGE_SKIP_LIMIT : DEFAULT_SKIP_LIMIT)
                 .noRetry(NullPointerException.class)
                 .build();
     }
