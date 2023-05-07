@@ -38,10 +38,7 @@ elasticsearch는 왜 빠를까? 이유는 inverted index(역색인)이다.
 
 ![image](https://user-images.githubusercontent.com/45115557/204538519-2661fde4-4729-4b30-811b-7f67bada808f.png)
 
-### Elastic Search
-<img width="269" alt="image" src="https://user-images.githubusercontent.com/45115557/236667022-91a0fe26-45e8-4456-8c98-86a72299c0ec.png">
-
-### Relational DB
+#### Relational DB
 <img width="314" alt="image" src="https://user-images.githubusercontent.com/45115557/236667045-2f152e6f-fdb2-47a6-856b-8e42bbd2a931.png">
 
 
