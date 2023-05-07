@@ -36,6 +36,7 @@ Index가 데이터베이스, Type이 테이블, _id가 primarykey라고 보면 �
 elasticsearch는 왜 빠를까? 이유는 inverted index(역색인)이다. 
 엘라스틱서치는 텍스트를 파싱해서 검색어 사전을 만든 다음, inverted index방식으로 텍스트를 저장한다. 때문에 RDBMS보다 전문검색(Full Text Search)에 빠른 성능을 보인다. 대신 Join이 불가능하고 수정/삭제 연산에 느리다. 
 
+#### Elastic Search
 ![image](https://user-images.githubusercontent.com/45115557/204538519-2661fde4-4729-4b30-811b-7f67bada808f.png)
 
 #### Relational DB
