@@ -112,7 +112,20 @@ DELETE my_index/_doc/1
 ```
 DELETE my_index
 ```
+<br>
+
+### BULK
+
+여러 명령을 배치로 수행하기 위해 bulkAPI 사용이 가능하며, index,create,update,delete의 동작이 가능하다.
+
+```
+$ curl -XPOST "http://localhost:9200/_bulk" -H 'Content-Type: application/json' --data-binary @bulk.json
+```
+
+bulk는 따로따로 수행하는 것보다 속도가 훨씬 빠르며, 대량의 데이터를 입력할때는 bulkAPI를 사용해야 불필요한 오버헤드가 없다.    
+`Logstash`와 `Beats`는 데이터를 입력할때 `_bulk`를 사용하도록 개발되어 있다. 
 
 
 참고링크:    
-https://esbook.kimjmin.net/04-data/4.2-crud
+https://esbook.kimjmin.net/04-data/4.2-crud.  
+https://esbook.kimjmin.net/04-data/4.3-_bulk
