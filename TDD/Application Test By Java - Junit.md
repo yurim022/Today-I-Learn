@@ -51,20 +51,22 @@ blabla~~~
 
 ### 기본 어노테이션
 
-* @Test
+#### @Test
 
-테스트를 수행하고자 하는 함수 위에 붙이는 어노테이션.
-해당 어노테이션이 붙은 단위로 테스트 실행 가능
+* 테스트를 수행하고자 하는 함수 위에 붙이는 어노테이션.
+* 해당 어노테이션이 붙은 단위로 테스트 실행 가능
 
-* @BeforeAll / @AfterAll
+#### @BeforeAll / @AfterAll
 
-테스트 클래스 내 테스트들을 실행하기 전/후 한번만 호출됨.   
-static 메소드를 사용해야 하며, private 불가하며, return type 이 있으면 안됨
+* 테스트 클래스 내 테스트들을 실행하기 전/후 한번만 호출됨.   
+* static 메소드를 사용 
+* private 불가
+* return type 이 있으면 안됨 (
 
-* @BeforeEach / @AfterEach
+#### @BeforeEach / @AfterEach
 
-각 테스트를 실행하기 전/후 마다 실행됨     
-void만 가능
+* 각 테스트를 실행하기 전/후 마다 실행됨     
+* void만 가능
 
 
 ```
