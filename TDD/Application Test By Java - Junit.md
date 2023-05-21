@@ -51,8 +51,63 @@ blabla~~~
 #### 기본 어노테이션
 
 * @Test
+
 테스트를 수행하고자 하는 함수 위에 붙이는 어노테이션.
 해당 어노테이션이 붙은 단위로 테스트 실행 가능
 
-* @BeforeAll
- 
+* @BeforeAll / @AfterAll
+
+테스트 클래스 내 테스트들을 실행하기 전/후 한번만 호출됨.   
+static 메소드를 사용해야 하며, private 불가하며, return type 이 있으면 안됨
+
+* @BeforeEach / @AfterEach
+
+각 테스트를 실행하기 전/후 마다 실행됨     
+void만 가능
+
+
+```
+
+class StudyTest {
+
+    @Test
+    void create() {
+        Study study = new Study();
+        assertNotNull(study);
+        System.out.println("create");
+    }
+
+    @Test
+    void create2() {
+        Study study = new Study();
+        assertNotNull(study);
+        System.out.println("create 2");
+    }
+
+    @BeforeAll
+    static void beforeAll() {
+        System.out.println("before all");
+    }
+
+    @AfterAll
+    static void afterAll() {
+        System.out.println("after all");
+    }
+
+    @BeforeEach
+    void beforeEach() {
+        System.out.println("before each");
+    }
+
+    @AfterEach
+    void afterEach() {
+        System.out.println("after each");
+    }
+
+}
+```
+
+##### 실행결과
+
+![image](https://github.com/yurim022/Today-I-Learn/assets/45115557/05187f71-1a46-49de-88c5-54ab5ea82a3e)
+
