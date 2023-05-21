@@ -115,3 +115,27 @@ class StudyTest {
 ![image](https://github.com/yurim022/Today-I-Learn/assets/45115557/05187f71-1a46-49de-88c5-54ab5ea82a3e)
 
 <br><br>
+
+### 테스트 이름 표시
+
+```java
+
+    @Test
+    @DisplayName("새로운 스터디를 생성한다.")
+    void create_new_study() {
+        Study study = new Study();
+        assertNotNull(study);
+        System.out.println("create");
+    }
+
+```
+
+#### @DisplayName
+
+위 어노테이션을 통해 테스트 이름을 명시할 수 있다. 
+
+![image](https://github.com/yurim022/Today-I-Learn/assets/45115557/4ee3be12-b100-4960-9421-185475799622)
+
+<br><br>
+
+
