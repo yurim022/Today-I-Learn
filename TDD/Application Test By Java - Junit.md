@@ -69,7 +69,7 @@ blabla~~~
 * void만 가능
 
 
-```
+```java
 
 class StudyTest {
 
