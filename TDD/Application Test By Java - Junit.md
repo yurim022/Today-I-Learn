@@ -157,7 +157,7 @@ org.junit.jupiter.api.Assertions.*
 #### assertEqulas
 
 ```java
-  @Test
+    @Test
     @DisplayName("새로운 스터디를 생성한다.")
     void create_new_study() {
         Study study = new Study();
@@ -167,7 +167,7 @@ org.junit.jupiter.api.Assertions.*
 ```
 
 `assertEqulas(expected, actual)` 로 결과값이 기대한 값과 같은지 확인할 수 있고,    
-추가로  `assertEqulas(expected, actual,message)` 로 실패 시 표시할 메세지도 표기할 수 있다. 
+추가로  `assertEqulas(expected, actual, message)` 로 실패 시 표시할 메세지도 표기할 수 있다. 
 
 
 
