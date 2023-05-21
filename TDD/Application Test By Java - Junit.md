@@ -46,4 +46,13 @@ blabla~~~
  
  <img width="918" alt="image" src="https://github.com/yurim022/Today-I-Learn/assets/45115557/9cd44432-8b72-4ebe-91f4-f83c5eb1cb7c">
 
+<br>
+
+#### 기본 어노테이션
+
+* @Test
+테스트를 수행하고자 하는 함수 위에 붙이는 어노테이션.
+해당 어노테이션이 붙은 단위로 테스트 실행 가능
+
+* @BeforeAll
  
