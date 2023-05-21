@@ -24,7 +24,7 @@ blabla~~~
 
 ## Junit 기본 사용법
 
-#### Maven 추가
+### Maven 추가
 
 ```
 <dependency>
@@ -36,7 +36,7 @@ blabla~~~
 
 ```
 
-#### Test Class 생성
+### Test Class 생성
    
 <img width="564" alt="image" src="https://github.com/yurim022/Today-I-Learn/assets/45115557/e8c33d74-e7af-4bbc-843a-ef4d6f545e9c">
  
@@ -48,7 +48,7 @@ blabla~~~
 
 <br>
 
-#### 기본 어노테이션
+### 기본 어노테이션
 
 * @Test
 
@@ -107,7 +107,7 @@ class StudyTest {
 }
 ```
 
-##### 실행결과
+#### 실행결과
 
 ![image](https://github.com/yurim022/Today-I-Learn/assets/45115557/05187f71-1a46-49de-88c5-54ab5ea82a3e)
 
