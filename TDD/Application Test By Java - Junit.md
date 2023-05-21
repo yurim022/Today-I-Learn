@@ -152,4 +152,22 @@ org.junit.jupiter.api.Assertions.*
 | 예외 발생 확인 | assertThrows(expectedType, executable) |
 | 특정 시간 안에 실행이 완료되는지 확인 | assertTimeout(duration, executable) |
 
+<br><br>
+
+#### assertEqulas
+
+```java
+  @Test
+    @DisplayName("새로운 스터디를 생성한다.")
+    void create_new_study() {
+        Study study = new Study();
+        assertEquals(StudyStatus.DRAFT, study.getStatus(), "스터디를 처음 만들면 상태값이 DRAFT여야 한다.");
+        System.out.println("create");
+    }
+```
+
+`assertEqulas(expected, actual)` 로 결과값이 기대한 값과 같은지 확인할 수 있고,    
+추가로  `assertEqulas(expected, actual,message)` 로 실패 시 표시할 메세지도 표기할 수 있다. 
+
+
 
