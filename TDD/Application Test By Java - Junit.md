@@ -8,7 +8,7 @@ blabla~~~
 
 
 
-<br>
+<br><br>
 
 ## Junit 이란
 
@@ -20,7 +20,7 @@ blabla~~~
 * Jupiter: TestEngine API 구현체로 JUnit 5를 제공.
 * Vintage: TestEngine API 구현체로 JUnit 4와 Junit3 제공.
 
-<br>
+<br><br>
 
 ## Junit 기본 사용법
 
@@ -35,6 +35,7 @@ blabla~~~
 </dependency>
 
 ```
+<br><br>
 
 ### Test Class 생성
    
@@ -46,7 +47,7 @@ blabla~~~
  
  <img width="918" alt="image" src="https://github.com/yurim022/Today-I-Learn/assets/45115557/9cd44432-8b72-4ebe-91f4-f83c5eb1cb7c">
 
-<br>
+<br><br>
 
 ### 기본 어노테이션
 
@@ -111,3 +112,4 @@ class StudyTest {
 
 ![image](https://github.com/yurim022/Today-I-Learn/assets/45115557/05187f71-1a46-49de-88c5-54ab5ea82a3e)
 
+<br><br>
