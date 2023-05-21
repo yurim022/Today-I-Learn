@@ -138,4 +138,18 @@ class StudyTest {
 
 <br><br>
 
+## Assertions
+
+```java
+org.junit.jupiter.api.Assertions.*
+```
+| 용도 | Assertion |
+|---| ---|
+|실제 값이 기대한 값과 같은지 확인 | assertEqulas(expected, actual) |
+| 값이 null이 아닌지 확인 | assertNotNull(actual) |
+| 다음 조건이 참(true)인지 확인 | assertTrue(boolean) |
+| 모든 확인 구문 확인 | assertAll(executables...) |
+| 예외 발생 확인 | assertThrows(expectedType, executable) |
+| 특정 시간 안에 실행이 완료되는지 확인 | assertTimeout(duration, executable) |
+
 
