@@ -169,5 +169,47 @@ org.junit.jupiter.api.Assertions.*
 `assertEqulas(expected, actual)` 로 결과값이 기대한 값과 같은지 확인할 수 있고,    
 추가로  `assertEqulas(expected, actual, message)` 로 실패 시 표시할 메세지도 표기할 수 있다. 
 
+<br>
+
+#### assertTrue
+
+```java
+ @Test
+    @DisplayName("새로운 스터디를 생성한다.")
+    void create_new_study() {
+        Study study = new Study(-10);
+        assertTrue(study.getLimit() > 0, "스터디 최대 참석 인원은 0보다 커야 한다.");
+        System.out.println("create");
+    }
+```
+
+<img width="1672" alt="image" src="https://github.com/yurim022/Today-I-Learn/assets/45115557/b9ef2a7a-a954-4208-bec5-c7c222a476e5">
+
+테스트 실패 시 에러메세지가 뜨는 것을 알 수 있다. 
+
+<br>
+
+
+#### assertAll
+
+여러개의 assert문을 사용한다면 하나의 assert문에서 에러가 발생하면 나머지 assert문은 동작할 수 없다.
+때문에 assertAll을 활용해서 다른 assert문의 성공 여부에 상관없이 테스트 할 수 있다. 
+
+```java
+
+    @Test
+    @DisplayName("새로운 스터디를 생성한다. assertAll 테스트")
+    void create_new_study_test_assertAll() {
+        Study study = new Study(StudyStatus.ENDED,-10);
+
+        assertAll(
+                ()-> assertNotNull(study),
+                () -> assertEquals(StudyStatus.DRAFT,study.getStatus(), "스터디를 처음 만들면 상태값이 DRAFT여야 한다.") ,
+                () -> assertTrue(study.getLimit() > 0, "스터디 최대 참석 인원은 0보다 커야 한다.")
+        );
+        System.out.println("create");
+    }
+    
+```
 
 
