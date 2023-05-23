@@ -362,5 +362,35 @@ argumentsAccessor.getInteger(INDEX) , argumentsAccessor.getString(INDEX) 로 인
 
 #### @AggregateWith
 
+테스트 함수에서 클래스를 생성하지 않고, 바로 인자로 클래스를 받고 싶을때 `@AggregateWith` 를 사용할 수 있다.    
+
+```java
+
+    static class StudyAggregator implements ArgumentsAggregator {
+        @Override
+        public Object aggregateArguments(ArgumentsAccessor accessor, ParameterContext parameterContext) throws ArgumentsAggregationException {
+            return new Study(accessor.getInteger(0), accessor.getString(1));
+        }
+    }
+
+```
+
+ArgumentsAggregator 의 구현체를 만들고, aggregateArguments 함수를 override 하면 되는데,   
+SimpleArgumentConverter와 다르게 여러개 인자를 받을 수 있다.    
+이때 aggregator class는 static이여야 하며, 변환하고자 하는 클래스 생성자는 public이여야 한다.
+
+```java
+
+    @DisplayName("ArgumentsAccessor로 파라미터 받기")
+    @ParameterizedTest(name = "{index} {displayName} message = {0}")
+    @CsvSource({"10, 자바 스터디", "20, 스프링"})
+    void parameterizedTestWithClass(@AggregateWith(StudyAggregator.class) Study study) {
+        System.out.println(study.toString());
+    }
+
+```
+
+@AggregateWith(StudyAggregator.class) Study study` 처럼 테스트 함수에 @AggregateWith 어노테이션과 Aggregator 클래스를 통해 인자로 클래스를 받을 수 있다. 
+
 
 
