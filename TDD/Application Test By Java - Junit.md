@@ -132,7 +132,7 @@ class StudyTest {
 
 #### @DisplayName
 
-위 어노테이션을 통해 테스트 이름을 명시할 수 있다. 
+위 어노테이션을 통해 테스트 이름을 명시
 
 ![image](https://github.com/yurim022/Today-I-Learn/assets/45115557/4ee3be12-b100-4960-9421-185475799622)
 
@@ -166,8 +166,8 @@ org.junit.jupiter.api.Assertions.*
     }
 ```
 
-`assertEqulas(expected, actual)` 로 결과값이 기대한 값과 같은지 확인할 수 있고,    
-추가로  `assertEqulas(expected, actual, message)` 로 실패 시 표시할 메세지도 표기할 수 있다. 
+`assertEqulas(expected, actual)` 로 결과값이 기대한 값과 같은지 확인  
+추가로  `assertEqulas(expected, actual, message)` 로 실패 시 표시할 메세지도 표기 
 
 <br>
 
@@ -185,15 +185,15 @@ org.junit.jupiter.api.Assertions.*
 
 <img width="1672" alt="image" src="https://github.com/yurim022/Today-I-Learn/assets/45115557/b9ef2a7a-a954-4208-bec5-c7c222a476e5">
 
-테스트 실패 시 에러메세지가 뜨는 것을 알 수 있다. 
+테스트 실패 시 에러메세지가 뜸
 
 <br>
 
 
 #### assertAll
 
-여러개의 assert문을 사용한다면 하나의 assert문에서 에러가 발생하면 나머지 assert문은 동작할 수 없다.   
-때문에 assertAll을 활용해서 다른 assert문의 성공 여부에 상관없이 테스트 할 수 있다. 
+여러개의 assert문을 사용한다면 하나의 assert문에서 에러가 발생하면 나머지 assert문은 동작할 수 없음.    
+때문에 assertAll을 활용해서 다른 assert문의 성공 여부에 상관없이 테스트 가능   
 
 ```java
 
@@ -216,7 +216,7 @@ org.junit.jupiter.api.Assertions.*
 
 #### assertThrows
 
-특정 예외를 테스트 하고싶을 땐 assertThrows를 사용할 수 있다. 
+특정 예외를 테스트 하고싶을 땐 assertThrows를 사용    
 
 ```java
 
@@ -231,14 +231,14 @@ org.junit.jupiter.api.Assertions.*
 
 ```
 
-발생한 예외를 받아서 기대했던 메세지와 같은지 비교해볼 수도 있다. 
+발생한 예외를 받아서 기대했던 메세지와 같은지 비교   
 
 <br>
 
 
 #### assertTimeout
 
-테스트하는 코드가 특정 시간안에 완료되어야 한다면, `assertTimeout`으로 시간에 대한 테스트도 할 수 있다. 
+테스트하는 코드가 특정 시간안에 완료되어야 한다면, `assertTimeout`으로 시간에 대한 테스트    
 
 ```java
 
@@ -259,7 +259,7 @@ org.junit.jupiter.api.Assertions.*
 
 #### @RepeatedTest
 
-실행마다 랜덤값을 쓴다던가, 타이밍에 따라 달라질 수 있는 코드가 있는 경우 코드를 반복해서 테스트 할 수 있다.
+실행마다 랜덤값을 쓴다던가, 타이밍에 따라 달라질 수 있는 코드가 있는 경우 코드를 반복해서 테스트   
 
 ```java
 
@@ -272,13 +272,13 @@ org.junit.jupiter.api.Assertions.*
 
 ```
 
-`@RepeatedTest` 어노테이션을 통해 반복할 테스트임을 명시하고 반복할 횟수를 value로 줄 수 있다.   
-함수 인자로 RepetitionInfo 를 받아 현재 반복횟수, 총 반복횟수 등의 정보를 활용할 수 있다.   
+`@RepeatedTest` 어노테이션을 통해 반복할 테스트임을 명시하고 반복할 횟수를 value로 줌.   
+함수 인자로 RepetitionInfo 를 받아 현재 반복횟수, 총 반복횟수 등의 정보를 활용.      
 
 ```java
 name = "{displayName}, {currentRepetition}/{totalRepetitions}
 ```
-테스트 이름을 제공하는 인자들을 활용하여 커스터마이징해서 사용하는 것도 가능하다. 
+테스트 이름을 제공하는 인자들을 활용하여 커스터마이징해서 사용하는 것도 가능. 
 
 <br><br>
 
@@ -286,7 +286,7 @@ name = "{displayName}, {currentRepetition}/{totalRepetitions}
 
 #### @ValueSource
 
-여러가지 파라미터 값들을 줘서 테스트하고 싶은 경우, (경계값 등)  `@paramiterizedTest` 를 사용할 수 있다. 
+여러가지 파라미터 값들을 줘서 테스트하고 싶은 경우, (경계값 등)  `@paramiterizedTest` 를 사용. 
 
 ```java
 
@@ -299,18 +299,18 @@ name = "{displayName}, {currentRepetition}/{totalRepetitions}
     }
 ```
 
-`@ValueSource` 에 테스트하고자 하는 파라미터를 넣어주고, 마찬가지로 테스트에 표시할 이름을 커스터마이징 해줄 수 있다.    
-파라미터로는 int,string,boolean,char,class 등 다양한 타입이 가능하다.
+`@ValueSource` 에 테스트하고자 하는 파라미터를 넣어주고, 마찬가지로 테스트에 표시할 이름을 커스터마이징.    
+파라미터로는 int,string,boolean,char,class 등 다양한 타입이 지원.   
 
 ![image](https://github.com/yurim022/Today-I-Learn/assets/45115557/c9ab210a-914b-4f74-a449-ca3c154d3e90)
 
-`@NullAndEmptySource` , `@NullSource` , `@EmptySource` 등을 붙여주면 ValueSource의 파라미터에 추가로 테스트할 null/empty 값을 넣어서 테스트 할 수 있다. 
+`@NullAndEmptySource` , `@NullSource` , `@EmptySource` 등을 붙여주면 ValueSource의 파라미터에 추가로 테스트할 null/empty 값을 넣어서 테스트
 
 <br>
 
 #### @ConvertWith
 
-클래스 타입으로 함수의 인자를 받고 싶은데, 인자가 1개일때 사용할 수 있는게 `@ConvertWith` 이다.
+`@ConvertWith` 클래스 타입으로 함수의 인자를 받고 싶은데, 인자가 1개일때 사용   
 
 ```java
 static class StudyConverter extends SimpleArgumentConverter {
@@ -322,8 +322,8 @@ static class StudyConverter extends SimpleArgumentConverter {
     }
 ```
 
-먼저 ConvertWith 어노테이션을 사용하려면, SimpleArgumentConverter 을 상속받은 static 클래스 구현체를 정의해주어야 한다.   
-위 코드를 보면 convert함수를 override하여 source에서 받은 인자값을 통해 원하는 타입의 클래스로 변환해주고 있다.    
+먼저 ConvertWith 어노테이션을 사용하려면, SimpleArgumentConverter 을 상속받은 static 클래스 구현체를 정의해주어야 함.   
+위 코드를 보면 convert함수를 override하여 source에서 받은 인자값을 통해 원하는 타입의 클래스로 변환.    
 
 ```java
 
@@ -336,16 +336,16 @@ static class StudyConverter extends SimpleArgumentConverter {
 
 ```
 
-`@ConvertWith(커스텀Converterclass)` 를 통해 변환된 클래스를 사용해줄 수 있다. 
+`@ConvertWith(커스텀Converterclass)` 를 통해 변환된 클래스를 사용. 
 
 <br>
 
 #### ArgumentsAccessor
 
-복수의 파라미터를 받고 싶을때, ArgumentsAccessor 를 사용할 수 있다. 
-이때 `@CsvSource` 를 통해 여러개의 인자묶음을 전달한다. 이때 구분자는 여러가지가 있지만, 객체묶음은 ""로 객체 내 파라미터 구분은 ','를 사용하겠다.
+복수의 파라미터를 받고 싶을때, ArgumentsAccessor 를 사용. 
+ `@CsvSource` 를 통해 여러개의 인자묶음을 전달.    
 
-```
+```java
     @DisplayName("ArgumentsAccessor로 파라미터 받기")
     @ParameterizedTest(name = "{index} {displayName} message = {0}")
     @CsvSource({"10, 자바 스터디", "20, 스프링"})
@@ -355,14 +355,14 @@ static class StudyConverter extends SimpleArgumentConverter {
     }
 ```
 
-테스트 함수의 인자로 ArgumentsAccessor 를 받고, @CsvSource에 테스트하고자 하는 값들을 넣어준다.   
-argumentsAccessor.getInteger(INDEX) , argumentsAccessor.getString(INDEX) 로 인자값을 받아올 수 있다.
+테스트 함수의 인자로 ArgumentsAccessor 를 받고, @CsvSource에 테스트하고자 하는 값 넣어줌    
+argumentsAccessor.getInteger(INDEX) , argumentsAccessor.getString(INDEX) 로 인자값 받기 가능.   
 
 <br>
 
 #### @AggregateWith
 
-테스트 함수에서 클래스를 생성하지 않고, 바로 인자로 클래스를 받고 싶을때 `@AggregateWith` 를 사용할 수 있다.    
+테스트 함수에서 클래스를 생성하지 않고, 바로 인자로 클래스를 받고 싶을때 `@AggregateWith` 를 사용      
 
 ```java
 
@@ -375,9 +375,9 @@ argumentsAccessor.getInteger(INDEX) , argumentsAccessor.getString(INDEX) 로 인
 
 ```
 
-ArgumentsAggregator 의 구현체를 만들고, aggregateArguments 함수를 override 하면 되는데,   
-SimpleArgumentConverter와 다르게 여러개 인자를 받을 수 있다.    
-이때 aggregator class는 static이여야 하며, 변환하고자 하는 클래스 생성자는 public이여야 한다.
+ArgumentsAggregator 의 구현체를 만들고, aggregateArguments 함수를 override      
+SimpleArgumentConverter와 다르게 여러개 인자를 받을 수 있음.      
+이때 aggregator class는 static이여야 하며, 변환하고자 하는 클래스 생성자는 public이여야 함.
 
 ```java
 
@@ -390,7 +390,7 @@ SimpleArgumentConverter와 다르게 여러개 인자를 받을 수 있다.
 
 ```
 
-@AggregateWith(StudyAggregator.class) Study study` 처럼 테스트 함수에 @AggregateWith 어노테이션과 Aggregator 클래스를 통해 인자로 클래스를 받을 수 있다. 
+@AggregateWith(StudyAggregator.class) Study study` 처럼 테스트 함수에 @AggregateWith 어노테이션과 Aggregator 클래스를 통해 인자로 클래스를 받을 수 있음. 
 
-
+ 
 
