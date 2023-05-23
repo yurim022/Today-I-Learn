@@ -280,9 +280,11 @@ name = "{displayName}, {currentRepetition}/{totalRepetitions}
 ```
 테스트 이름을 제공하는 인자들을 활용하여 커스터마이징해서 사용하는 것도 가능하다. 
 
-<br>
+<br><br>
 
-#### @paramiterizedTest
+## 파라미터로 복수의 값 테스트
+
+#### @ValueSource
 
 여러가지 파라미터 값들을 줘서 테스트하고 싶은 경우, (경계값 등)  `@paramiterizedTest` 를 사용할 수 있다. 
 
@@ -291,6 +293,7 @@ name = "{displayName}, {currentRepetition}/{totalRepetitions}
     @DisplayName("스터디 파라미터 인자로 받는 테스트")
     @ParameterizedTest(name = "{index} {displayName} message = {0}")
     @ValueSource(strings = {"날씨가","많이","더워지고","있네요."})
+    @NullAndEmptySource
     void paramiterizedTest(String message) {
         System.out.println(message);
     }
@@ -300,6 +303,17 @@ name = "{displayName}, {currentRepetition}/{totalRepetitions}
 파라미터로는 int,string,boolean,char,class 등 다양한 타입이 가능하다.
 
 ![image](https://github.com/yurim022/Today-I-Learn/assets/45115557/c9ab210a-914b-4f74-a449-ca3c154d3e90)
+
+` @NullAndEmptySource` , `@NullSource` , `@EmptySource` 등을 붙여주면 ValueSource의 파라미터에 추가로 테스트할 null/empty 값을 넣어서 테스트 할 수 있다. 
+
+<br>
+
+#### 
+
+
+<br>
+
+
 
 
 <br>
