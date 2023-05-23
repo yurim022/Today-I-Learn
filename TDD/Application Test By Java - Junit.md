@@ -192,7 +192,7 @@ org.junit.jupiter.api.Assertions.*
 
 #### assertAll
 
-여러개의 assert문을 사용한다면 하나의 assert문에서 에러가 발생하면 나머지 assert문은 동작할 수 없다.
+여러개의 assert문을 사용한다면 하나의 assert문에서 에러가 발생하면 나머지 assert문은 동작할 수 없다.   
 때문에 assertAll을 활용해서 다른 assert문의 성공 여부에 상관없이 테스트 할 수 있다. 
 
 ```java
