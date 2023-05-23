@@ -231,6 +231,6 @@ org.junit.jupiter.api.Assertions.*
 
 ```
 
-발생한 
+발생한 예외를 받아서 기대했던 메세지와 같은지 비교해볼 수도 있다. 
 
 <br>
