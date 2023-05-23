@@ -340,8 +340,27 @@ static class StudyConverter extends SimpleArgumentConverter {
 
 <br>
 
+#### ArgumentsAccessor
 
+복수의 파라미터를 받고 싶을때, ArgumentsAccessor 를 사용할 수 있다. 
+이때 `@CsvSource` 를 통해 여러개의 인자묶음을 전달한다. 이때 구분자는 여러가지가 있지만, 객체묶음은 ""로 객체 내 파라미터 구분은 ','를 사용하겠다.
 
+```
+    @DisplayName("ArgumentsAccessor로 파라미터 받기")
+    @ParameterizedTest(name = "{index} {displayName} message = {0}")
+    @CsvSource({"10, 자바 스터디", "20, 스프링"})
+    void parameterizedTestWithClass(ArgumentsAccessor argumentsAccessor) {
+        Study study = new Study(argumentsAccessor.getInteger(0),argumentsAccessor.getString(1));
+        System.out.println(study.toString());
+    }
+```
+
+테스트 함수의 인자로 ArgumentsAccessor 를 받고, @CsvSource에 테스트하고자 하는 값들을 넣어준다.   
+argumentsAccessor.getInteger(INDEX) , argumentsAccessor.getString(INDEX) 로 인자값을 받아올 수 있다.
 
 <br>
+
+#### @AggregateWith
+
+
 
