@@ -296,7 +296,8 @@ name = "{displayName}, {currentRepetition}/{totalRepetitions}
     }
 ```
 
-`@ValueSource` 에 테스트하고자 하는 파라미터를 넣어주고, 마찬가지로 테스트에 표시할 이름을 커스터마이징 해줄 수 있다. 
+`@ValueSource` 에 테스트하고자 하는 파라미터를 넣어주고, 마찬가지로 테스트에 표시할 이름을 커스터마이징 해줄 수 있다.    
+파라미터로는 int,string,boolean,char,class 등 다양한 타입이 가능하다.
 
 ![image](https://github.com/yurim022/Today-I-Learn/assets/45115557/c9ab210a-914b-4f74-a449-ca3c154d3e90)
 
