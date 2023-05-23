@@ -234,3 +234,21 @@ org.junit.jupiter.api.Assertions.*
 발생한 예외를 받아서 기대했던 메세지와 같은지 비교해볼 수도 있다. 
 
 <br>
+
+
+#### assertTimeout
+
+테스트하는 코드가 특정 시간안에 완료되어야 한다면, `assertTimeout`으로 시간에 대한 테스트도 할 수 있다. 
+
+```java
+
+ @Test
+    @DisplayName("특정 시간안에 끝나야 하는 코드 테스트")
+    void creat_new_study_timeout() {
+        assertTimeout(Duration.ofMillis(100), ()-> {
+            new Study(10);
+            Thread.sleep(300);
+        });
+    }
+    
+```
