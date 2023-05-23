@@ -257,6 +257,8 @@ org.junit.jupiter.api.Assertions.*
 
 ## 테스트 반복 실행하기
 
+#### @RepeatedTest
+
 실행마다 랜덤값을 쓴다던가, 타이밍에 따라 달라질 수 있는 코드가 있는 경우 코드를 반복해서 테스트 할 수 있다.
 
 ```java
@@ -278,5 +280,26 @@ name = "{displayName}, {currentRepetition}/{totalRepetitions}
 ```
 테스트 이름을 제공하는 인자들을 활용하여 커스터마이징해서 사용하는 것도 가능하다. 
 
-<>
+<br>
+
+#### @paramiterizedTest
+
+여러가지 파라미터 값들을 줘서 테스트하고 싶은 경우, (경계값 등)  `@paramiterizedTest` 를 사용할 수 있다. 
+
+```java
+
+    @DisplayName("스터디 파라미터 인자로 받는 테스트")
+    @ParameterizedTest(name = "{index} {displayName} message = {0}")
+    @ValueSource(strings = {"날씨가","많이","더워지고","있네요."})
+    void paramiterizedTest(String message) {
+        System.out.println(message);
+    }
+```
+
+`@ValueSource` 에 테스트하고자 하는 파라미터를 넣어주고, 마찬가지로 테스트에 표시할 이름을 커스터마이징 해줄 수 있다. 
+
+![image](https://github.com/yurim022/Today-I-Learn/assets/45115557/c9ab210a-914b-4f74-a449-ca3c154d3e90)
+
+
+<br>
 
