@@ -174,7 +174,7 @@ org.junit.jupiter.api.Assertions.*
 #### assertTrue
 
 ```java
- @Test
+    @Test
     @DisplayName("새로운 스터디를 생성한다.")
     void create_new_study() {
         Study study = new Study(-10);
@@ -242,7 +242,7 @@ org.junit.jupiter.api.Assertions.*
 
 ```java
 
- @Test
+    @Test
     @DisplayName("특정 시간안에 끝나야 하는 코드 테스트")
     void creat_new_study_timeout() {
         assertTimeout(Duration.ofMillis(100), ()-> {
@@ -252,3 +252,31 @@ org.junit.jupiter.api.Assertions.*
     }
     
 ```
+
+<br><br>
+
+## 테스트 반복 실행하기
+
+실행마다 랜덤값을 쓴다던가, 타이밍에 따라 달라질 수 있는 코드가 있는 경우 코드를 반복해서 테스트 할 수 있다.
+
+```java
+
+    @DisplayName("스터디 반복테스트")
+    @RepeatedTest(value = 10, name = "{displayName}, {currentRepetition}/{totalRepetitions}")
+    void repeatTest(RepetitionInfo repetitionInfo ){
+        System.out.println("repeat test " + repetitionInfo.getCurrentRepetition()
+        + "/" + repetitionInfo.getTotalRepetitions());
+    }
+
+```
+
+`@RepeatedTest` 어노테이션을 통해 반복할 테스트임을 명시하고 반복할 횟수를 value로 줄 수 있다.   
+함수 인자로 RepetitionInfo 를 받아 현재 반복횟수, 총 반복횟수 등의 정보를 활용할 수 있다.   
+
+```java
+name = "{displayName}, {currentRepetition}/{totalRepetitions}
+```
+테스트 이름을 제공하는 인자들을 활용하여 커스터마이징해서 사용하는 것도 가능하다. 
+
+<>
+
