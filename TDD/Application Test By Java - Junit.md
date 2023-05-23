@@ -198,7 +198,7 @@ org.junit.jupiter.api.Assertions.*
 ```java
 
     @Test
-    @DisplayName("새로운 스터디를 생성한다. assertAll 테스트")
+    @DisplayName("여러개의 assert문을 테스트한다.")
     void create_new_study_test_assertAll() {
         Study study = new Study(StudyStatus.ENDED,-10);
 
@@ -212,4 +212,25 @@ org.junit.jupiter.api.Assertions.*
     
 ```
 
+<br>
 
+#### assertThrows
+
+특정 예외를 테스트 하고싶을 땐 assertThrows를 사용할 수 있다. 
+
+```java
+
+    @Test
+    @DisplayName("특정 exception이 발생하는지 테스트하고 싶을 때")
+    void create_new_study_test_assertThrow() {
+
+        IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> new Study(-10));
+        String message = illegalArgumentException.getMessage();
+        assertEquals(message,"참여제한 인원은 0보다 적을 수 없습니다.");
+    }
+
+```
+
+발생한 
+
+<br>
