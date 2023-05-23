@@ -304,12 +304,39 @@ name = "{displayName}, {currentRepetition}/{totalRepetitions}
 
 ![image](https://github.com/yurim022/Today-I-Learn/assets/45115557/c9ab210a-914b-4f74-a449-ca3c154d3e90)
 
-` @NullAndEmptySource` , `@NullSource` , `@EmptySource` 등을 붙여주면 ValueSource의 파라미터에 추가로 테스트할 null/empty 값을 넣어서 테스트 할 수 있다. 
+`@NullAndEmptySource` , `@NullSource` , `@EmptySource` 등을 붙여주면 ValueSource의 파라미터에 추가로 테스트할 null/empty 값을 넣어서 테스트 할 수 있다. 
 
 <br>
 
-#### 
+#### @ConvertWith
 
+클래스 타입으로 함수의 인자를 받고 싶은데, 인자가 1개일때 사용할 수 있는게 `@ConvertWith` 이다.
+
+```java
+static class StudyConverter extends SimpleArgumentConverter {
+        @Override
+        protected Object convert(Object source, Class<?> targetType) throws ArgumentConversionException {
+            assertEquals(Study.class,targetType,"Can only convert to Study");
+            return new Study(Integer.parseInt(source.toString()));
+        }
+    }
+```
+
+먼저 ConvertWith 어노테이션을 사용하려면, SimpleArgumentConverter 을 상속받은 static 클래스 구현체를 정의해주어야 한다.   
+위 코드를 보면 convert함수를 override하여 source에서 받은 인자값을 통해 원하는 타입의 클래스로 변환해주고 있다.    
+
+```java
+
+    @DisplayName("Converter로 인자 받기")
+    @ParameterizedTest(name = "{index} {displayName} message = {0}")
+    @ValueSource(ints = {10,20,40})
+    void parameterizedTestWithClassAndOneArgument(@ConvertWith(StudyConverter.class) Study study) {
+        System.out.println(study.getLimit());
+    }
+
+```
+
+`@ConvertWith(커스텀Converterclass)` 를 통해 변환된 클래스를 사용해줄 수 있다. 
 
 <br>
 
