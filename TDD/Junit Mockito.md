@@ -167,7 +167,7 @@ class StudyServiceTest {
 - **when(mock객체 함수).thenReturn(리턴값**) 를 통해 어떤 행동을 할지 stub해줄 수 있음
 - 이때 `when(memberService.findById(1L)).thenReturn(Optional.of(member))`  로 id가 1L인 데이터에 대해서만 stub해주었기 때문에 `memberService.findById(2L)` 은 assert 에러!
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7d61f626-15fc-43c1-9b2d-a58f6ba6f07d/Untitled.png)
+![image](https://github.com/yurim022/Today-I-Learn/assets/45115557/26b88c59-2db2-498f-92dc-7c59e91b7b8f)
 
 <br><br>
 
@@ -192,7 +192,8 @@ class StudyServiceTest {
 
 - Mockito의 `ArgumentMatchers` 에 `any()` 를 넣어주면 어떤 인자값이 들어와도 같은 값을 반환함
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/654e20b1-056a-4f46-82e3-53651123a29d/Untitled.png)
+![image](https://github.com/yurim022/Today-I-Learn/assets/45115557/b43f1eca-52d1-4fc4-b3d9-4201a3a44f58)
+
 
 - ArgumentMatchers 로 다양한 동작을 컨드롤 할 수 있다. [Mockito 공식문서](https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html#2) 참고
 
