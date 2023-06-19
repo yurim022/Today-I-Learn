@@ -90,6 +90,8 @@ import static org.mockito.Mockito.mock;
 
 ### 2. Mock 어노테이션
 
+### @ExtendWith(MockitoExtension.class)
+
 ```java
 @ExtendWith(MockitoExtension.class)
 class StudyServiceTest {
@@ -108,8 +110,11 @@ class StudyServiceTest {
 }
 ```
 
-- `@ExtendWith(MockitoExtension.class)` 와 함께 사용해야 제대로 Mock 객체를 만들 수 있음
-- 클래스 내 여러 함수에서 Mock을 사용한다면 위와 같이 클래스에 전체적으로 `@Mock` 어노테이션으로 정의
+- SpringBoot 2.2.0부터 공식적으로 JUnit5를 지원함에 따라, 이제부터는 @ExtendWith(MockitoExtension.class)를 사용해야 결합이 가능
+
+<br>
+
+### @Mock
 
 ```java
 @ExtendWith(MockitoExtension.class)
@@ -124,7 +129,53 @@ class StudyServiceTest {
 }
 ```
 
+- 가짜 객체를 만들어 반환해주는 어노테이션
+- 클래스 내 여러 함수에서 Mock을 사용한다면 위와 같이 클래스에 전체적으로 `@Mock` 어노테이션으로 정의
 - 하나의 단위테스트에서만 사용하고 싶다면 매개변수로 받아줄 수도 있음
+
+<br>
+
+### **@InjectMocks**
+
+```java
+@ExtendWith(MockitoExtension.class)
+public class StudyServiceMockito {
+
+    @Mock
+    MemberService memberService;
+
+    @Mock
+    StudyRepository studyRepository;
+
+    @InjectMocks
+    StudyService studyService;
+
+}
+```
+
+- `@Mock` 또는 `@Spy`로 생성된 가짜 객체를 자동으로 주입시켜주는 어노테이션
+
+<br>
+
+### **@Spy**
+
+```java
+@ExtendWith(MockitoExtension.class)
+class UserServiceTest {
+
+    @InjectMocks
+    private UserService userService;
+
+    @Mock
+    private UserRepository userRepository;
+
+    @Spy
+    private BCryptPasswordEncoder passwordEncoder;
+
+}
+```
+
+- Stub 하지 않은 메소드들은 원본 메소드 그대로 사용하는 어노테이션
 
 <br><br>
 
