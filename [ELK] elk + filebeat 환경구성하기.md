@@ -1,5 +1,7 @@
 # ELK + filebeat 환경 구성하기
 
+## ELK 구성
+
 ![image](https://github.com/yurim022/Today-I-Learn/assets/45115557/d978c25f-030f-44af-be88-3334fea431d0)
 
 
@@ -103,7 +105,7 @@ brew services start filebeat
 
 
 
-</br>
+</br></br>
 
 참고링크:   
 https://kanoos-stu.tistory.com/21#:~:text=Filebeat%20%EC%84%A4%EC%B9%98%20brew%20install%20filebeat%20mac%EC%97%90%EC%84%9C%EB%8A%94%20brew%20%EB%AA%85%EB%A0%B9%EC%96%B4%EB%A5%BC,%ED%8F%B4%EB%8D%94%20%EB%82%B4%EB%B6%80%EC%97%90%20%EC%84%A4%EC%A0%95%20%ED%8C%8C%EC%9D%BC%EC%9D%B8%20filebeat.yml%20%ED%8C%8C%EC%9D%BC%EC%9D%B4%20%EC%9C%84%EC%B9%98%ED%95%B4%20%EC%9E%88%EB%8B%A4.   
