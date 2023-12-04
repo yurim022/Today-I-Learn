@@ -90,8 +90,10 @@ output.logstash:
   hosts: ["localhost:5000"]
 ```
 
-각자 환경에 맞에 filebeat.yml 파일을 수정해준다. 
-설정파일 수정이 완료되면 아래 명령어로 filebeat를 실행시킨다.   
+각자 환경에 맞에 filebeat.yml 파일을 수정해준다.    
+설정파일 수정이 완료되면 아래 명령어로 filebeat를 실행시킨다.     
+
+</br>
 
 ```
 brew services start filebeat
