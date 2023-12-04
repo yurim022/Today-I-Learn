@@ -169,6 +169,8 @@ KSQL 검색도 가능하다.
 
 </br>
 
+추가로 로그가 계속 쌓이다보면 검색 속도가 느려질 수 있는데 [elasticsearch lifecycle관리](https://mangkyu.tistory.com/209) 를 참고해보자.
+
 </br></br>
 
 참고링크:   
