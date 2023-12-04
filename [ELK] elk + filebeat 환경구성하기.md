@@ -32,7 +32,7 @@ filter {
                 # 로그 안에 LOGLEVEL 패턴이 있을 경우 파싱하여 log_level이라는 필드로 추가
                 # [INFO ]와 같이 스페이스를 남기는 설정을 고려하여 파싱함
                 match => [
-                    "message", "\[%{LOGLEVEL:log_level}%{SPACE}*\]"
+                    "message", "%{YEAR:year}-%{DATA:month}-%{MONTHDAY:day} %{TIME:time} \[%{LOGLEVEL:log_level}%{SPACE}*\]%{GREEDYDATA:log_msg}"
                 ]
         }
 }
@@ -85,11 +85,17 @@ filebeat.inputs:
   fields:
     env: local  # 추가해주고 싶은 필드
 
+  # multiline 설정
+  multiline.pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}[[:space:]][0-9]{2}:[0-9]{2}:[0-9]{2}[[:space:]]\[
+  multiline.negate: true
+  multiline.match: after
+
 setup.kibana:
   host: "localhost:5601"
 
 output.logstash:
   hosts: ["localhost:5000"]
+
 ```
 
 각자 환경에 맞에 filebeat.yml 파일을 수정해준다.    
