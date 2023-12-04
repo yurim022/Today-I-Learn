@@ -1,7 +1,45 @@
-# ELK 환경 구성하기
+# ELK + filebeat 환경 구성하기
 
 우선 elk는 docker를 이용하여 구성하였다.    
-[docker-elk 깃허브 링크](https://github.com/deviantony/docker-elk) 를 참고하여 띄웠다. 
+[docker-elk 깃허브 링크](https://github.com/deviantony/docker-elk) 를 참고하여 띄웠다.    
+
+logstash의 pipeline 폴더 내의 logstash.conf 파일을 다음과 같이 수정해주었다. 
+
+### logstash.conf
+```
+input {
+       # FileBeat를 통해 로그 수신
+       beats {
+               port => 5000
+               host => "0.0.0.0"
+               ssl => false
+       }
+
+}
+
+filter {
+       # Grok형식으로 들어오는 로그를 가공하기 위한 필터
+        grok {
+                # 로그 안에 LOGLEVEL 패턴이 있을 경우 파싱하여 log_level이라는 필드로 추가
+                # [INFO ]와 같이 스페이스를 남기는 설정을 고려하여 파싱함
+                match => [
+                    "message", "\[%{LOGLEVEL:log_level}%{SPACE}*\]"
+                ]
+        }
+}
+
+
+output {
+        elasticsearch {
+                hosts => "elasticsearch:9200"
+                user => "elastic"
+                password => "changeme"
+                ecs_compatibility => disabled
+                index => "logstash-%{+YYYY.MM.dd}"
+                data_stream => false
+        }
+}
+```
 
 </br>
 
