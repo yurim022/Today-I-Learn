@@ -6,7 +6,7 @@
 우선 elk는 docker를 이용하여 구성하였다.    
 `filebeat 로 어플리케이션의 로그 수집 -> logstash에서 수신 및 필터 -> elastic 저장 -> kibanana 모니터링` 의 간단한 형태로 구성하였다.    
 대용량 로그처리의 경우 중간에 kafka를 사용하여 유실을 방지하는 케이스도 있으나, 이 경우 로그양이 많지 않아 간단하게 진행하였다.
-> Logstash와 Filebeat는 sharding/replication을 지원하지 않기 때문에 ELK 스택이 다운됬을때 로그가 적달되지 않는다. 
+> Logstash와 Filebeat는 sharding/replication을 지원하지 않기 때문에 ELK 스택이 다운됬을때 로그가 전달되지 않는다. 
 
 [docker-elk 깃허브 링크](https://github.com/deviantony/docker-elk) 를 참고하여 띄웠다.    
 
