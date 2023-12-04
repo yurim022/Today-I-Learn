@@ -1,5 +1,8 @@
 # ELK + filebeat 환경 구성하기
 
+![image](https://github.com/yurim022/Today-I-Learn/assets/45115557/d978c25f-030f-44af-be88-3334fea431d0)
+
+
 우선 elk는 docker를 이용하여 구성하였다.    
 `filebeat 로 어플리케이션의 로그 수집 -> logstash에서 수신 및 필터 -> elastic 저장 -> kibanana 모니터링` 의 간단한 형태로 구성하였다.    
 대용량 로그처리의 경우 중간에 kafka를 사용하여 유실을 방지하는 케이스도 있으나, 이 경우 로그양이 많지 않아 간단하게 진행.   
@@ -84,6 +87,20 @@ setup.kibana:
 output.logstash:
   hosts: ["localhost:5000"]
 ```
+
+설정파일 수정이 완료되면 아래 명령어로 filebeat를 실행시킨다.
+
+```
+brew services start filebeat
+```
+
+
+
+</br>
+
+참고링크:   
+https://kanoos-stu.tistory.com/21#:~:text=Filebeat%20%EC%84%A4%EC%B9%98%20brew%20install%20filebeat%20mac%EC%97%90%EC%84%9C%EB%8A%94%20brew%20%EB%AA%85%EB%A0%B9%EC%96%B4%EB%A5%BC,%ED%8F%B4%EB%8D%94%20%EB%82%B4%EB%B6%80%EC%97%90%20%EC%84%A4%EC%A0%95%20%ED%8C%8C%EC%9D%BC%EC%9D%B8%20filebeat.yml%20%ED%8C%8C%EC%9D%BC%EC%9D%B4%20%EC%9C%84%EC%B9%98%ED%95%B4%20%EC%9E%88%EB%8B%A4.
+
 
 각자 환경에 맞에 filebeat.yml 파일을 수정해준다. 
 
