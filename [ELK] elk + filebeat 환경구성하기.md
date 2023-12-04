@@ -124,8 +124,50 @@ Exiting: error loading config file: config file ("/usr/local/etc/filebeat/filebe
 
 </br></br>
 
+
+## Kibana 로그 모니터링
+    
+
+키바나 서버 (default 5601 port) 에 접속 > `Stack Management >  Create Index Pattern` 선택     
+
+![image](https://github.com/yurim022/Today-I-Learn/assets/45115557/954f50f7-e277-4aef-8d49-6a42c5a0ada8)
+
+</br>
+
+`logstash.conf` 파일에서 설정한 인덱스 패턴을 입력해준다. (필자의 경우 index => "logstash-%{+YYYY.MM.dd}")   
+
+![image](https://github.com/yurim022/Today-I-Learn/assets/45115557/703682ff-310d-4ca5-8777-0906ea9c23ec)
+
+</br>
+
+`Discover` 탭으로 이동해서 인덱스에 해당하는 로그를 볼 수 있다.  
+
+![image](https://github.com/yurim022/Today-I-Learn/assets/45115557/4083e4fb-e06a-4cac-ab1b-80fa8517020e)
+
+</br>
+
+오른쪽 상단의 필터로 timestamp 조절도 할수 있다.   
+![image](https://github.com/yurim022/Today-I-Learn/assets/45115557/3b8640bf-a6be-4eb9-b011-cc25b06ca0c2)
+
+</br>
+
+KSQL 검색도 가능하다.   
+![image](https://github.com/yurim022/Today-I-Learn/assets/45115557/b50cc671-6ef7-4032-8bdd-41d6c0f43cf2)
+
+</br>
+
+검색결과 화면
+![image](https://github.com/yurim022/Today-I-Learn/assets/45115557/12fe7381-ae28-41af-b091-ff774bd5b30d)
+
+
+
+</br>
+
+</br></br>
+
 참고링크:   
 https://kanoos-stu.tistory.com/21#:~:text=Filebeat%20%EC%84%A4%EC%B9%98%20brew%20install%20filebeat%20mac%EC%97%90%EC%84%9C%EB%8A%94%20brew%20%EB%AA%85%EB%A0%B9%EC%96%B4%EB%A5%BC,%ED%8F%B4%EB%8D%94%20%EB%82%B4%EB%B6%80%EC%97%90%20%EC%84%A4%EC%A0%95%20%ED%8C%8C%EC%9D%BC%EC%9D%B8%20filebeat.yml%20%ED%8C%8C%EC%9D%BC%EC%9D%B4%20%EC%9C%84%EC%B9%98%ED%95%B4%20%EC%9E%88%EB%8B%A4.   
 https://mangkyu.tistory.com/197   
 https://yonikim.tistory.com/22   
 https://hello-startup.tistory.com/5    
+https://kanoos-stu.tistory.com/77   
