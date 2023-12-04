@@ -96,14 +96,31 @@ output.logstash:
 
 </br>
 
-설정파일 수정이 완료되면 아래 명령어로 filebeat를 실행시킨다.     
+설정파일 수정이 완료되면 start 명령어로 filebeat를 실행시킨다.     
 
 
 ```
 brew services start filebeat
 ```
 
+</br>
+   
+아래 명령어를 치고 로그가 잘 나오면 제대로 띄워진 것이다.    
 
+```
+ sudo /usr/local/Cellar/filebeat/{target-version}/bin/filebeat -e
+```
+
+</br>
+   
+에러가 발생한다면, 해당하는 권한을 설정해주면 된다.   
+
+```
+Exiting: error loading config file: config file ("/usr/local/etc/filebeat/filebeat.yml") must be owned by the user identifier (uid=0) or root
+
+> sudo chown root /usr/local/etc/filebeat/filebeat.yml
+> sudo chgrp wheel /usr/local/etc/filebeat/filebeat.yml
+```
 
 </br></br>
 
