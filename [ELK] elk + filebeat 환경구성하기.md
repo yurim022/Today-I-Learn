@@ -1,6 +1,8 @@
 # ELK + filebeat 환경 구성하기
 
 우선 elk는 docker를 이용하여 구성하였다.    
+`filebeat 로 어플리케이션의 로그 수집 -> logstash에서 수신 및 필터 -> elastic 저장 -> kibanana 모니터링` 의 간단한 형태로 구성하였다.    
+대용량 로그처리의 경우 중간에 kafka를 사용하여 유실을 방지하는 케이스도 있으나, 이 경우 로그양이 많지 않아 간단하게 진행.   
 [docker-elk 깃허브 링크](https://github.com/deviantony/docker-elk) 를 참고하여 띄웠다.    
 
 logstash의 pipeline 폴더 내의 logstash.conf 파일을 다음과 같이 수정해주었다. 
@@ -40,6 +42,14 @@ output {
         }
 }
 ```
+
+</br>
+
+### 포트정보
+
+* elasticsearch : 9200
+* kibana : 5601
+* logstash : 5000
 
 </br>
 
