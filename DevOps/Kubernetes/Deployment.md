@@ -63,3 +63,59 @@ As you can see, ReplicaSet is same as Deployment. Then Why we need ReplicaSet?
 
 Deployment is higher level of Replicaset.   
 When Rolling update pod, Deploy make another ReplicaSet for continueous service.   
+
+</br></br>
+
+## Command In Pod
+
+```yml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: multiple-command-v1
+  name: multiple-command-v1
+spec:
+  containers:
+  - image: sysnet4admin/net-tools
+    name: net-tools
+    command: ["/bin/sh","-c","echo run multiple-command-v1 && sleep 3600"]
+
+```
+
+we can desinate run commands by file using `command` . There are few ways to do this.
+
+</br>
+
+```yml
+    command: ["/bin/sh","-c","echo run multiple-command-v1 ; sleep 3600"]
+```
+
+If use `;` with command, next command will execute after previous command.    
+( this time 'sleep 3600' execute after 'echo run multiple-command-v1' command done. )    
+otherwise If use `&&` , commands are run pararell.
+
+</br>
+
+```yml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: multiple-command-w-args
+  name: multiple-command-w-args
+spec:
+  containers:
+  - image: sysnet4admin/net-tools
+    name: net-tools
+    command: ["/bin/sh","-c"]
+    args:
+    - |
+      echo run multiple-command-w-args
+      echo add commentary
+      sleep 3600
+```
+
+If use `args` these can be overrided by docker image's own args.   
+
+</br>
