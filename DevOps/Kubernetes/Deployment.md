@@ -28,5 +28,5 @@ spec:
 ```
 
 You should remember the `selector's app` : po-nginx and `template's app` : po-nginx should be same.   
-beacause kube generate po by template.   
+beacause kube generate pod by template.   
 
