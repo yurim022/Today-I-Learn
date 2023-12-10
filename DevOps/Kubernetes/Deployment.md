@@ -155,3 +155,38 @@ spec:
   <img width="312" alt="image" src="https://github.com/yurim022/Today-I-Learn/assets/45115557/9d0252cc-6a51-408b-8b15-b76eb89482dc">
 
 when run  `kubectl get pod` I can get 10 pod, which I desinate in  `successfulJobsHistoryLimit` option.
+
+</br></br>
+
+## DaemonSet
+
+A DaemonSet ensures that all (or some) Nodes run a copy of a Pod(Daemon).    
+As nodes are added to the cluster, Pods are added to them.    
+As nodes are removed from the cluster, those Pods are garbage collected.    
+Deleting a DaemonSet will clean up the Pods it created.
+
+```yml
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels:
+    app: ds-nginx
+  name: ds-nginx
+spec:
+  selector: 
+    matchLabels:
+      app: po-nginx
+  template:
+    metadata:
+      labels:
+        app: po-nginx
+    spec:
+        containers:
+        - name: nginx
+          image: nginx
+
+```
+
+it seems similar with Deployment yml file, but DaemonSet don't have Replicas
+
+</br></br>
