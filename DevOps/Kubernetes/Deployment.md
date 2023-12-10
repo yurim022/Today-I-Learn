@@ -154,4 +154,4 @@ spec:
 
   <img width="312" alt="image" src="https://github.com/yurim022/Today-I-Learn/assets/45115557/9d0252cc-6a51-408b-8b15-b76eb89482dc">
 
-when run  `kubectl get pod` I can get 10 pod, which I desinate in  successfulJobsHistoryLimit option.
+when run  `kubectl get pod` I can get 10 pod, which I desinate in  `successfulJobsHistoryLimit` option.
