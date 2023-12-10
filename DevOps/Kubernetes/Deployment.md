@@ -190,3 +190,34 @@ spec:
 it seems similar with Deployment yml file, but DaemonSet don't have Replicas
 
 </br></br>
+
+## StatefulSet
+
+StatefulSet provides guarantees about the ordering and uniqueness of these Pods.   
+It used for Indexing Pod (ElasticSearch, Hadoop..) or Object which needs to specify name.   
+
+```yml
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+  name: sts-chk-hn
+spec:
+  replicas: 3
+  serviceName: sts-svc-domain #statefulset need it
+  selector: 
+    matchLabels:
+      app: sts
+  template:
+    metadata:
+      labels:
+        app: sts
+    spec:
+        containers:
+        - name: chk-hn
+          image: sysnet4admin/chk-hn
+
+```
+
+</br></br>
