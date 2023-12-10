@@ -194,7 +194,7 @@ it seems similar with Deployment yml file, but DaemonSet don't have Replicas
 ## StatefulSet
 
 StatefulSet provides guarantees about the ordering and uniqueness of these Pods.   
-Unlike a Deployment, a StatefulSet maintains a sticky identity for each of its Pods. These pods are created from the same spec, but are not interchangeable: each has a persistent identifier that it maintains across any rescheduling.
+Unlike a Deployment, a StatefulSet maintains a sticky identity for each of its Pods. These pods are created from the same spec, but are not interchangeable: each has a persistent identifier that it maintains across any rescheduling. 
 It used for Indexing Pod (ElasticSearch, Hadoop..) or Object which needs to specify name.   
 
 ```yml
