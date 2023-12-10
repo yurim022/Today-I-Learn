@@ -118,4 +118,40 @@ spec:
 
 If use `args` these can be overrided by docker image's own args.   
 
+</br></br>
+
+## CronJob
+
+If you want you make Job working regulary, you can use `CronJob`.   
+whih spec.schedule area, you can decide when to execute Job.   
+`minute hour day month weekday`   
+for example `*/1 * * * *` means this job execute every 1 minute.   
+
+
+```yml
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cj-1m-hist3-curl
+spec:
+  schedule: "*/1 * * * *"
+  successfulJobsHistoryLimit: 10
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: net-tools
+            image: sysnet4admin/net-tools
+            command: ["curlclk","nginx"]
+          restartPolicy: Never
+```
+
+* `successfulJobsHistoryLimit` means this object remain 10 during the run time.
+* `restartPolicy` usually when using CronJob, this element set to Never or Failure
+
 </br>
+
+  <img width="312" alt="image" src="https://github.com/yurim022/Today-I-Learn/assets/45115557/9d0252cc-6a51-408b-8b15-b76eb89482dc">
+
+when run  `kubectl get pod` I can get 10 pod, which I desinate in  successfulJobsHistoryLimit option.
